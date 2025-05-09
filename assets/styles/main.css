@@ -868,11 +868,11 @@ h6 {
 }
 
 .card-bottom.above {
-	display: flex;
-	justify-content: end;
-	align-items: center;
 	margin-top: 5rem;
-	margin-bottom: 0;
+}
+
+.card-bottom.below {
+	justify-content: end;
 }
 
 @media screen and (max-width: 736px) {
@@ -886,8 +886,8 @@ h6 {
 		line-height: 1.5;
 	}
 
-	.card-bottom {
-		margin: 2rem 0;
+	.card-bottom.above {
+		margin-top: 2rem;
 	}
 }
 
@@ -2470,11 +2470,12 @@ body.is-preload #header .content .inner {
 
 @media screen and (max-width: 480px) {
 	#main article.active {
-		padding: 7.5rem 0.75rem 0 0.75rem;
+		padding: 1.5rem 0.75rem 0 0.75rem;
+		border: none;
 	}
 
 	#main article .bold-link.close {
-		left: 0.75rem;
+		display: none;
 	}
 
 	.card-logo.top {

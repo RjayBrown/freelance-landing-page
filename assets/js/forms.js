@@ -22,7 +22,7 @@ const contactForm = document.querySelector("#contactForm");
 // ON PAGE LOAD
 let savedUserData = JSON.parse(localStorage.getItem("data"));
 buildConnectedForms();
-saveAndValidateOnSubmit();
+validateAndSaveOnSubmit();
 clearAndFocusOnReset();
 
 window.addEventListener("hashchange", () => {
@@ -39,7 +39,7 @@ restartBtn.addEventListener("click", (e) => {
 	}, 50);
 });
 
-//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------//
 
 function buildConnectedForms() {
 	//Render dropdown
@@ -162,7 +162,7 @@ function buildConnectedForms() {
 	}
 }
 
-function saveAndValidateOnSubmit() {
+function validateAndSaveOnSubmit() {
 	// ON SUBMIT
 	// Validate form input
 	// Displays a custom message for invalid inputs and updates/removes message as the input value changes

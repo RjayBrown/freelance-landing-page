@@ -42,7 +42,6 @@ const hrElements = document.querySelectorAll("hr");
 // Accordian
 const accordian = document.querySelectorAll(".accordian");
 const toggle = document.querySelectorAll(".toggle");
-const toggleClose = document.querySelectorAll(".toggle-close");
 const accordianBody = document.querySelectorAll(".accordian-body");
 const accordianTitle = document.querySelectorAll(".heading");
 const stepNumber = document.querySelectorAll(".step");
