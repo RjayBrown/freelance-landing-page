@@ -15,17 +15,17 @@ const navMenu = document.querySelector(".nav-menu");
 const navLink = document.querySelectorAll(".nav-link");
 
 // Footer
-const footerText = document.querySelector(".copyright");
+const footerText = document.querySelectorAll(".copyright");
 
 // Text
 const major = document.querySelectorAll(".major");
+const pageSection = document.querySelectorAll(".heading-small");
 const anchorLink = document.querySelectorAll(".anchor");
 const cardBottomLink = document.querySelectorAll(".bold-link");
 const bold = document.querySelectorAll(".bold");
 
 // Theme
-const themeTitles = document.querySelectorAll(".theme-title");
-const themeContainer = document.querySelectorAll(".theme-container");
+const themeTitle = document.querySelector(".theme-title");
 const toggleBtns = document.querySelectorAll(".theme");
 const darkThemeBtn = document.querySelectorAll(".dark");
 const redThemeBtn = document.querySelectorAll(".red");
@@ -47,7 +47,7 @@ const accordianBody = document.querySelectorAll(".accordian-body");
 const accordianTitle = document.querySelectorAll(".heading");
 const stepNumber = document.querySelectorAll(".step");
 const imgContainer = document.querySelectorAll(".img-container");
-const list = document.querySelector(".list");
+const list = document.querySelector(".accordian-list");
 
 // ON PAGE LOAD
 // Get theme from local storage
@@ -57,8 +57,9 @@ let theme = localStorage.getItem("theme");
 getSavedTheme(theme);
 
 function getSavedTheme(theme) {
+	setHeaderText();
 	if (!theme || theme === "null") {
-		toggleTheme("dark");
+		toggleTheme("light");
 	} else {
 		toggleTheme(theme);
 	}
@@ -71,6 +72,8 @@ toggleBtns.forEach((btn) => {
 
 // Change header text based on device
 window.addEventListener("resize", setHeaderText);
+
+// Close accordian on hash change
 window.addEventListener(
 	"hashchange",
 	accordian.forEach((bar, i) => {
@@ -78,30 +81,16 @@ window.addEventListener(
 	})
 );
 
-// Accordian
+// Accordian toggle
 accordian.forEach((bar, i) => {
 	bar.addEventListener("click", () => {
-		let theme = localStorage.getItem("theme");
-
 		if (!bar.classList.contains("open")) {
-			openAccordian(theme, i);
+			openAccordian(i);
 		} else {
-			closeAccordian(theme, i);
+			closeAccordian(i);
 		}
 	});
 });
-
-function resetAccordian(theme) {
-	accordian.forEach((bar, index) => {
-		if (theme === "light") {
-			bar.classList = "accordian lt";
-		} else {
-			bar.classList = "accordian dk";
-		}
-		toggle[index].removeAttribute("style");
-		stepNumber[index].classList.add("hidden");
-	});
-}
 
 /*-------------------------------------------------------*/
 /*                        CONFIG						 */
@@ -109,80 +98,32 @@ function resetAccordian(theme) {
 
 // THEME
 function toggleTheme(theme) {
-	if (theme === "dark") {
-		page.classList = "dark";
-		switchLogoImg(theme);
-		switchForeground("white");
-		switchCardForeground(theme);
-		setActiveThemeBtn(theme);
-		resetAccordian(theme);
-		localStorage.setItem("theme", theme);
-	}
-
-	if (theme === "red") {
-		page.classList = "red";
-		switchLogoImg(theme);
-		switchForeground("white");
-		switchCardForeground(theme);
-		setActiveThemeBtn(theme);
-		resetAccordian(theme);
-		localStorage.setItem("theme", "red");
-	}
-
-	if (theme === "blue") {
-		page.classList = "blue";
-		switchLogoImg(theme);
-		switchForeground("white");
-		switchCardForeground(theme);
-		setActiveThemeBtn(theme);
-		resetAccordian(theme);
-		localStorage.setItem("theme", "blue");
-	}
-
-	if (theme === "purple") {
-		page.classList = "purple";
-		switchLogoImg(theme);
-		switchForeground("white");
-		switchCardForeground(theme);
-		setActiveThemeBtn(theme);
-		resetAccordian(theme);
-		localStorage.setItem("theme", "purple");
-	}
+	page.classList = theme;
+	switchLogoImg(theme);
+	switchCardForeground(theme);
+	setActiveThemeBtn(theme);
+	setAccordianStyle(theme);
+	localStorage.setItem("theme", theme);
 
 	if (theme === "light") {
-		page.classList = "light";
-		switchLogoImg(theme);
 		switchForeground("black");
-		switchCardForeground(theme);
-		setActiveThemeBtn(theme);
-		resetAccordian(theme);
-		localStorage.setItem("theme", "light");
+	} else {
+		switchForeground("white");
 	}
-}
-
-// Theme Container (Card & Footer)
-function switchThemeContainer(foregroundColor) {
-	themeContainer.forEach((container) => {
-		container.style.borderColor = "transparent";
-
-		container.addEventListener("mouseout", () => {
-			container.style.borderColor = "transparent";
-		});
-		themeTitles.forEach((title) => {
-			title.style.color = foregroundColor;
-		});
-		container.style.backgroundColor = "rgba(45, 45, 45, 0.2)";
-	});
 }
 
 // Logo images
 function switchLogoImg(theme) {
 	if (theme === "light") {
-		headerLogo.src = "default-monochrome-dark.svg";
-		headerIcon.src = "7ONE-icon-b-b.svg";
+		headerLogo.src =
+			"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome-dark_b2eget.svg";
+		headerIcon.src =
+			"https://res.cloudinary.com/drgczkoux/image/upload/v1746752445/7ONE-icon-b-b_c5ly6l.svg";
 	} else {
-		headerLogo.src = "default-monochrome.svg";
-		headerIcon.src = "7ONE-icon-w-w.svg";
+		headerLogo.src =
+			"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome_ihvfx0.svg";
+		headerIcon.src =
+			"https://res.cloudinary.com/drgczkoux/image/upload/v1746752445/7ONE-icon-w-w_yvkocg.svg";
 	}
 }
 
@@ -206,6 +147,7 @@ function setActiveThemeBtn(theme) {
 		lightThemeBtn,
 		purpleThemeBtn,
 	];
+
 	// change color for borders
 	themeSwitchers.forEach((btns) => {
 		btns.forEach((btn) => {
@@ -220,7 +162,6 @@ function setActiveThemeBtn(theme) {
 
 // Foreground (Header)
 function switchForeground(color) {
-	switchThemeContainer(color);
 	switchBorderColor(color);
 
 	// change header color
@@ -243,43 +184,42 @@ function switchForeground(color) {
 		el.style.border = `1px solid ${color}`;
 	});
 
-	footerText.style.color = color;
+	themeTitle.style.color = color;
 
-	// change icon/logo color
-	cardIcons.forEach((icon) => {
-		if (color === "white") {
-			icon.src = "7ONE-icon-white.svg";
-		} else {
-			icon.src = "7ONE-icon-black.svg";
-		}
+	footerText.forEach((word) => {
+		word.style.color = color;
 	});
 
 	cardLogos.forEach((logo) => {
 		if (color === "white") {
-			logo.src = "default-monochrome.svg";
+			logo.src =
+				"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome_ihvfx0.svg";
 		} else {
-			logo.src = "default-monochrome-dark.svg";
+			logo.src =
+				"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome-dark_b2eget.svg";
 		}
+	});
+}
+
+function setAccordianStyle(theme) {
+	accordian.forEach((bar, index) => {
+		if (theme === "light") {
+			bar.classList = "accordian lt";
+		} else {
+			bar.classList = "accordian dk";
+		}
+		toggle[index].removeAttribute("style");
+		stepNumber[index].classList.add("hidden");
 	});
 }
 
 // Foreground (Cards)
 function switchCardForeground(theme) {
 	const currentColor = {
-		base: {
-			purple: "rgb(160, 135, 199)",
-			blue: "rgb(76, 111, 164)",
-			red: "rgb(142, 29, 29)",
-			white: "rgb(255, 255, 255)",
-			anchor: "rgb(223, 73, 73)",
-		},
-
-		hover: {
-			purple: "rgb(137, 109, 182)",
-			blue: "rgb(118, 151, 201)",
-			red: "rgb(177, 47, 47)",
-			white: "rgb(255, 255, 255)",
-		},
+		purple: "rgb(160, 135, 199)",
+		blue: "rgb(118, 155, 210)",
+		red: "rgb(207, 155, 155)",
+		white: "rgb(255, 255, 255)",
 	};
 
 	// card headings
@@ -287,21 +227,29 @@ function switchCardForeground(theme) {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
-			el.style.borderBottom = `2px solid ${currentColor.base[theme]}`;
+			el.style.textDecorationColor = currentColor[theme];
+		}
+	});
+
+	pageSection.forEach((el) => {
+		if (theme === "light" || theme === "dark") {
+			el.removeAttribute("style");
+		} else {
+			el.style.color = currentColor[theme];
 		}
 	});
 
 	cardBottomLink.forEach((el) => {
 		el.addEventListener("mouseover", () => {
 			el.removeAttribute("style");
-			el.style.color = currentColor.base[theme];
+			el.style.color = currentColor[theme];
 
 			if (theme === "light") {
 				el.style.borderBottom = `2px solid black`;
 				el.style.borderTop = `2px solid black`;
 			} else {
-				el.style.borderBottom = `2px solid ${currentColor.base.white}`;
-				el.style.borderTop = `2px solid ${currentColor.base.white}`;
+				el.style.borderBottom = `2px solid ${currentColor.white}`;
+				el.style.borderTop = `2px solid ${currentColor.white}`;
 			}
 		});
 
@@ -315,23 +263,8 @@ function switchCardForeground(theme) {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
-			el.style.color = currentColor.hover[theme];
+			el.style.color = currentColor[theme];
 		}
-	});
-
-	// question link
-	const faqIcon = document.querySelectorAll(".fa-circle-question");
-	faqIcon.forEach((el) => {
-		el.addEventListener("mouseover", () => {
-			if (theme === "light" || theme === "dark") {
-				el.removeAttribute("style");
-			} else {
-				el.style.color = currentColor.base[theme];
-			}
-		});
-		el.addEventListener("mouseout", () => {
-			el.removeAttribute("style");
-		});
 	});
 }
 
@@ -361,28 +294,28 @@ function switchBorderColor(foregroundColor) {
 }
 
 // ACCORDIAN
-function openAccordian(theme, index) {
+function openAccordian(index) {
 	toggle[index].classList.add("hidden");
 	accordianTitle[index].removeAttribute("style");
 	toggle[index].setAttribute("style", "transform: rotate(45deg)");
 	accordian[index].classList.add("open");
-	accordian[index].classList.add(theme);
 	setTimeout(() => {
-		list.classList.remove("hidden");
-		toggle[index].classList.remove("hidden");
+		if (index === 7) {
+			list.classList.remove("hidden");
+		}
 		stepNumber[index].classList.remove("hidden");
+		toggle[index].classList.remove("hidden");
 	}, 300);
 }
 
-function closeAccordian(theme, index) {
+function closeAccordian(index) {
 	toggle[index].classList.add("hidden");
+	accordianTitle[index].removeAttribute("style");
 	toggle[index].removeAttribute("style");
 	accordian[index].classList.remove("open");
-	accordian[index].classList.remove(theme);
 	stepNumber[index].classList.add("hidden");
-	setTimeout(() => {
+	if (index === 7) {
 		list.classList.add("hidden");
-		toggle[index].classList.remove("hidden");
-		accordianTitle[index].removeAttribute("style");
-	}, 450);
+	}
+	toggle[index].classList.remove("hidden");
 }

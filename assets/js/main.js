@@ -249,7 +249,9 @@
 		var $this = $(this);
 
 		// Close.
-		$('<h3 class="bold-link close">• Home</h3>')
+		$(
+			'<h4 class="bold-link close"><i class="fa-solid fa-circle-left"></i> Home</h4>'
+		)
 			.appendTo($this)
 			.on("click", function () {
 				location.hash = "";
@@ -260,12 +262,6 @@
 			event.stopPropagation();
 		});
 	});
-
-	// Events.
-	// $body.on("click", function (event) {
-	// 	// Article visible? Hide.
-	// 	if ($body.hasClass("is-article-visible")) $main._hide(true);
-	// });
 
 	$window.on("keyup", function (event) {
 		switch (event.keyCode) {

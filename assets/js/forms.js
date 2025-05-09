@@ -7,181 +7,251 @@ const answer2 = document.querySelector("#answer2");
 const answer3 = document.querySelector("#answer3");
 
 const appointmentForm = document.querySelector("#appointmentForm");
-const nameField = document.querySelector("#name");
-const subjectField = document.querySelector("#subject");
+const nameField = document.querySelectorAll("#name");
+const subjectField = document.querySelectorAll("#subject");
 const dateField = document.querySelector("#date");
 const inputFields = document.querySelectorAll("input");
 const selectFields = document.querySelectorAll("select");
 const textareaFields = document.querySelectorAll("textarea");
 const submitBtn = document.querySelectorAll(".primary");
 const resetBtn = document.querySelectorAll(".reset");
+const restartBtn = document.querySelector(".restart");
+
+const contactForm = document.querySelector("#contactForm");
 
 // ON PAGE LOAD
-// Get user data from local storage
 let savedUserData = JSON.parse(localStorage.getItem("data"));
+buildConnectedForms();
+saveAndValidateOnSubmit();
+clearAndFocusOnReset();
 
-// Create optgroup element for industry groups and add to each dropdown list
-const industryGroups = getIndustries();
-
-industryGroups.forEach((group) => {
-	industryList.forEach((dropdown) => {
-		const optgroupEl = createOptionGroup(group.sector, group.industries);
-		dropdown.appendChild(optgroupEl);
-	});
-});
-
-// Create time dropdown list
-const scheduleConfig = {
-	firstWindow: { open: 11, close: 13 },
-	lastWindow: { open: 16, close: 18 },
-	hours: { open: 8, close: 20 },
-	timeSlot: 30,
-};
-createTimeDropdown(scheduleConfig);
-
-// Connect forms
-
-// Connected fields
-const connected = {
-	consultationFields: ["company", "industry", "answer1", "answer2", "answer3"],
-	appointmentFields: ["company", "industry", "message"],
-};
-
-// Summary template for message field (appointment form)
-const setSummaryText = (data) => {
-	return `SUMMARY \n\nWhat is the top priority for your business right now? \n  • ${data.answer1} \n\nWhat are the most frustrating tasks for you or your employees? \n  • ${data.answer2} \n\nWhat negative customer feedback have you received? \n  • ${data.answer3}`;
-};
-
-// Preload consultation form
-connected.consultationFields.forEach((field) => {
-	if (savedUserData) {
-		consultationForm.elements[field].value = savedUserData[field];
-	} else {
-		consultationForm.elements[field].value = "";
-	}
-});
-
-// Preload appointment form
-const summary = savedUserData ? setSummaryText(savedUserData) : null;
-
-connected.appointmentFields.forEach((field) => {
-	if (savedUserData) {
-		field === "message"
-			? (appointmentForm.elements[field].value = summary)
-			: (appointmentForm.elements[field].value = savedUserData[field]);
-	} else {
-		appointmentForm.elements[field].value = "";
-	}
-});
-
-// Updates appontment form state and preloadeds user data without forcing a refresh
 window.addEventListener("hashchange", () => {
-	const freshData = JSON.parse(localStorage.getItem("data"));
-	const freshDetails = freshData ? setSummaryText(freshData) : null;
-	connected.appointmentFields.forEach((field) => {
-		if (freshData) {
+	setFormStyle();
+});
+
+restartBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	localStorage.removeItem("data");
+	location.hash = "consultation";
+	setTimeout(() => {
+		consultationForm.reset();
+		appointmentForm.reset();
+	}, 50);
+});
+
+//--------------------------------------------------------------------------
+
+function buildConnectedForms() {
+	//Render dropdown
+	createDropdownOptions();
+
+	// Connect forms
+	const connectedFields = {
+		consultationFields: [
+			"company",
+			"industry",
+			"answer1",
+			"answer2",
+			"answer3",
+		],
+		appointmentFields: ["company", "industry", "message"],
+	};
+
+	// Summary template for message field (appointment form)
+	const setSummaryText = (data) => {
+		return `SUMMARY \n\nWhat is the top priority for your business right now? \n  • ${data.answer1} \n\nWhat are the most frustrating tasks for you or your employees? \n  • ${data.answer2} \n\nWhat negative customer feedback have you received? \n  • ${data.answer3}`;
+	};
+
+	// Preload consultation form
+	connectedFields.consultationFields.forEach((field) => {
+		if (savedUserData) {
+			consultationForm.elements[field].value = savedUserData[field];
+		} else {
+			consultationForm.elements[field].value = "";
+		}
+	});
+
+	// Preload appointment form
+	const summary = savedUserData ? setSummaryText(savedUserData) : null;
+
+	connectedFields.appointmentFields.forEach((field) => {
+		if (savedUserData) {
 			field === "message"
-				? (appointmentForm.elements[field].value = freshDetails)
-				: (appointmentForm.elements[field].value = freshData[field]);
+				? (appointmentForm.elements[field].value = summary)
+				: (appointmentForm.elements[field].value = savedUserData[field]);
 		} else {
 			appointmentForm.elements[field].value = "";
 		}
 	});
 
-	setFormStyle();
-});
+	// Updates preloaded user data without forcing a refresh
+	window.addEventListener("hashchange", () => {
+		const freshData = JSON.parse(localStorage.getItem("data"));
+		const freshDetails = freshData ? setSummaryText(freshData) : null;
+		connectedFields.appointmentFields.forEach((field) => {
+			if (freshData) {
+				field === "message"
+					? (appointmentForm.elements[field].value = freshDetails)
+					: (appointmentForm.elements[field].value = freshData[field]);
+			} else {
+				appointmentForm.elements[field].value = "";
+			}
+		});
 
-// ON SUBMIT (Consultation Form)
-// Saves data to local storage and scroll
-consultationForm.addEventListener("submit", (e) => {
-	e.preventDefault();
-	const data = {
-		company: companyName.value,
-		industry: industryList[0].value,
-		answer1: answer1.value,
-		answer2: answer2.value,
-		answer3: answer3.value,
-	};
-	localStorage.setItem("data", JSON.stringify(data));
-	location.hash = "creating-value";
-});
+		setFormStyle();
+	});
 
-// ON SUBMIT (Appointment Form)
-// Validate appointment form input
-// Displays a custom message for invalid inputs and updates/removes message as the input value changes
+	function createDropdownOptions() {
+		// Create optgroup element for industry groups and add to each dropdown list
+		const industryGroups = [
+			{
+				sector: "Business & General Services",
+				industries: [
+					"Food & Beverage",
+					"Healthcare",
+					"Landscaping",
+					"Legal",
+					"Real Estate",
+					"Retail Shop",
+					"Salon - Hair & Nails",
+				],
+			},
+			{
+				sector: "Industrial & Manufacturing",
+				industries: [
+					"Automotive Repair",
+					"Construction",
+					"Electrical",
+					"HVAC",
+					"Logistics",
+					"Manufacturing",
+					"Plumbing",
+					"Warehousing",
+				],
+			},
+			{
+				sector: "Non-Profit",
+				industries: ["Education", "Social Services"],
+			},
+			{
+				sector: "Media & Creative",
+				industries: [
+					"Entertainment",
+					"Fashion",
+					"Media & Broadcasting",
+					"Publishing",
+				],
+			},
+		];
 
-// Name
-nameField.addEventListener("input", (e) => {
-	nameField.setCustomValidity("");
-});
+		industryGroups.forEach((group) => {
+			industryList.forEach((dropdown) => {
+				const optgroupEl = createOptionGroup(group.sector, group.industries);
+				dropdown.appendChild(optgroupEl);
+			});
+		});
 
-nameField.addEventListener("invalid", (e) => {
-	nameField.setCustomValidity("Please enter a minimum of 3 characters.");
-});
-
-// Subject
-subjectField.addEventListener("input", (e) => {
-	subjectField.setCustomValidity("");
-});
-
-subjectField.addEventListener("invalid", (e) => {
-	subjectField.setCustomValidity(
-		"Please select a subject from the dropdown list."
-	);
-});
-
-// Date
-dateField.addEventListener("input", (e) => {
-	dateField.setCustomValidity("");
-});
-
-dateField.addEventListener("invalid", (e) => {
-	dateField.setCustomValidity("Please select an available date.");
-});
-
-// Configures date limit used in form
-const minDate = generateMinDate(7);
-dateField.setAttribute("min", minDate);
-
-// Returns the formatted minimum date (string)
-function generateMinDate(daysToAdd) {
-	const date = new Date();
-	date.setDate(date.getDate() + daysToAdd);
-
-	// Convert new date to yyyy-mm-dd format
-	const yyyy = date.getFullYear();
-	const mm = String(date.getMonth() + 1).padStart(2, "0");
-	const dd = String(date.getDate()).padStart(2, "0");
-
-	return `${yyyy}-${mm}-${dd}`;
+		// Create time dropdown list
+		const scheduleConfig = {
+			firstWindow: { open: 11, close: 13 },
+			lastWindow: { open: 16, close: 18 },
+			hours: { open: 8, close: 20 },
+			timeSlot: 20,
+		};
+		createTimeDropdown(scheduleConfig);
+	}
 }
 
-// ON FORM RESET
-// Clear both forms and local storage
-const formResetBtn = document.querySelectorAll(".reset");
-formResetBtn.forEach((btn, i) => {
-	btn.addEventListener("click", (e) => {
-		e.preventDefault();
-		localStorage.removeItem("data");
-		savedUserData = null;
-		consultationForm.reset();
-		appointmentForm.reset();
+function saveAndValidateOnSubmit() {
+	// ON SUBMIT
+	// Validate form input
+	// Displays a custom message for invalid inputs and updates/removes message as the input value changes
 
-		if (i === 0) {
-			answer1.focus();
-		} else {
-			location.hash = "contact";
-			nameField.focus();
-		}
+	// Name
+	nameField.forEach((field) => {
+		field.addEventListener("input", (e) => {
+			field.setCustomValidity("");
+		});
 	});
-});
+
+	nameField.forEach((field) => {
+		field.addEventListener("invalid", (e) => {
+			field.setCustomValidity("Please enter a minimum of 3 characters.");
+		});
+	});
+
+	// Subject
+	subjectField.forEach((field) => {
+		field.addEventListener("input", (e) => {
+			field.setCustomValidity("");
+		});
+	});
+
+	subjectField.forEach((field) => {
+		field.addEventListener("invalid", (e) => {
+			field.setCustomValidity(
+				"Please select a subject from the dropdown list."
+			);
+		});
+	});
+
+	// Date
+	dateField.addEventListener("input", (e) => {
+		dateField.setCustomValidity("");
+	});
+
+	dateField.addEventListener("invalid", (e) => {
+		dateField.setCustomValidity("Please select an available date.");
+	});
+
+	// ON SUBMIT (Consultation Form)
+	// Saves data to local storage and scroll
+	consultationForm.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const data = {
+			company: companyName.value,
+			industry: industryList[0].value,
+			answer1: answer1.value,
+			answer2: answer2.value,
+			answer3: answer3.value,
+		};
+		localStorage.setItem("data", JSON.stringify(data));
+		location.hash = "creating-value";
+	});
+}
+
+function clearAndFocusOnReset() {
+	// ON FORM RESET
+	// Clear both forms and local storage
+	resetBtn.forEach((btn, i) => {
+		btn.addEventListener("click", (e) => {
+			e.preventDefault();
+			localStorage.removeItem("data");
+			savedUserData = null;
+			consultationForm.reset();
+			appointmentForm.reset();
+			contactForm.reset();
+
+			if (i === 1) {
+				answer1.focus();
+			} else if (i === 0) {
+				nameField[i].focus();
+			} else if (i === 2) {
+				nameField[1].focus();
+			} else {
+				console.log(i);
+			}
+		});
+	});
+}
+
 /*-------------------------------------------------------*/
 /*                        CONFIG						 */
 /*-------------------------------------------------------*/
 // Set form style based on light/dark theme
-const formFields = [inputFields, selectFields, textareaFields];
-
 function setFormStyle() {
+	const formFields = [inputFields, selectFields, textareaFields];
+
 	formFields.forEach((fieldGroup) => {
 		const theme = localStorage.getItem("theme");
 
@@ -205,6 +275,7 @@ function setFormStyle() {
 		} else {
 			fieldGroup.forEach((field) => {
 				field.classList.remove("placeholder");
+				field.classList.remove("light");
 				selectFields.forEach((field) => {
 					field.classList.remove("light");
 				});
@@ -219,16 +290,20 @@ function setFormStyle() {
 			});
 		}
 	});
-}
 
-// Styling placeholder for light theme
-function addPlaceholderClass(elementId, className) {
-	elementId.classList.add(className);
+	// Styling placeholder for light theme
+	function addPlaceholderClass(elementId, className) {
+		elementId.classList.add(className);
+	}
 }
 
 // TIME DROPDOWN LIST
 // TODO: Refactor for more flexibility
 function createTimeDropdown(config) {
+	// Configures validator for first available day in form
+	const minDate = generateMinDate(7);
+	dateField.setAttribute("min", minDate);
+
 	for (let hour = config.hours.open; hour < config.hours.close; hour++) {
 		// Set time options for each window
 		for (let min = 0; min < 60; min += config.timeSlot) {
@@ -264,7 +339,7 @@ function createTimeDropdown(config) {
 	}
 }
 
-// INDUSTRIES
+// Create option element
 function createOptionGroup(title, options) {
 	const optGroupEl = document.createElement("optgroup");
 	optGroupEl.setAttribute("label", title);
@@ -279,45 +354,15 @@ function createOptionGroup(title, options) {
 	return optGroupEl;
 }
 
-function getIndustries() {
-	return [
-		{
-			sector: "Business & General Services",
-			industries: [
-				"Food & Beverage",
-				"Healthcare",
-				"Landscaping",
-				"Legal",
-				"Real Estate",
-				"Retail Shop",
-				"Salon - Hair & Nails",
-			],
-		},
-		{
-			sector: "Industrial & Manufacturing",
-			industries: [
-				"Automotive Repair",
-				"Construction",
-				"Electrical",
-				"HVAC",
-				"Logistics",
-				"Manufacturing",
-				"Plumbing",
-				"Warehousing",
-			],
-		},
-		{
-			sector: "Non-Profit",
-			industries: ["Education", "Social Services"],
-		},
-		{
-			sector: "Media & Creative",
-			industries: [
-				"Entertainment",
-				"Fashion",
-				"Media & Broadcasting",
-				"Publishing",
-			],
-		},
-	];
+// Generates formatted minimum date to be used in HTML
+function generateMinDate(daysToAdd) {
+	const date = new Date();
+	date.setDate(date.getDate() + daysToAdd);
+
+	// Convert new date to yyyy-mm-dd format
+	const yyyy = date.getFullYear();
+	const mm = String(date.getMonth() + 1).padStart(2, "0");
+	const dd = String(date.getDate()).padStart(2, "0");
+
+	return `${yyyy}-${mm}-${dd}`;
 }
