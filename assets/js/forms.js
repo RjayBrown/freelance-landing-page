@@ -156,7 +156,7 @@ function buildConnectedForms() {
 			firstWindow: { open: 11, close: 13 },
 			lastWindow: { open: 16, close: 18 },
 			hours: { open: 8, close: 20 },
-			timeSlot: 20,
+			timeSlot: 30,
 		};
 		createTimeDropdown(scheduleConfig);
 	}
@@ -216,7 +216,7 @@ function validateAndSaveOnSubmit() {
 			answer3: answer3.value,
 		};
 		localStorage.setItem("data", JSON.stringify(data));
-		location.hash = "creating-value";
+		location.hash = "next-step";
 	});
 }
 

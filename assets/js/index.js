@@ -76,7 +76,9 @@ window.addEventListener("resize", setHeaderText);
 window.addEventListener(
 	"hashchange",
 	accordian.forEach((bar, i) => {
-		bar.classList.remove("open");
+		if (bar.classList.contains("open")) {
+			closeAccordian(i);
+		}
 	})
 );
 
@@ -207,8 +209,10 @@ function setAccordianStyle(theme) {
 		} else {
 			bar.classList = "accordian dk";
 		}
+
 		toggle[index].removeAttribute("style");
 		stepNumber[index].classList.add("hidden");
+		list.classList.add("hidden");
 	});
 }
 
@@ -294,27 +298,25 @@ function switchBorderColor(foregroundColor) {
 
 // ACCORDIAN
 function openAccordian(index) {
+	console.log(index);
 	toggle[index].classList.add("hidden");
 	accordianTitle[index].removeAttribute("style");
 	toggle[index].setAttribute("style", "transform: rotate(45deg)");
 	accordian[index].classList.add("open");
 	setTimeout(() => {
+		toggle[index].classList.remove("hidden");
+		stepNumber[index].classList.remove("hidden");
 		if (index === 7) {
 			list.classList.remove("hidden");
 		}
-		stepNumber[index].classList.remove("hidden");
-		toggle[index].classList.remove("hidden");
 	}, 300);
 }
 
 function closeAccordian(index) {
-	toggle[index].classList.add("hidden");
 	accordianTitle[index].removeAttribute("style");
 	toggle[index].removeAttribute("style");
+	toggle[index].classList.remove("hidden");
 	accordian[index].classList.remove("open");
 	stepNumber[index].classList.add("hidden");
-	if (index === 7) {
-		list.classList.add("hidden");
-	}
-	toggle[index].classList.remove("hidden");
+	list.classList.add("hidden");
 }

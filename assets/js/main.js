@@ -249,9 +249,7 @@
 		var $this = $(this);
 
 		// Close.
-		$(
-			'<h4 class="bold-link close"><i class="fa-solid fa-circle-left"></i> Home</h4>'
-		)
+		$('<h4 class="bold-link close"><i class="fa-solid fa-house"></i> Home</h4>')
 			.appendTo($this)
 			.on("click", function () {
 				location.hash = "";

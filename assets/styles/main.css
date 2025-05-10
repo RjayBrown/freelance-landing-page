@@ -5,17 +5,29 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-p.card {
-	margin: 1rem 0;
-	font-weight: bold;
-	display: inline-block;
+
+p.small {
+	font-size: 1.25rem;
+	line-height: 1.5;
 }
 
-p.small.card {
-	/* text-wrap: balance; */
-	font-weight: normal;
-	margin-top: 0;
-	margin-bottom: 3rem;
+.small .anchor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: margin 0.2s linear, color 0.2s linear;
+}
+
+.small .anchor:hover {
+	border-style: solid;
+	margin-left: 0.25rem;
+	color: rgb(0, 156, 0);
+}
+
+.fa-right-long,
+.fa-left-long {
+	color: rgb(0, 156, 0);
+	margin-inline: 0.25rem !important;
 }
 
 p.major {
@@ -47,11 +59,6 @@ p.heading-small {
 	margin: 0 0 2.5rem 0;
 }
 
-.card-body p.heading-small {
-	margin: 0 0 1rem 0;
-	color: rgb(223, 73, 73);
-}
-
 .card.top {
 	display: block;
 	font-size: 3.5rem;
@@ -66,6 +73,29 @@ p.heading-small {
 
 .card.top.indent {
 	margin: 1rem 0 2rem 2rem;
+}
+
+.card-body {
+	width: 95%;
+	margin: 0 auto;
+}
+
+.card-body p.heading-small {
+	margin: 0 0 1rem 0;
+	color: rgb(223, 73, 73);
+}
+
+p.card {
+	margin: 1rem 0;
+	font-weight: bold;
+	display: inline-block;
+}
+
+p.small.card {
+	/* text-wrap: balance; */
+	font-weight: normal;
+	margin-top: 0;
+	margin-bottom: 3rem;
 }
 
 @media screen and (max-width: 480px) {
@@ -95,13 +125,15 @@ p.heading-small {
 }
 
 .accordian {
-	background-color: rgba(45, 45, 45, 0.2);
 	border-radius: 4px;
+	/* border-top-left-radius: 0;
+	border-bottom-left-radius: 0; */
 	border-left: 0 solid transparent;
 	border-right: 1px solid transparent;
 	border-top: 1px solid transparent;
 	border-bottom: 1px solid transparent;
-	transition: border 0.2s linear, background-color 0.2s linear;
+	transition: border 0.2s linear, background-color 0.2s linear,
+		box-shadow 0.2s linear;
 	position: relative;
 	padding: 0 0.5rem;
 	cursor: default;
@@ -111,18 +143,28 @@ p.heading-small {
 	margin: 0;
 }
 
+.accordian.dk {
+	background-color: rgba(35, 35, 35, 0.3);
+	box-shadow: 0 0 3px rgb(12, 12, 12);
+}
+
+.accordian.lt {
+	background-color: rgba(45, 45, 45, 0.2);
+	box-shadow: 0 0 2px grey;
+}
+
+.accordian.dk:hover {
+	border-left: 0.35rem solid transparent;
+	background-color: rgba(50, 50, 50, 0.35);
+}
+
 .accordian.lt:hover {
 	border-left: 0.35rem solid transparent;
 	background-color: rgba(165, 165, 165, 0.35);
 }
 
-.accordian.dk:hover {
-	border-left: 0.35rem solid transparent;
-	background-color: rgba(38, 38, 38, 0.4);
-}
-
 .accordian.open {
-	border-left: 0.35rem solid rgb(223, 73, 73);
+	border-left: 0.35rem solid rgb(223, 73, 73, 0.05);
 	background-color: rgba(101, 59, 59, 0.1);
 	padding-bottom: 1.5rem;
 	transition: border 0.2s linear, background-color 0.2s linear;
@@ -196,6 +238,7 @@ p.subheading {
 .accordian.open .accordian-body .accordian-list,
 .list {
 	margin: 1rem;
+	font-weight: bold;
 }
 
 .accordian-list li,
@@ -373,19 +416,19 @@ section {
 }
 
 #page.dark {
-	background-color: rgb(16, 19, 20);
+	background-color: rgb(17, 17, 17);
 }
 
 #page.red {
-	background-color: rgb(28, 15, 15);
+	background-color: rgb(36, 9, 9);
 }
 
 #page.blue {
-	background-color: rgb(18, 23, 29);
+	background-color: rgb(12, 20, 30);
 }
 
 #page.purple {
-	background-color: rgb(21, 17, 21);
+	background-color: rgb(25, 11, 25);
 }
 
 #page.light {
@@ -399,7 +442,7 @@ section {
 	height: 1.5rem;
 	border-radius: 50%;
 	margin: 0.75rem 1rem;
-	border: 2px solid rgb(125, 125, 125);
+	border: 2px solid rgb(95, 95, 95);
 	transition: border 0.3s ease-in, transform 0.3s ease-in;
 }
 
@@ -420,32 +463,32 @@ section {
 }
 
 .theme.red {
-	background-color: rgb(30, 14, 14);
+	background-color: rgb(36, 9, 9);
 }
 
 .theme.dark {
-	background-color: rgb(18, 22, 24);
+	background-color: rgb(17, 17, 17);
 }
 
 .theme.blue {
-	background-color: rgb(18, 23, 29);
+	background-color: rgb(12, 20, 30);
 }
 
 .theme.light {
-	background-color: rgb(220, 220, 220);
+	background-color: rgb(255, 255, 255);
 }
 
 .theme.purple {
-	background-color: rgb(21, 17, 21);
+	background-color: rgb(25, 11, 25);
 }
 
 .theme:hover {
-	transform: scale(1.05);
-	border: 2px solid #fff;
+	transform: scale(1.025);
+	border: 2px solid #d5d5d5;
 }
 
 .theme.active {
-	border: 2px solid #fff;
+	border: 2px solid #d5d5d5;
 	transform: scale(0.9);
 }
 
@@ -634,32 +677,6 @@ b {
 em,
 i {
 	font-style: italic;
-}
-
-p.small {
-	font-size: 1.25rem;
-	line-height: 1.5;
-}
-
-.small .anchor {
-	color: rgb(223, 73, 73);
-}
-
-.small .anchor:hover {
-	border-style: solid;
-	color: rgb(252, 101, 101);
-}
-
-.accordian-body .small .small .anchor {
-	display: inline-block;
-	border-bottom: dotted 1px rgb(150, 150, 150);
-	transition: color 0.15s linear;
-	/* font-style: italic; */
-}
-
-.card-body {
-	width: 95%;
-	margin: 0 auto;
 }
 
 /* Headings */
@@ -864,15 +881,29 @@ h6 {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 100%;
 	margin: 1.5rem 0;
 }
 
 .card-bottom.above {
-	margin-top: 5rem;
+	margin-top: 3.5rem;
 }
 
 .card-bottom.below {
 	justify-content: end;
+}
+
+.thank-you {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 45vh;
+}
+
+.thank-you * {
+	text-align: center;
 }
 
 @media screen and (max-width: 736px) {
@@ -886,8 +917,8 @@ h6 {
 		line-height: 1.5;
 	}
 
-	.card-bottom.above {
-		margin-top: 2rem;
+	.thank-you {
+		height: 62.5vh;
 	}
 }
 
@@ -2077,7 +2108,7 @@ body.is-preload #bg:before {
 
 @media screen and (max-width: 480px) {
 	#wrapper {
-		padding: 1rem;
+		padding: 0 1rem;
 	}
 }
 
@@ -2422,7 +2453,7 @@ body.is-preload #header .content .inner {
 	-webkit-transition: -webkit-transform 0.325s ease-in-out;
 	-ms-transition: -ms-transform 0.325s ease-in-out;
 	transition: transform 0.325s ease-in-out;
-	padding: 7.5rem 2.5rem 1.5rem 2.5rem;
+	padding: 7.5rem 2.5rem 0 2.5rem;
 	position: relative;
 	width: 40rem;
 	max-width: 100%;
@@ -2449,19 +2480,17 @@ body.is-preload #header .content .inner {
 	cursor: pointer;
 }
 
-.fa-circle-question {
+.fa-circle-question,
+.fa-circle-info {
 	border: 2px solid transparent;
 	border-radius: 50%;
 	font-size: 1.25rem;
 	transition: transform 0.2s linear;
 }
 
-.fa-circle-question:hover {
+.fa-circle-question:hover,
+.fa-circle-info:hover {
 	transform: scale(1.1);
-}
-
-.fa-regular.fa-circle-question {
-	color: inherit;
 }
 
 .card-logo.top {
@@ -2470,7 +2499,7 @@ body.is-preload #header .content .inner {
 
 @media screen and (max-width: 480px) {
 	#main article.active {
-		padding: 1.5rem 0.75rem 0 0.75rem;
+		padding: 1.5rem 0.25rem 0 0.25rem;
 		border: none;
 	}
 
