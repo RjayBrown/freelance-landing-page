@@ -10,9 +10,19 @@ const headerIcon = document.querySelector(".img");
 const content = document.querySelector(".content");
 const nav = document.querySelector(".nav");
 const headerText = document.querySelector(".header-text");
-const mobileHeaderText = document.querySelector(".mobile-header-text");
 const navMenu = document.querySelector(".nav-menu");
 const navLink = document.querySelectorAll(".nav-link");
+
+// Mobile
+const mobileHeader = document.querySelector(".mobile-header");
+const mobileHeaderText = document.querySelector(".mobile-header-text");
+const mobileNavMenu = document.querySelector(".mobile-menu");
+const mobileLogo = document.querySelector(".mobile-logo");
+const mobileMenuOpen = document.querySelector(".mobile-toggle-open");
+const mobileMenuClose = document.querySelector(".mobile-toggle-close");
+const mobileNavLink = document.querySelectorAll(".mobile-nav-link");
+const mobileNavBottomLink = document.querySelector(".mobile-bottom-link");
+const mobileBtn = document.querySelector(".btn");
 
 // Footer
 const footerText = document.querySelectorAll(".copyright");
@@ -38,6 +48,9 @@ const cards = document.querySelectorAll("article");
 const cardIcons = document.querySelectorAll(".card-icon");
 const cardLogos = document.querySelectorAll(".card-logo");
 const hrElements = document.querySelectorAll("hr");
+const hrUpperElements = document.querySelectorAll(".upper");
+const q = document.querySelectorAll(".card-icon");
+const cardCloseLink = document.querySelector(".close");
 
 // Accordian
 const accordian = document.querySelectorAll(".accordian");
@@ -54,6 +67,88 @@ let theme = localStorage.getItem("theme");
 
 // Get theme from local storage, dark by default
 getSavedTheme(theme);
+toggleMobileView();
+
+function toggleMobileView() {
+	if (window.innerWidth > 480) {
+		mobileHeader.classList.add("hidden");
+		hrUpperElements.forEach((hr) => {
+			hr.classList.remove("hidden");
+		});
+		q.forEach((icon) => {
+			icon.classList.remove("hidden");
+		});
+
+		cardLogos.forEach((logo) => {
+			if (!logo.classList.contains("lower")) {
+				logo.classList.remove("hidden");
+			}
+		});
+	} else {
+		mobileHeader.classList.remove("hidden");
+		hrUpperElements.forEach((hr) => {
+			hr.classList.add("hidden");
+		});
+		q.forEach((icon) => {
+			icon.classList.add("hidden");
+		});
+
+		cardLogos.forEach((logo) => {
+			if (!logo.classList.contains("lower")) {
+				logo.classList.add("hidden");
+			}
+		});
+	}
+}
+
+let e = [mobileMenuOpen, mobileMenuClose];
+let f = [...mobileNavLink, mobileBtn, mobileLogo, mobileNavBottomLink];
+
+e.forEach((el) => {
+	el.addEventListener("click", () => {
+		if (mobileHeader.classList.contains("open")) {
+			closeMobileNav();
+		} else {
+			openMobileNav();
+		}
+	});
+});
+
+f.forEach((el) => {
+	el.addEventListener("click", () => {
+		if (mobileHeader.classList.contains("open")) {
+			closeMobileNav();
+		}
+	});
+});
+
+function openMobileNav() {
+	let theme = localStorage.getItem("theme");
+	mobileHeader.classList = `mobile-header ${theme} open`;
+	mobileNavMenu.classList = `mobile-menu ${theme} slide`;
+	mobileMenuOpen.classList.add("hidden");
+	mobileMenuClose.classList.remove("hidden");
+	mobileNavMenu.classList.remove("hidden");
+	f.forEach((el) => {
+		el.classList.remove("hidden");
+	});
+}
+
+function closeMobileNav() {
+	let theme = localStorage.getItem("theme");
+	mobileHeader.classList.remove("open");
+	mobileNavMenu.classList = `mobile-menu ${theme} unslide`;
+	mobileMenuOpen.classList.remove("hidden");
+	mobileMenuClose.classList.add("hidden");
+	setTimeout(() => {
+		mobileNavMenu.classList.add("hidden");
+		f.forEach((el) => {
+			if (el !== mobileLogo) {
+				el.classList.add("hidden");
+			}
+		});
+	}, 100);
+}
 
 function getSavedTheme(theme) {
 	setHeaderText();
@@ -70,17 +165,19 @@ toggleBtns.forEach((btn) => {
 });
 
 // Change header text based on device
-window.addEventListener("resize", setHeaderText);
+window.addEventListener("resize", () => {
+	setHeaderText();
+	toggleMobileView();
+});
 
 // Close accordian on hash change
-window.addEventListener(
-	"hashchange",
+window.addEventListener("hashchange", () => {
 	accordian.forEach((bar, i) => {
 		if (bar.classList.contains("open")) {
 			closeAccordian(i);
 		}
-	})
-);
+	});
+});
 
 // Accordian toggle
 accordian.forEach((bar, i) => {
@@ -111,6 +208,9 @@ function toggleTheme(theme) {
 	} else {
 		switchForeground("white");
 	}
+
+	mobileHeader.classList = `mobile-header ${theme}`;
+	mobileNavMenu.classList = `mobile-menu ${theme}`;
 }
 
 // Logo images
@@ -176,10 +276,15 @@ function switchForeground(color) {
 
 	// change text color (header, card, footer)
 	header.style.color = color;
+	mobileMenuOpen.style.color = color;
+	mobileHeader.classList = `mobile-header ${theme}`;
+	mobileNavMenu.classList = `mobile-menu ${theme}`;
 
 	cards.forEach((card) => {
 		card.style.color = color;
 	});
+
+	cardCloseLink.removeAttribute("style");
 
 	hrElements.forEach((el) => {
 		el.style.border = `1px solid ${color}`;
@@ -221,7 +326,7 @@ function switchCardForeground(theme) {
 	const currentColor = {
 		purple: "rgb(160, 135, 199)",
 		blue: "rgb(118, 155, 210)",
-		red: "rgb(207, 155, 155)",
+		red: "rgb(255, 145, 145)",
 		white: "rgb(255, 255, 255)",
 	};
 
@@ -248,15 +353,15 @@ function switchCardForeground(theme) {
 			el.style.color = currentColor[theme];
 
 			if (theme === "light") {
-				el.style.borderBottom = `2px solid black`;
-				el.style.borderTop = `2px solid black`;
+				el.classList.remove("dark");
+				el.classList.add("light");
 			} else {
-				el.style.borderBottom = `2px solid ${currentColor.white}`;
-				el.style.borderTop = `2px solid ${currentColor.white}`;
+				el.classList.remove("light");
+				el.classList.add("dark");
 			}
 		});
 
-		el.addEventListener("mouseout", () => {
+		el.addEventListener("click", () => {
 			el.removeAttribute("style");
 		});
 	});

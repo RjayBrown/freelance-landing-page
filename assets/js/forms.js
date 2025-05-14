@@ -21,6 +21,7 @@ const contactForm = document.querySelector("#contactForm");
 
 // ON PAGE LOAD
 let savedUserData = JSON.parse(localStorage.getItem("data"));
+setFormStyle();
 buildConnectedForms();
 validateAndSaveOnSubmit();
 clearAndFocusOnReset();
@@ -255,30 +256,19 @@ function setFormStyle() {
 	formFields.forEach((fieldGroup) => {
 		const theme = localStorage.getItem("theme");
 
+		fieldGroup.forEach((field) => {
+			if (!field.classList.contains("primary")) {
+				field.classList.add("light");
+			}
+		});
+
 		if (theme === "light") {
-			fieldGroup.forEach((field) => {
-				addPlaceholderClass(field, "placeholder");
-				addPlaceholderClass(field, "light");
-				selectFields.forEach((field) => {
-					field.classList.add("light");
-				});
-			});
-
-			submitBtn.forEach((btn) => {
-				btn.style.backgroundColor = "rgb(39, 39, 39)";
-				btn.style.color = "white";
-			});
-
 			resetBtn.forEach((btn) => {
 				btn.style.borderColor = "rgb(39, 39, 39)";
 			});
 		} else {
 			fieldGroup.forEach((field) => {
-				field.classList.remove("placeholder");
 				field.classList.remove("light");
-				selectFields.forEach((field) => {
-					field.classList.remove("light");
-				});
 			});
 
 			submitBtn.forEach((btn) => {
@@ -290,11 +280,6 @@ function setFormStyle() {
 			});
 		}
 	});
-
-	// Styling placeholder for light theme
-	function addPlaceholderClass(elementId, className) {
-		elementId.classList.add(className);
-	}
 }
 
 // TIME DROPDOWN LIST
