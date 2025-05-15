@@ -131,7 +131,6 @@ p.last.small.card {
 
 .accordian {
 	border-radius: 4px;
-	border-left: 0 solid transparent;
 	border-right: 1px solid transparent;
 	border-top: 1px solid transparent;
 	border-bottom: 1px solid transparent;
@@ -262,7 +261,11 @@ p.subheading span {
 .accordian.open .accordian-body .accordian-list,
 .list {
 	margin: 1rem;
+}
+
+.list {
 	font-weight: bold;
+	margin-bottom: 2.5rem;
 }
 
 .accordian-list li,
@@ -349,7 +352,7 @@ p.subheading span {
 			opacity: 1;
 		}
 		100% {
-			height: calc(100% - 5rem);
+			height: 95vh;
 			opacity: 1;
 		}
 	}
@@ -360,7 +363,7 @@ p.subheading span {
 
 	@keyframes unslide {
 		0% {
-			height: calc(100vh - 5rem);
+			height: 95vh;
 			opacity: 1;
 		}
 
@@ -391,8 +394,8 @@ p.subheading span {
 
 	.mobile-toggle-open,
 	.mobile-toggle-close {
-		font-size: 1.2rem;
-		margin-top: 0.75rem;
+		font-size: 1.5rem;
+		margin-block: 0;
 	}
 
 	.fa-xmark {
@@ -412,7 +415,7 @@ p.subheading span {
 	.bottom .btn,
 	.mobile-btn {
 		display: inline-block;
-		color: inherit;
+		color: inherit !important;
 		border-radius: 4px;
 	}
 
@@ -424,7 +427,6 @@ p.subheading span {
 
 	.mobile-btn {
 		padding: 0.5rem 1rem;
-		/* background-color: rgb(39, 39, 39); */
 	}
 
 	.mobile-btn .bold-link {
@@ -869,8 +871,7 @@ a {
 	font-weight: bold;
 }
 
-.asterisk,
-.fa-xmark {
+.asterisk {
 	color: red;
 }
 
@@ -2772,7 +2773,7 @@ body.is-preload #header .content .inner {
 
 @media screen and (max-width: 480px) {
 	#footer {
-		margin-bottom: 6rem;
+		margin-bottom: 7rem;
 	}
 }
 

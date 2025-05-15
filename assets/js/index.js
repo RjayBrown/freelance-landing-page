@@ -25,6 +25,7 @@ const mobileNavBottom = document.querySelector(".bottom");
 const mobileNavLink = document.querySelectorAll(".mobile-nav-link");
 const mobileNavBottomLink = document.querySelector(".mobile-bottom-link");
 const mobileBtn = document.querySelector(".btn");
+const dropdownBtn = document.querySelector(".menu-btn");
 
 // Footer
 const footerText = document.querySelectorAll(".copyright");
@@ -354,8 +355,6 @@ function switchCardForeground(theme) {
 		}
 	});
 
-	cardListTitle.style.color = currentColor[theme];
-
 	pageSection.forEach((el) => {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
@@ -365,22 +364,28 @@ function switchCardForeground(theme) {
 	});
 
 	cardBottomLink.forEach((el) => {
-		el.addEventListener("mouseover", () => {
-			el.removeAttribute("style");
-			el.style.color = currentColor[theme];
+		if (el !== dropdownBtn) {
+			el.addEventListener("mouseover", () => {
+				el.removeAttribute("style");
+				el.style.color = currentColor[theme];
 
-			if (theme === "light") {
-				el.classList.remove("dark");
-				el.classList.add("light");
-			} else {
-				el.classList.remove("light");
-				el.classList.add("dark");
-			}
-		});
+				if (theme === "light") {
+					el.classList.remove("dark");
+					el.classList.add("light");
+				} else {
+					el.classList.remove("light");
+					el.classList.add("dark");
+				}
+			});
 
-		el.addEventListener("click", () => {
-			el.removeAttribute("style");
-		});
+			el.addEventListener("mouseout", () => {
+				el.removeAttribute("style");
+			});
+
+			el.addEventListener("click", () => {
+				el.removeAttribute("style");
+			});
+		}
 	});
 
 	// bold text in consultation card
