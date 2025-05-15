@@ -33,7 +33,7 @@ const footerText = document.querySelectorAll(".copyright");
 // Text
 const major = document.querySelectorAll(".major");
 const pageSection = document.querySelectorAll(".heading-small");
-const anchorLink = document.querySelectorAll(".anchor");
+const anchorLink = document.querySelectorAll(".anchor-link");
 const cardBottomLink = document.querySelectorAll(".bold-link");
 const bold = document.querySelectorAll(".bold");
 
@@ -356,6 +356,14 @@ function switchCardForeground(theme) {
 	});
 
 	pageSection.forEach((el) => {
+		if (theme === "light" || theme === "dark") {
+			el.removeAttribute("style");
+		} else {
+			el.style.color = currentColor[theme];
+		}
+	});
+
+	anchorLink.forEach((el) => {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
