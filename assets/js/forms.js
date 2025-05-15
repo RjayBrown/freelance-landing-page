@@ -15,6 +15,8 @@ const selectFields = document.querySelectorAll("select");
 const textareaFields = document.querySelectorAll("textarea");
 const submitBtn = document.querySelectorAll(".primary");
 const resetBtn = document.querySelectorAll(".reset");
+const saveBtn = document.querySelector(".save");
+const nextStep = document.querySelector("#next-step");
 const restartBtn = document.querySelector(".restart");
 
 const contactForm = document.querySelector("#contactForm");
@@ -60,7 +62,7 @@ function buildConnectedForms() {
 
 	// Summary template for message field (appointment form)
 	const setSummaryText = (data) => {
-		return `SUMMARY \n\nWhat is the top priority for your business right now? \n  • ${data.answer1} \n\nWhat are the most frustrating tasks for you or your employees? \n  • ${data.answer2} \n\nWhat negative customer feedback have you received? \n  • ${data.answer3}`;
+		return `What is the top priority for your business right now? \n  • ${data.answer1} \n\nWhat are the most frustrating tasks for you or your employees? \n  • ${data.answer2} \n\nWhat negative customer feedback have you received? \n  • ${data.answer3}`;
 	};
 
 	// Preload consultation form
@@ -216,8 +218,15 @@ function validateAndSaveOnSubmit() {
 			answer2: answer2.value,
 			answer3: answer3.value,
 		};
+		saveBtn.value = "Saved!";
+		saveBtn.style.backgroundColor = "green";
+		saveBtn.style.boxShadow = "0 0 0 2px green";
+		setTimeout(() => {
+			saveBtn.value = "Save";
+			saveBtn.removeAttribute("style");
+			nextStep.scrollIntoView({ behavior: "smooth" });
+		}, 1000);
 		localStorage.setItem("data", JSON.stringify(data));
-		location.hash = "next-step";
 	});
 }
 

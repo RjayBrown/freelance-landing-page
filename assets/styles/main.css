@@ -15,13 +15,7 @@ p.small {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	transition: color 0.2s linear;
-}
-
-.small .anchor:hover {
-	border-style: solid;
-	text-decoration: underline;
-	text-decoration-color: white;
+	transition: color 0.1s linear;
 }
 
 .anchor-link {
@@ -100,6 +94,10 @@ p.small.card {
 	margin-bottom: 3rem;
 }
 
+p.last.small.card {
+	margin-bottom: 0;
+}
+
 @media screen and (max-width: 480px) {
 	p.small.card {
 		width: 95%;
@@ -111,6 +109,7 @@ p.small.card {
 
 	p.minor.heading-small.top {
 		font-size: 1.75rem;
+		margin-left: 0.25rem;
 	}
 }
 
@@ -180,7 +179,7 @@ p.small.card {
 .accordian.open {
 	background-color: rgba(167, 70, 70, 0.05);
 	padding-left: 1rem;
-	border-bottom: 0.35rem solid rgba(223, 73, 73, 0.2);
+	border-bottom: 0.25rem solid rgba(223, 73, 73, 0.2);
 	padding-bottom: 1.5rem;
 	transition: border 0.3s linear, padding 0.2s linear,
 		background-color 0.2s linear;
@@ -197,7 +196,7 @@ p.small.card {
 
 .accordian.open:hover {
 	background-color: rgba(165, 50, 50, 0.1);
-	border-bottom: 0.35rem solid rgb(223, 73, 73);
+	border-bottom: 0.25rem solid rgb(223, 73, 73);
 }
 
 .accordian-title {
@@ -237,6 +236,10 @@ p.subheading {
 	font-weight: bold;
 }
 
+p.subheading span {
+	color: rgb(223, 73, 73);
+}
+
 .accordian .accordian-body .subheading,
 .accordian .accordian-body .small {
 	font-size: 0;
@@ -273,8 +276,21 @@ p.subheading {
 }
 
 .accordian.open .fa-right-long {
-	margin-right: 0.25rem !important;
-	color: rgb(0, 135, 0);
+	color: green;
+}
+
+.accordian.open .anchor {
+	color: inherit;
+	transition: color 0.2s linear, margin 0.2s linear;
+}
+
+.accordian.open .anchor:hover {
+	margin-left: 0.25rem;
+	color: green;
+}
+
+.accordian.open .fa-right-long {
+	margin-right: 0.5rem !important;
 	text-decoration: none !important;
 }
 
@@ -290,7 +306,7 @@ p.subheading {
 		top: 0;
 		right: 0;
 		left: 0;
-		height: 5rem;
+		height: 4rem;
 		font-size: 2.5rem;
 		display: flex;
 		justify-content: space-between;
@@ -303,17 +319,17 @@ p.subheading {
 
 	.mobile-header a,
 	.mobile-header img {
-		width: 3rem;
-		height: 3rem;
+		width: 2.5rem;
+		height: 2.5rem;
 	}
 
 	.mobile-menu {
 		position: fixed;
-		top: 5rem;
+		top: 4rem;
 		right: 0;
 		left: 0;
-		height: 0;
 		width: 100%;
+		padding-bottom: 7.5rem;
 		z-index: 1000;
 		opacity: 0;
 
@@ -333,7 +349,7 @@ p.subheading {
 			opacity: 1;
 		}
 		100% {
-			height: calc(100vh - 5rem);
+			height: calc(100% - 5rem);
 			opacity: 1;
 		}
 	}
@@ -375,8 +391,12 @@ p.subheading {
 
 	.mobile-toggle-open,
 	.mobile-toggle-close {
-		font-size: 1.5rem;
+		font-size: 1.2rem;
 		margin-top: 0.75rem;
+	}
+
+	.fa-xmark {
+		margin-left: 0.25rem;
 	}
 
 	.mobile-menu .bottom {
@@ -398,7 +418,7 @@ p.subheading {
 
 	.bottom .btn {
 		padding-block: 1rem;
-		background-color: rgb(39, 39, 39);
+		background-color: rgb(223, 73, 73);
 		width: calc(100vw - 2rem);
 	}
 
@@ -420,6 +440,7 @@ p.subheading {
 
 	.mobile-bottom-link h5 {
 		margin: 0;
+		color: rgba(127, 127, 127, 0.7);
 	}
 
 	.bottom .bold-link,
@@ -480,11 +501,11 @@ p.subheading {
 	}
 
 	.mobile-header.red {
-		background-color: rgb(18, 6, 6);
+		background-color: rgb(28, 4, 4);
 	}
 
 	.mobile-menu.red {
-		background-color: rgba(24, 3, 3, 0.95);
+		background-color: rgba(28, 4, 4, 0.95);
 	}
 
 	.mobile-header.light.open {
@@ -848,7 +869,8 @@ a {
 	font-weight: bold;
 }
 
-.asterisk {
+.asterisk,
+.fa-xmark {
 	color: red;
 }
 
@@ -1099,7 +1121,7 @@ h6 {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	margin: 1.5rem 0;
+	margin: 1.5rem auto;
 }
 
 .card-bottom.above {
@@ -1134,7 +1156,16 @@ h6 {
 		line-height: 1.5;
 	}
 
+	.card-bottom.above {
+		padding-inline: 0.5rem;
+	}
+
+	#service-agreement section {
+		padding-inline: 1rem;
+	}
+
 	.thank-you {
+		margin-top: -10rem;
 		height: 60vh;
 	}
 }
@@ -1183,7 +1214,7 @@ pre code {
 
 hr {
 	border: 0;
-	border-bottom: solid 1px #ffffff;
+	border-bottom: solid 1px rgba(127, 127, 127, 0.25);
 	margin: 2.25rem 0;
 }
 
@@ -2124,9 +2155,10 @@ button.primary,
 .button.primary {
 	background-color: rgb(223, 73, 73);
 	color: white;
+	width: 6rem;
 	font-weight: 600;
 	box-shadow: 0 0 0 1px rgb(223, 73, 73);
-	transition: background-color 0.2s ease-in, box-shadow 0.2s ease-in-out,
+	transition: background-color 0.1s ease-in, box-shadow 0.1s ease-in-out,
 		transform 0.2s ease-in;
 }
 
@@ -2135,14 +2167,14 @@ input[type="submit"].primary:hover {
 	box-shadow: 0 0 0 2px rgb(192, 55, 55);
 }
 
-input[type="submit"].primary.light:hover {
-	background-color: rgb(223, 73, 73);
-	box-shadow: 0 0 0 2px rgb(223, 73, 73);
-}
-
 input[type="submit"].primary:active,
 input[type="reset"]:active {
 	transform: scale(0.985);
+}
+
+input[type="submit"].primary:focus {
+	background-color: rgba(125, 125, 125, 0.1);
+	box-shadow: 0 0 0 3px rgb(192, 55, 55);
 }
 
 input[type="reset"] {
@@ -2162,11 +2194,12 @@ input[type="reset"].light:hover {
 }
 
 input[type="reset"]:focus {
-	box-shadow: 0 0 0 2px #ffffff;
+	box-shadow: 0 0 0 3px #ffffff;
+	background-color: rgba(125, 125, 125, 0.1);
 }
 
 input[type="reset"].light:focus {
-	box-shadow: 0 0 0 2px #000000;
+	box-shadow: 0 0 0 3px #000000;
 }
 
 input[type="submit"].disabled,
@@ -2312,7 +2345,7 @@ body.is-preload #bg:before {
 
 @media screen and (max-width: 480px) {
 	#wrapper {
-		padding: 1rem 1rem 0 1rem;
+		padding: 1rem 0.5rem 0 0.5rem;
 	}
 }
 
@@ -2673,12 +2706,13 @@ body.is-preload #header .content .inner {
 	border: 2px solid transparent;
 	border-radius: 50%;
 	font-size: 1.25rem;
-	transition: transform 0.2s linear;
+	transition: transform 0.2s linear, color 0.2s linear;
 }
 
 .fa-circle-question:hover,
 .fa-circle-info:hover {
 	transform: scale(1.1);
+	color: rgb(223, 73, 73);
 }
 
 .card-logo.top {
@@ -2687,7 +2721,7 @@ body.is-preload #header .content .inner {
 
 @media screen and (max-width: 480px) {
 	#main article.active {
-		padding: 6rem 0.25rem 0 0.25rem;
+		padding: 4.5rem 0.25rem 0 0.25rem;
 		border: none;
 	}
 
@@ -2734,6 +2768,12 @@ body.is-preload #header .content .inner {
 
 #footer .copyright a:hover {
 	color: rgb(223, 73, 73);
+}
+
+@media screen and (max-width: 480px) {
+	#footer {
+		margin-bottom: 6rem;
+	}
 }
 
 body.is-article-visible #footer {

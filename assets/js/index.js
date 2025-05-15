@@ -20,6 +20,8 @@ const mobileNavMenu = document.querySelector(".mobile-menu");
 const mobileLogo = document.querySelector(".mobile-logo");
 const mobileMenuOpen = document.querySelector(".mobile-toggle-open");
 const mobileMenuClose = document.querySelector(".mobile-toggle-close");
+const mobileNav = document.querySelector(".mobile-nav");
+const mobileNavBottom = document.querySelector(".bottom");
 const mobileNavLink = document.querySelectorAll(".mobile-nav-link");
 const mobileNavBottomLink = document.querySelector(".mobile-bottom-link");
 const mobileBtn = document.querySelector(".btn");
@@ -47,10 +49,10 @@ const purpleThemeBtn = document.querySelectorAll(".purple");
 const cards = document.querySelectorAll("article");
 const cardIcons = document.querySelectorAll(".card-icon");
 const cardLogos = document.querySelectorAll(".card-logo");
-const hrElements = document.querySelectorAll("hr");
 const hrUpperElements = document.querySelectorAll(".upper");
 const q = document.querySelectorAll(".card-icon");
 const cardCloseLink = document.querySelector(".close");
+const cardListTitle = document.querySelector(".list-title");
 
 // Accordian
 const accordian = document.querySelectorAll(".accordian");
@@ -86,6 +88,7 @@ function toggleMobileView() {
 		});
 	} else {
 		mobileHeader.classList.remove("hidden");
+
 		hrUpperElements.forEach((hr) => {
 			hr.classList.add("hidden");
 		});
@@ -120,10 +123,23 @@ f.forEach((el) => {
 			closeMobileNav();
 		}
 	});
+
+	f.forEach((el) => {
+		if (el !== mobileLogo) {
+			el.classList.add("hidden");
+		}
+	});
+
+	mobileNavBottom.classList.add("hidden");
+	mobileNav.classList.add("hidden");
+	mobileNavMenu.classList.add("hidden");
 });
 
 function openMobileNav() {
 	let theme = localStorage.getItem("theme");
+
+	mobileNav.classList.remove("hidden");
+	mobileNavBottom.classList.remove("hidden");
 	mobileHeader.classList = `mobile-header ${theme} open`;
 	mobileNavMenu.classList = `mobile-menu ${theme} slide`;
 	mobileMenuOpen.classList.add("hidden");
@@ -136,18 +152,21 @@ function openMobileNav() {
 
 function closeMobileNav() {
 	let theme = localStorage.getItem("theme");
+
 	mobileHeader.classList.remove("open");
 	mobileNavMenu.classList = `mobile-menu ${theme} unslide`;
 	mobileMenuOpen.classList.remove("hidden");
 	mobileMenuClose.classList.add("hidden");
 	setTimeout(() => {
 		mobileNavMenu.classList.add("hidden");
+		mobileNav.classList.add("hidden");
+		mobileNavBottom.classList.add("hidden");
 		f.forEach((el) => {
 			if (el !== mobileLogo) {
 				el.classList.add("hidden");
 			}
 		});
-	}, 100);
+	}, 150);
 }
 
 function getSavedTheme(theme) {
@@ -210,7 +229,7 @@ function toggleTheme(theme) {
 	}
 
 	mobileHeader.classList = `mobile-header ${theme}`;
-	mobileNavMenu.classList = `mobile-menu ${theme}`;
+	mobileNavMenu.classList = `mobile-menu ${theme} hidden`;
 }
 
 // Logo images
@@ -286,10 +305,6 @@ function switchForeground(color) {
 
 	cardCloseLink.removeAttribute("style");
 
-	hrElements.forEach((el) => {
-		el.style.border = `1px solid ${color}`;
-	});
-
 	themeTitle.style.color = color;
 
 	footerText.forEach((word) => {
@@ -338,6 +353,8 @@ function switchCardForeground(theme) {
 			el.style.textDecorationColor = currentColor[theme];
 		}
 	});
+
+	cardListTitle.style.color = currentColor[theme];
 
 	pageSection.forEach((el) => {
 		if (theme === "light" || theme === "dark") {
@@ -403,7 +420,6 @@ function switchBorderColor(foregroundColor) {
 
 // ACCORDIAN
 function openAccordian(index) {
-	console.log(index);
 	toggle[index].classList.add("hidden");
 	accordianTitle[index].removeAttribute("style");
 	toggle[index].setAttribute("style", "transform: rotate(45deg)");
