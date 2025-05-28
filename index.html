@@ -32,10 +32,57 @@
 	<body id="page" class="is-preload">
 		<!-- Wrapper -->
 		<div id="wrapper">
+			<!-- Modal Form -->
+			<div class="modal hidden">
+				<form id="modalForm">
+					<p class="minor modal-heading">Get Free Proposal</p>
+					<p class="modal-close">CLOSE</p>
+
+					<div class="fields">
+						<div class="field">
+							<label class="modal-label" for="modal-date"
+								>Next Available Date<span class="asterisk">*</span></label
+							>
+							<input
+								type="date"
+								name="modal-date"
+								id="modal-date"
+								class="modal-date"
+								required
+							/>
+						</div>
+						<div class="field">
+							<label class="modal-label" for="modal-time"
+								>Time<span class="asterisk">*</span></label
+							>
+							<select type="text" name="modal-time" id="modal-time" required>
+								<option value="" selected disabled>-- Choose a Time --</option>
+							</select>
+						</div>
+					</div>
+					<ul class="actions">
+						<li>
+							<input
+								type="submit"
+								value="Save"
+								class="primary save-date modal-save"
+							/>
+						</li>
+						<li>
+							<input
+								type="reset"
+								value="Reset"
+								class="reset light modal-reset"
+							/>
+						</li>
+					</ul>
+				</form>
+			</div>
 			<div class="mobile-header">
 				<a href="#"
 					><img class="mobile-logo" src="7ONE.svg" alt="7ONE Consulting Logo"
 				/></a>
+
 				<h3 class="mobile-toggle-open">
 					<i class="fa-solid fa-bars"></i>
 				</h3>
@@ -44,6 +91,7 @@
 					<i class="fa-solid fa-xmark"></i>
 				</h3>
 			</div>
+
 			<div class="mobile-menu">
 				<div class="mobile-nav">
 					<a class="mobile-nav-link" href="#about">About</a>
@@ -148,7 +196,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Discover</p>
-										<h5 class="step hidden">Step 1</h5>
+										<h5 class="badge hidden">Step One</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -170,7 +218,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Scope</p>
-										<h5 class="step hidden">Step 2</h5>
+										<h5 class="badge hidden">Step Two</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -182,8 +230,8 @@
 										talk, just clear planning and a focus on prioritizing
 										features that add meaningful value. We'll create a plan that
 										aligns with your budget, timeline, and goals to define the
-										project's scope and ensure the development process is smooth
-										and efficient.
+										project's scope and ensure the development process is
+										efficient.
 									</p>
 								</div>
 							</div>
@@ -192,7 +240,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Plan</p>
-										<h5 class="step hidden">Step 3</h5>
+										<h5 class="badge hidden">Step Three</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -200,10 +248,10 @@
 								<div class="accordian-body">
 									<p class="subheading">Layout & Design</p>
 									<p class="small txt">
-										We map out a user-friendly solution that is simple to
-										navigate, provides a modern web experience, and aligns with
-										industry standards. Every design choice is made to help your
-										users and visitors quickly find what they need.
+										We map out a modern concept for you that aligns with
+										industry standards, is simple to navigate, and provides a
+										user-friendly web experience. Every design choice is made to
+										help your users and visitors quickly find what they need.
 									</p>
 
 									<p class="subheading">Architecture</p>
@@ -222,7 +270,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Build</p>
-										<h5 class="step hidden">Step 4</h5>
+										<h5 class="badge hidden">Step Four</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -230,21 +278,21 @@
 								<div class="accordian-body">
 									<p class="subheading">Front-End</p>
 									<p class="small txt">
-										We help help your visitors engage more deeply with
-										interactive elements, smooth animations, and dynamic content
-										with intuitive features. This creates a seamless online
-										experience that leaves a favorable impression on your
-										customers or community members.
+										We help help your visitors engage more deeply with smooth
+										animations, interactive elements, and dynamic content. This
+										creates a seamless user experience that leaves a favorable
+										impression on your customers or community members.
 									</p>
 
 									<p class="subheading">Back-End</p>
 									<p class="small txt">
-										We take care of the behind-the-scenes work so your site is
-										secure, reliable, and easy to update. You can choose a
-										user-friendly content management system (CMS) for hands-on
-										control, or opt for a coded solution tailored to your
-										specific workflows and functionality. Either way, your site
-										is built to grow with your needs and stay simple to manage.
+										We take care of the behind-the-scenes work so your website
+										or application is secure, reliable, and easy to update. You
+										can choose a user-friendly content management system (CMS)
+										for hands-on control, or opt for a coded solution tailored
+										to your specific workflows and functionality. Either way,
+										your project is built to grow with your needs and stay
+										simple to manage.
 									</p>
 								</div>
 							</div>
@@ -253,7 +301,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Test</p>
-										<h5 class="step hidden">Step 5</h5>
+										<h5 class="badge hidden">Step Five</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -263,8 +311,8 @@
 									<p class="small txt">
 										We connect your website or application with the tools that
 										you rely on. Whether it's integrating donation forms, CRM
-										software, payment processors, or any other core systems, we
-										make sure your solution works seamlessly.
+										software, payment processing, or any other core systems, we
+										make sure your project works seamlessly.
 									</p>
 
 									<p class="subheading">Pre-Launch Testing</p>
@@ -272,7 +320,7 @@
 										Testing isn't just a final step, it's built into every stage
 										of development to catch issues early and keep things running
 										smoothly. Before launch, we run full checks across devices
-										and browsers to ensure everything works well for your
+										and browsers to ensure features work as expected for your
 										visitors.
 									</p>
 								</div>
@@ -282,7 +330,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Launch</p>
-										<h5 class="step hidden">Step 6</h5>
+										<h5 class="badge hidden">Step Six</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -291,9 +339,9 @@
 									<p class="subheading">Hosting & Deployment</p>
 									<p class="small txt">
 										We handle the entire launch process—from setting up your
-										domain and hosting to connecting email accounts and even
+										domain and hosting service to connecting email accounts and
 										integrating your site with Google Business. With all the
-										technical details taken care of, you can confidently use
+										technical details taken care of, you can confidently share
 										your website or application knowing that behind the scenes,
 										service is reliable and well supported.
 									</p>
@@ -304,7 +352,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Maintain</p>
-										<h5 class="step hidden">Step 7</h5>
+										<h5 class="badge hidden">Step Seven</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -325,11 +373,11 @@
 						<p class="major card">7ONE Philosophy</p>
 						<p class="minor heading-small">Our Approach</p>
 						<p class="small card last">
-							Every step in the web development process is important, and each
-							project is carefully planned, executed to meet your requirements,
-							and successfully launched. We focus on providing quality service,
-							building what you need while sharing updates and real-time
-							notifications when milestones are completed.
+							Every step of the web development process is essential to ensuring
+							a successful project launch. Each solution is carefully planned
+							and executed to meet your requirements. We focus on providing
+							quality service, building what you need, sharing snapshots when
+							milestones are achieved, and updating you regularly.
 						</p>
 					</div>
 
@@ -377,20 +425,28 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Software Development</p>
-										<h5 class="step hidden">Web Solutions</h5>
+										<h5 class="badge hidden">Web Solutions</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
 
 								<div class="accordian-body">
-									<p class="subheading">Website/Landing Page</p>
+									<p class="subheading">Modern Website</p>
 									<div class="small txt">
 										We use reliable technologies, UI/UX design tools and content
 										management systems to build interactive websites that are
-										responsive and fully functional. If your business doesn't
-										have an online presence in 2025, or you need to reach a
-										wider audience, click below and enjoy the benefits of an
-										improved web experience that looks great on all devices!
+										fully functional, responsive, and tailored to your business.
+										We offer two main options:
+
+										<ul class="accordian-list hidden">
+											<li>Landing Page</li>
+											<li>Event Registration Page</li>
+											<li>Multi-Page Website</li>
+										</ul>
+
+										If your business doesn't have an online presence in 2025, or
+										you need to reach a wider audience, click below to request
+										an improved web experience that looks great on all devices!
 
 										<br />
 
@@ -408,13 +464,14 @@
 
 										<ul class="accordian-list hidden">
 											<li>User Authentication</li>
-											<li>Database Management</li>
 											<li>Payment Processing</li>
+											<li>Database Support</li>
+											<li>Email/SMS Notifications</li>
 										</ul>
 
-										We also build custom internal tools allowing you or your
-										staff to easier monitor and manage your operational tasks.
-										If you need a boost in efficiency, share your challenges and
+										We also build custom internal tools allowing you and your
+										staff to easily manage administrative tasks. If you need a
+										boost in efficiency, share your recent challenges and
 										request a solution designed specifically for your business.
 										<br />
 
@@ -432,7 +489,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading">Software Integration</p>
-										<h5 class="step hidden">Web Services</h5>
+										<h5 class="badge hidden">Web Services</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -441,11 +498,11 @@
 									<p class="subheading">Analytics</p>
 									<div class="small txt">
 										We can connect your website or application to platforms like
-										Google Analytics, or build custom dashboards giving you
-										real-time access to key performance data. From traffic
-										trends to user behavior, your analytics setup will add
-										value, allowing you to make data-driven decisions that can
-										improve your overall profitability.
+										Google Analytics, and build custom dashboards for real-time
+										access to key performance data. From traffic trends to user
+										behavior, your analytics setup will add value, allowing you
+										to make data-driven decisions that can improve your overall
+										profitability.
 										<br />
 
 										<br />
@@ -457,11 +514,11 @@
 
 									<p class="subheading">Enhance Your Workflow</p>
 									<div class="small txt">
-										We also integrate with services you already use—simplifying
-										administrative tasks like scheduling, bookkeeping, and any
-										system involving your core operations. We bring your tools
-										together, allowing you to easily manage your expenses,
-										communicate with your staff, and share information with your
+										We also integrate with systems you already use—simplifying
+										administrative tasks like scheduling, bookkeeping, and other
+										services required for your core operations. We bring your
+										tools together, allowing you to easily communicate with your
+										staff, manage your expenses, and share information with your
 										customers.
 										<br />
 
@@ -494,7 +551,7 @@
 						</p>
 
 						<p class="major card">Make Connecting Simple</p>
-						<p class="minor heading-small">User-Friendly Forms</p>
+						<p class="minor heading-small">Usable Forms</p>
 						<p class="small card">
 							Connecting with your business or organization should be
 							convenient. By keeping the process simple, clear, and easily
@@ -603,10 +660,10 @@
 						<p class="major card">Industry Fit</p>
 						<p class="minor heading-small">Creating Your Vision</p>
 						<p class="small card">
-							We bring ideas to life by building wireframes and designs using
-							widely supported tools. Each concept is shaped by industry
-							standards, and with your input, we iterate until the final design
-							feels just right. Check out some of our recent work below.
+							We bring ideas to life by building sample layouts using widely
+							supported tools. Each concept is shaped by industry standards, and
+							with your input, we iterate until the final design feels just
+							right. Check out some of our recent work below.
 						</p>
 						<div class="img-container">
 							<img
@@ -676,7 +733,9 @@
 				<article id="faq">
 					<div class="card-link top">
 						<div class="card-title">
-							<a href="#"><img class="card-logo" alt="" /></a>
+							<a href="#"
+								><img class="card-logo" alt="7ONE Consulting Logo"
+							/></a>
 						</div>
 						<a class="card-icon" href="#service-agreement">
 							<i class="fa-solid fa-circle-info"></i>
@@ -694,7 +753,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading n">Getting Started</p>
-										<h5 class="step hidden">FAQ</h5>
+										<h5 class="badge hidden">FAQ</h5>
 									</div>
 									<h1 class="toggle">+</h1>
 								</div>
@@ -718,7 +777,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading n">Requirements</p>
-										<h5 class="step hidden">FAQ</h5>
+										<h5 class="badge hidden">FAQ</h5>
 									</div>
 									<h1 class="toggle n">+</h1>
 								</div>
@@ -730,8 +789,8 @@
 									<div class="small txt">
 										You can share existing marketing materials like your logo,
 										brand colors, written content, and any past advertisements.
-										If you dont have any of that, no worries — we can create
-										what you need. If we are working with software that you are
+										If you dont have any of that, no worries—we can create what
+										you need. If we are working with software that you are
 										currently using, we may need additional information to
 										ensure the applications are integrated correctly.
 									</div>
@@ -742,7 +801,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading n">Payment</p>
-										<h5 class="step hidden">FAQ</h5>
+										<h5 class="badge hidden">FAQ</h5>
 									</div>
 									<h1 class="toggle n">+</h1>
 								</div>
@@ -763,7 +822,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading n">Delivery</p>
-										<h5 class="step hidden">FAQ</h5>
+										<h5 class="badge hidden">FAQ</h5>
 									</div>
 									<h1 class="toggle n">+</h1>
 								</div>
@@ -787,7 +846,7 @@
 								<div class="accordian-title">
 									<div>
 										<p class="heading n">Support</p>
-										<h5 class="step hidden">FAQ</h5>
+										<h5 class="badge hidden">FAQ</h5>
 									</div>
 									<h1 class="toggle n">+</h1>
 								</div>
@@ -812,6 +871,9 @@
 						<p class="major card">Additional Questions?</p>
 						<p class="minor heading-small">Contact Form</p>
 
+						<p class="small card last">
+							Feel free to reach out—we're happy to help!
+						</p>
 						<form
 							method="POST"
 							action="#thank-you"
@@ -849,24 +911,17 @@
 										>Subject<span class="asterisk">*</span></label
 									>
 									<select type="text" name="subject" id="subject" required>
-										<option value="" class="value" selected disabled>
+										<option value="" selected disabled>
 											-- Choose a Subject --
 										</option>
-										<option value="Question - Web Development" class="value">
+										<option value="Question - Web Development">
 											Web Development
 										</option>
-										<option
-											value="Question - Integrating Web Services"
-											class="value"
-										>
+										<option value="Question - Integrating Web Services">
 											Integrating Web Services
 										</option>
-										<option value="Question - Analytics" class="value">
-											Analytics
-										</option>
-										<option value="Question - Other" class="value">
-											Other
-										</option>
+										<option value="Question - Analytics">Analytics</option>
+										<option value="Question - Other">Other</option>
 									</select>
 								</div>
 								<div class="field">
@@ -891,7 +946,13 @@
 						</form>
 					</div>
 
-					<div class="card-bottom above"></div>
+					<div class="card-bottom above">
+						<span></span>
+						<a href="#consultation"
+							><h3 class="bold-link">
+								Get Started <i class="fa-solid fa-circle-right"></i></h3
+						></a>
+					</div>
 					<hr class="lower" />
 					<div class="card-bottom below">
 						<a href="#"
@@ -904,10 +965,12 @@
 				<article id="consultation">
 					<div class="card-link top">
 						<div class="card-title">
-							<a href="#"><img class="card-logo" alt="" /></a>
+							<a href="#"
+								><img class="card-logo" alt="7ONE Consulting Logo"
+							/></a>
 						</div>
-						<a class="card-icon" href="#faq">
-							<i class="fa-solid fa-circle-question"></i>
+						<a class="card-icon" href="#service-agreement">
+							<i class="fa-solid fa-circle-info"></i>
 						</a>
 					</div>
 					<hr class="upper" />
@@ -915,11 +978,18 @@
 
 					<div class="card-body">
 						<p class="major card">Getting Started</p>
-						<p class="minor heading-small">Discovery</p>
+						<p class="minor heading-small">Discover</p>
 						<p class="small card">
-							We'll begin with a simple Q & A to identify your key pain points.
+							This Q&A will uncover the issues you care about, and ways to
+							improve the customer experience while streamlining your
+							operations—helping you save time and cut unnecessary costs.
 						</p>
 						<p class="minor heading-small">Questionaire</p>
+						<p class="small card last">
+							With so many great tools and resources available, sharing specific
+							examples will help us recommend the solution that best aligns with
+							your needs.
+						</p>
 						<form method="POST" id="consultationForm">
 							<div class="fields">
 								<div class="field">
@@ -985,7 +1055,7 @@
 										>Industry<span class="asterisk">*</span></label
 									>
 									<select type="text" name="industry" id="industry" required>
-										<option value="" class="value" selected disabled>
+										<option value="" selected disabled>
 											-- Choose an Industry --
 										</option>
 									</select>
@@ -998,26 +1068,9 @@
 								<li><input type="reset" value="Reset" class="reset" /></li>
 							</ul>
 						</form>
-
-						<p class="major card">Make Informed Decisions</p>
-						<p class="minor heading-small">Managing Services</p>
-						<p class="small card last">
-							Your responses will uncover opportunities to make impactful
-							changes and prioritize where to invest your time and resources.
-							Considering the trade-offs involved when making decisions reduces
-							risk, and ensures the tools and services used align with your
-							long-term goals.
-						</p>
 					</div>
 
-					<div class="card-bottom above" id="next-step">
-						<span></span>
-						<a href="#contact"
-							><h3 class="bold-link">
-								<i class="fa-solid fa-circle-right"></i> Next Step
-							</h3></a
-						>
-					</div>
+					<div class="card-bottom above"></div>
 					<hr class="lower" />
 					<div class="card-bottom below">
 						<a href="#"
@@ -1030,19 +1083,30 @@
 				<article id="contact">
 					<div class="card-link top">
 						<div class="card-title">
-							<a href="#"><img class="card-logo" alt="" /></a>
+							<a href="#"
+								><img class="card-logo" alt="7ONE Consulting Logo"
+							/></a>
 						</div>
-						<a class="card-icon" href="#faq">
-							<i class="fa-solid fa-circle-question"></i>
+						<a class="card-icon" href="#service-agreement">
+							<i class="fa-solid fa-circle-info"></i>
 						</a>
 					</div>
 					<hr class="upper" />
 					<p class="minor heading-small top">Contact</p>
 
 					<div class="card-body">
-						<p class="major card">Schedule Appointment</p>
-						<p class="minor heading-small">Request Form</p>
+						<p class="major card">Contact Us</p>
+						<p class="minor heading-small">Live Chat</p>
+						<p class="small card">
+							Chat live with a developer, get your questions answered, and
+							receive a tailored proposal designed to move your project forward
+							with confidence.
+						</p>
 
+						<p class="minor heading-small">Request Form</p>
+						<p class="small card last">
+							Please complete and review the information below.
+						</p>
 						<form
 							method="POST"
 							action="#thank-you"
@@ -1088,7 +1152,7 @@
 								<div class="field">
 									<label for="industry">Industry</label>
 									<select type="text" name="industry" id="industry">
-										<option value="" class="value" selected disabled>
+										<option value="" selected disabled>
 											-- Choose an Industry --
 										</option>
 									</select>
@@ -1098,41 +1162,37 @@
 										>Subject<span class="asterisk">*</span></label
 									>
 									<select type="text" name="subject" id="subject" required>
-										<option value="" class="value" selected disabled>
-											-- Choose a Subject --
-										</option>
-										<option value="Consultation - (Landing Page)" class="value">
+										<option value="" disabled>-- Choose a Subject --</option>
+										<option selected value="Consultation - (Landing Page)">
 											Website (Landing Page)
 										</option>
-										<option value="Consultation - (Multi-Page)" class="value">
+										<option value="Consultation - (Multi-Page)">
 											Website (Multi-Page)
 										</option>
-										<option
-											value="Consultation - Custom Web-Application"
-											class="value"
-										>
+										<option value="Consultation - Custom Web-Application">
 											Web-Application
 										</option>
-										<option value="Consultation - Analytics" class="value">
-											Analytics
-										</option>
-										<option
-											value="Consultation - Integrate Web Services"
-											class="value"
-										>
+										<option value="Consultation - Analytics">Analytics</option>
+										<option value="Consultation - Integrate Web Services">
 											Integrate Web Services
 										</option>
-										<option value="Other" class="value">Other</option>
+										<option value="Other">Other</option>
 									</select>
 								</div>
 								<div class="field half">
 									<label for="date">Date<span class="asterisk">*</span></label>
-									<input type="date" name="date" id="date" required />
+									<input
+										type="date"
+										name="date"
+										id="date"
+										class="date"
+										required
+									/>
 								</div>
 								<div class="field half">
 									<label for="time">Time<span class="asterisk">*</span></label>
-									<select type="text" name="time" id="time">
-										<option value="" class="value" selected disabled>
+									<select type="text" name="time" id="time" required>
+										<option value="" selected disabled>
 											-- Choose a Time --
 										</option>
 									</select>
@@ -1170,7 +1230,9 @@
 				<article id="thank-you">
 					<div class="card-link top">
 						<div class="card-title">
-							<a href="#"><img class="card-logo" alt="" /></a>
+							<a href="#"
+								><img class="card-logo" alt="7ONE Consulting Logo"
+							/></a>
 						</div>
 						<a class="card-icon" href="#service-agreement">
 							<i class="fa-solid fa-circle-info"></i>
@@ -1195,7 +1257,9 @@
 				<article id="service-agreement">
 					<div class="card-link top">
 						<div class="card-title">
-							<a href="#"><img class="card-logo" alt="" /></a>
+							<a href="#"
+								><img class="card-logo" alt="7ONE Consulting Logo"
+							/></a>
 						</div>
 						<a class="card-icon" href="#faq">
 							<i class="fa-solid fa-circle-question"></i>
@@ -1204,10 +1268,9 @@
 					<hr class="upper" />
 					<p class="heading-minor heading-small">Terms & Conditions</p>
 
-					<p class="major card">Service Agreement</p>
-
 					<section>
-						<h3 class="heading-small">Summary</h3>
+						<p class="major card">Service Agreement</p>
+						<h3 class="heading-small section-title">Summary</h3>
 						<p class="small minor card">
 							We'll always do our best to fulfill your needs and meet your
 							expectations, and it's important to have a Service Agreement and
@@ -1218,7 +1281,7 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Both parties agree to:</h3>
+						<h3 class="heading-small section-title">Both parties agree to:</h3>
 						<h4 class="heading-minor">You:</h4>
 						<p class="small minor card">
 							You have the authority to enter into this agreement on behalf of
@@ -1241,22 +1304,23 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Building the Project</h3>
+						<h3 class="heading-small section-title">Building the Project</h3>
 
 						<h4 class="heading-minor">Layout & Design</h4>
 						<p class="small minor card">
 							We create look-and-feel designs, and flexible layouts that adapt
-							to the capabilities of many devices and screen sizes. We create
-							structure iteratively using design tools to build samples (color,
-							texture and typography) from your requirements, and we will use
-							HTML and CSS for visuals to indicate a creative direction for your
-							finalized layout. We refer to this as 'atmosphere'.
+							to the capabilities of many devices and screen sizes. We use
+							design tools to build samples (color, texture and typography) from
+							your requirements, and we will provide visuals to indicate a
+							creative direction for your finalized layout. We refer to this as
+							'atmosphere'.
 						</p>
 						<p class="small minor card">
 							You'll have many opportunities to review our work. We'll have
 							scheduled meetings throughout the project (via Zoom or Google
-							Meet) and snapshots of the development site, where you will be
-							able to view the different build stages and provide feedback.
+							Meet) and snapshots of the project under development, where you
+							will be able to view the different build stages and provide
+							feedback.
 						</p>
 						<p class="small minor card">
 							If, at any stage, you are not happy with the direction our work is
@@ -1332,7 +1396,7 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Technical Support</h3>
+						<h3 class="heading-small section-title">Technical Support</h3>
 						<p class="small minor card">
 							We're not a website hosting company so we don't offer support for
 							website hosting, email or other services relating to hosting. You
@@ -1347,7 +1411,7 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Improving SEO</h3>
+						<h3 class="heading-small section-title">Improving SEO</h3>
 						<p class="small minor card">
 							We don't guarantee improvements to your website's search engine
 							ranking, but the web pages that we develop are easily accessible
@@ -1359,7 +1423,7 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Changes and Revisions</h3>
+						<h3 class="heading-small section-title">Changes and Revisions</h3>
 						<p class="small minor card">
 							We don't want to limit your ability to change your mind. The price
 							at the beginning of this agreement is based on the scope of work
@@ -1371,7 +1435,7 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Legal</h3>
+						<h3 class="heading-small section-title">Legal</h3>
 
 						<h4 class="heading-minor">Indemnification</h4>
 						<p class="small minor card">
@@ -1448,7 +1512,7 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Payment Schedule</h3>
+						<h3 class="heading-small section-title">Payment Schedule</h3>
 						<p class="small minor card">
 							We're sure you understand how important it is as a small business
 							that payments are made on time and in full. The schedule is also
@@ -1466,7 +1530,9 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Acceptable Payment Methods</h3>
+						<h3 class="heading-small section-title">
+							Acceptable Payment Methods
+						</h3>
 						<p class="small minor card">
 							We want to make payments easy to understand, and as convenient as
 							possible using electronic invoicing and several remote payment
@@ -1481,7 +1547,7 @@
 					</section>
 
 					<section>
-						<h3 class="heading-small">Conclusion</h3>
+						<h3 class="heading-small section-title">Conclusion</h3>
 						<p class="small minor card">
 							Just like a parking ticket, neither of us can transfer this
 							agreement to anyone else without the other's permission. We both
@@ -1509,12 +1575,11 @@
 					</section>
 
 					<div class="card-bottom above">
-						<a href="#services"
-							><h3 class="bold-link">
-								<i class="fa-solid fa-circle-left"></i> Services
-							</h3></a
-						>
 						<span></span>
+						<a href="#consultation"
+							><h3 class="bold-link">
+								Get Started <i class="fa-solid fa-circle-right"></i></h3
+						></a>
 					</div>
 					<hr class="lower" />
 					<div class="card-bottom below">

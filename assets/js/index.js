@@ -52,7 +52,7 @@ const cardIcons = document.querySelectorAll(".card-icon");
 const cardLogos = document.querySelectorAll(".card-logo");
 const hrUpperElements = document.querySelectorAll(".upper");
 const q = document.querySelectorAll(".card-icon");
-const cardCloseLink = document.querySelector(".close");
+// const cardCloseLink = document.querySelector(".close");
 const cardListTitle = document.querySelector(".list-title");
 
 // Accordian
@@ -60,9 +60,35 @@ const accordian = document.querySelectorAll(".accordian");
 const toggle = document.querySelectorAll(".toggle");
 const accordianBody = document.querySelectorAll(".accordian-body");
 const accordianTitle = document.querySelectorAll(".heading");
-const stepNumber = document.querySelectorAll(".step");
+const badge = document.querySelectorAll(".badge");
 const imgContainer = document.querySelectorAll(".img-container");
-const list = document.querySelector(".accordian-list");
+const list = document.querySelectorAll(".accordian-list");
+
+// Modal
+const modalHeaderBg = document.querySelector(".modal-heading");
+const modalSaveBtnBg = document.querySelector(".modal-save");
+
+const color = {
+	light: {
+		purple: "rgb(160, 135, 199)",
+		blue: "rgb(118, 155, 210)",
+		red: "rgb(255, 145, 145)",
+		white: "rgb(255, 255, 255)",
+	},
+
+	dark: {
+		purple: "rgb(76, 50, 116)",
+		blue: "rgb(35, 64, 107)",
+		red: "rgb(116, 13, 13)",
+		grey: "rgba(125, 125, 125, 0.35)",
+	},
+
+	darker: {
+		purple: "rgb(37, 19, 37)",
+		blue: "rgb(18, 28, 41)",
+		red: "rgb(42, 11, 11)",
+	},
+};
 
 // ON PAGE LOAD
 // Get theme from local storage
@@ -304,7 +330,7 @@ function switchForeground(color) {
 		card.style.color = color;
 	});
 
-	cardCloseLink.removeAttribute("style");
+	// cardCloseLink.removeAttribute("style");
 
 	themeTitle.style.color = color;
 
@@ -332,26 +358,21 @@ function setAccordianStyle(theme) {
 		}
 
 		toggle[index].removeAttribute("style");
-		stepNumber[index].classList.add("hidden");
-		list.classList.add("hidden");
+		badge[index].classList.add("hidden");
+		list.forEach((list) => {
+			list.classList.add("hidden");
+		});
 	});
 }
 
 // Foreground (Cards)
 function switchCardForeground(theme) {
-	const currentColor = {
-		purple: "rgb(160, 135, 199)",
-		blue: "rgb(118, 155, 210)",
-		red: "rgb(255, 145, 145)",
-		white: "rgb(255, 255, 255)",
-	};
-
 	// card headings
 	major.forEach((el) => {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
-			el.style.textDecorationColor = currentColor[theme];
+			el.style.textDecorationColor = color.light[theme];
 		}
 	});
 
@@ -359,15 +380,50 @@ function switchCardForeground(theme) {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
-			el.style.color = currentColor[theme];
+			el.style.color = color.light[theme];
 		}
+	});
+
+	badge.forEach((el, i) => {
+		if (theme === "light" || theme === "dark") {
+			accordian[i].addEventListener("mouseover", () => {
+				el.style.backgroundColor = "rgb(223, 73, 73)";
+			});
+		} else {
+			accordian[i].addEventListener("mouseover", () => {
+				el.style.backgroundColor = color.dark[theme];
+			});
+		}
+
+		accordian[i].addEventListener("mouseout", () => {
+			el.style.backgroundColor = color.dark["grey"];
+		});
+	});
+
+	if (theme === "light" || theme === "dark") {
+		modalHeaderBg.removeAttribute("style");
+		modalSaveBtnBg.removeAttribute("style");
+	} else {
+		// modalHeaderBg.style.backgroundColor = color.dark[theme];
+		modalSaveBtnBg.style.backgroundColor = color.dark[theme];
+		modalSaveBtnBg.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
+	}
+
+	modalSaveBtnBg.addEventListener("focus", () => {
+		modalSaveBtnBg.style.backgroundColor = "rgba(125, 125, 125, 0.1)";
+		modalSaveBtnBg.style.boxShadow = `0 0 0 3px ${color.dark[theme]}`;
+	});
+
+	modalSaveBtnBg.addEventListener("blur", () => {
+		modalSaveBtnBg.style.backgroundColor = color.dark[theme];
+		modalSaveBtnBg.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
 	});
 
 	anchorLink.forEach((el) => {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
-			el.style.color = currentColor[theme];
+			el.style.color = color.light[theme];
 		}
 	});
 
@@ -375,7 +431,7 @@ function switchCardForeground(theme) {
 		if (el !== dropdownBtn) {
 			el.addEventListener("mouseover", () => {
 				el.removeAttribute("style");
-				el.style.color = currentColor[theme];
+				el.style.color = color.light[theme];
 
 				if (theme === "light") {
 					el.classList.remove("dark");
@@ -401,7 +457,7 @@ function switchCardForeground(theme) {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
-			el.style.color = currentColor[theme];
+			el.style.color = color.light[theme];
 		}
 	});
 }
@@ -433,15 +489,19 @@ function switchBorderColor(foregroundColor) {
 
 // ACCORDIAN
 function openAccordian(index) {
+	let currentTheme = localStorage.getItem("theme");
 	toggle[index].classList.add("hidden");
 	accordianTitle[index].removeAttribute("style");
 	toggle[index].setAttribute("style", "transform: rotate(45deg)");
 	accordian[index].classList.add("open");
+	accordian[index].classList.add(currentTheme);
 	setTimeout(() => {
 		toggle[index].classList.remove("hidden");
-		stepNumber[index].classList.remove("hidden");
+		badge[index].classList.remove("hidden");
 		if (index === 7) {
-			list.classList.remove("hidden");
+			list.forEach((list) => {
+				list.classList.remove("hidden");
+			});
 		}
 	}, 300);
 }
@@ -451,6 +511,9 @@ function closeAccordian(index) {
 	toggle[index].removeAttribute("style");
 	toggle[index].classList.remove("hidden");
 	accordian[index].classList.remove("open");
-	stepNumber[index].classList.add("hidden");
-	list.classList.add("hidden");
+	badge[index].classList.add("hidden");
+	accordian[index].classList.remove(theme);
+	list.forEach((list) => {
+		list.classList.add("hidden");
+	});
 }

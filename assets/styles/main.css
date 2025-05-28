@@ -37,22 +37,21 @@ p.minor.small {
 	margin-bottom: 1rem;
 }
 
-p.heading-small {
+p.heading-small,
+p.modal-heading,
+.section-title {
 	font-size: 1.25rem;
 	font-weight: bold;
+	color: rgb(223, 73, 73);
+	margin: 0 0 2.5rem 0;
 }
 
-p.heading-small,
-h3.heading-small {
-	color: rgb(223, 73, 73);
-}
+/* label.modal-label {
+	text-align: center;
+} */
 
 .heading-minor {
 	color: inherit;
-}
-
-p.heading-small {
-	margin: 0 0 2.5rem 0;
 }
 
 .card.top {
@@ -131,20 +130,24 @@ p.last.small.card {
 
 .accordian {
 	border-radius: 4px;
-	transition: padding 0.2s linear, background-color 0.2s linear,
-		box-shadow 0.2s linear;
+	transition:
+		padding 0.2s linear,
+		background-color 0.2s linear,
+		border 0.2s linear;
 	position: relative;
 	padding: 0 0.5rem;
 	cursor: default;
+	border-left: 0.35rem solid transparent;
 }
 
 .toggle {
+	font-weight: normal;
 	cursor: pointer;
-	transition: color 0.4s ease-in;
+	transition: color 0.2s ease-in;
 }
 
 .toggle:hover {
-	color: rgb(223, 73, 73);
+	color: rgb(68, 68, 68);
 }
 
 .accordian * {
@@ -152,36 +155,38 @@ p.last.small.card {
 }
 
 .accordian.dk {
-	background-color: rgba(35, 35, 35, 0.3);
+	background-color: rgba(35, 35, 35, 0.2);
 	box-shadow: 0 0 4px rgb(12, 12, 12);
 }
 
 .accordian.lt {
-	background-color: rgba(235, 235, 235, 0.8);
+	background-color: rgba(235, 235, 235, 0.7);
 	box-shadow: 0 0 2px rgb(200, 200, 200);
 	border-bottom: 1px solid rgb(200, 200, 200);
 }
 
 .accordian.dk:hover {
-	padding-left: 1rem;
-	background-color: rgba(35, 35, 35, 0.5);
+	border-left: 0.35rem solid white;
+	background-color: rgba(50, 50, 50, 0.2);
 }
 
 .accordian.lt:hover {
-	padding-left: 1rem;
-	background-color: rgba(220, 220, 220, 0.8);
+	border-left: 0.35rem solid black;
+	background-color: rgba(225, 225, 225, 0.7);
 }
 
 .accordian.open {
 	background-color: rgba(167, 70, 70, 0.05);
-	padding-left: 1rem;
 	padding-bottom: 1.5rem;
-	transition: border 0.3s linear, padding 0.2s linear,
+	transition:
+		border 0.3s linear,
+		padding 0.2s linear,
 		background-color 0.2s linear;
+	border-left: 0.35rem solid transparent;
 }
 
 .accordian.open .toggle {
-	color: rgba(161, 68, 68, 0.5);
+	color: rgb(68, 68, 68);
 }
 
 .accordian.open .toggle {
@@ -191,13 +196,29 @@ p.last.small.card {
 
 .accordian.open:hover {
 	background-color: rgba(165, 50, 50, 0.1);
+	border-left: 0.35rem solid rgba(223, 73, 73);
+}
+
+.accordian.open.blue:hover {
+	background-color: rgba(165, 50, 50, 0.1);
+	border-left: 0.35rem solid rgb(35, 64, 107);
+}
+
+.accordian.open.purple:hover {
+	background-color: rgba(165, 50, 50, 0.1);
+	border-left: 0.35rem solid rgb(76, 50, 116);
+}
+
+.accordian.open.red:hover {
+	background-color: rgba(165, 50, 50, 0.1);
+	border-left: 0.35rem solid rgb(116, 13, 13);
 }
 
 .accordian-title {
 	display: flex;
 	justify-content: space-between;
 	text-align: center;
-	margin-left: 1rem;
+	margin-left: 0.5rem;
 }
 
 .accordian-title .heading {
@@ -208,13 +229,15 @@ p.last.small.card {
 	text-align: left;
 }
 
-.accordian-title .step {
-	border-left: 0.25rem solid transparent;
-	padding: 0 0.25rem;
+.accordian-title .badge {
+	padding: 0 0.125rem 0 0.25rem;
 	border-radius: 4px;
-	background-color: rgba(88, 88, 88, 0.3);
+	background-color: rgba(223, 73, 73);
 	width: fit-content;
 	margin-top: 0.5rem;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+	color: rgb(230, 230, 230);
+	transition: background-color 0.3s linear;
 }
 
 .accordian-body {
@@ -245,7 +268,9 @@ p.subheading span {
 .accordian.open .accordian-body .small {
 	font-size: 1.1rem;
 	opacity: 1;
-	transition: font-size 0.25s linear, opacity 0.175s linear 0.3s;
+	transition:
+		font-size 0.25s linear,
+		opacity 0.175s linear 0.3s;
 }
 
 .accordian.open .accordian-body .small {
@@ -253,13 +278,22 @@ p.subheading span {
 	margin-left: 0.75rem;
 }
 
-.accordian.open .accordian-body .accordian-list,
+.accordian-list,
 .list {
+	font-weight: bold;
+}
+
+.accordian.lt.open .accordian-list {
 	margin: 1rem;
+	list-style: url("https://res.cloudinary.com/drgczkoux/image/upload/v1747786413/check-solid_weik1k.svg");
+}
+
+.accordian.dk.open .accordian-list {
+	margin: 1rem;
+	list-style: url("https://res.cloudinary.com/drgczkoux/image/upload/v1747786540/check-solid-w_picgll.svg");
 }
 
 .list {
-	font-weight: bold;
 	margin-bottom: 2.5rem;
 }
 
@@ -279,17 +313,33 @@ p.subheading span {
 
 .accordian.open .anchor {
 	color: inherit;
-	transition: color 0.2s linear, margin 0.2s linear;
+	transition:
+		color 0.2s linear,
+		margin 0.2s linear;
 }
 
 .accordian.open .anchor:hover {
 	margin-left: 0.25rem;
-	color: green;
+	animation: animate 1s ease-in-out infinite;
 }
 
 .accordian.open .fa-right-long {
 	margin-right: 0.5rem !important;
 	text-decoration: none !important;
+}
+
+@keyframes animate {
+	0% {
+		margin-left: 0;
+	}
+
+	50% {
+		margin-left: 0.25rem;
+	}
+
+	100% {
+		margin-left: 0;
+	}
 }
 
 .mobile-header,
@@ -421,7 +471,7 @@ p.subheading span {
 	}
 
 	.menu-btn {
-		margin-block: auto;
+		margin-block: auto !important;
 	}
 
 	.mobile-btn {
@@ -538,6 +588,13 @@ p.subheading span {
 	.accordian.open .toggle {
 		margin-right: 0.4rem;
 	}
+
+	.accordian.open .anchor {
+		background-color: green;
+		color: white;
+		padding: 0.125rem 0.75rem;
+		border-radius: 4px;
+	}
 }
 
 html,
@@ -646,28 +703,34 @@ section {
 #page {
 	-webkit-text-size-adjust: none;
 	line-height: 1;
-	transition: background-color 0.25s ease-in, color 0.25s ease-in;
-	color: #ffffff;
+	transition:
+		background-color 0.25s ease-in,
+		color 0.25s ease-in;
 }
 
 #page.dark {
 	background-color: rgb(17, 17, 17);
+	color: white;
 }
 
 #page.red {
 	background-color: rgb(30, 7, 7);
+	color: white;
 }
 
 #page.blue {
 	background-color: rgb(12, 20, 30);
+	color: white;
 }
 
 #page.purple {
 	background-color: rgb(25, 11, 25);
+	color: white;
 }
 
 #page.light {
 	background-color: rgb(245, 245, 245);
+	color: black;
 }
 
 .theme-container .theme {
@@ -678,7 +741,9 @@ section {
 	border-radius: 50%;
 	margin: 0.75rem 1rem;
 	border: 2px solid rgb(95, 95, 95);
-	transition: border 0.3s ease-in, transform 0.3s ease-in;
+	transition:
+		border 0.3s ease-in,
+		transform 0.3s ease-in;
 }
 
 @media screen and (max-width: 480px) {
@@ -854,13 +919,21 @@ span.line {
 }
 
 a {
-	-moz-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+	-moz-transition:
+		color 0.2s ease-in-out,
+		background-color 0.2s ease-in-out,
 		border-bottom-color 0.2s ease-in-out;
-	-webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+	-webkit-transition:
+		color 0.2s ease-in-out,
+		background-color 0.2s ease-in-out,
 		border-bottom-color 0.2s ease-in-out;
-	-ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+	-ms-transition:
+		color 0.2s ease-in-out,
+		background-color 0.2s ease-in-out,
 		border-bottom-color 0.2s ease-in-out;
-	transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+	transition:
+		color 0.2s ease-in-out,
+		background-color 0.2s ease-in-out,
 		border-bottom-color 0.2s ease-in-out;
 	display: inline-block;
 	width: fit-content;
@@ -992,12 +1065,18 @@ h3 {
 	width: fit-content;
 	border-top: 2px solid transparent;
 	border-bottom: 2px solid transparent;
-	transition: border 0.2s linear, color 0.2s linear;
+	transition:
+		border 0.2s linear,
+		color 0.2s linear;
 }
 
 .header-link {
 	border-top: 2px solid rgb(223, 73, 73);
 	border-bottom: 2px solid rgb(223, 73, 73);
+}
+
+.nav-menu + a {
+	margin-top: 4.5rem;
 }
 
 .center-link {
@@ -1006,40 +1085,6 @@ h3 {
 }
 
 .bold-link:hover {
-	color: rgb(223, 73, 73);
-	border-top: 2px solid white;
-	border-bottom: 2px solid white;
-}
-
-.nav-link:hover {
-	border-bottom-color: transparent;
-	color: rgb(223, 73, 73);
-}
-
-.header-link {
-	margin-top: 1.5rem !important;
-}
-
-@media screen and (max-width: 480px) {
-	.header-link {
-		margin-top: 3rem !important;
-	}
-
-	.bold-link:hover,
-	.nav-link:hover {
-		color: inherit !important;
-		border: none !important;
-	}
-}
-
-.header-link.light:hover,
-.bold-link.light:hover {
-	color: rgb(223, 73, 73);
-	border-top: 2px solid black;
-	border-bottom: 2px solid black;
-}
-
-.header-link.dark:hover {
 	color: rgb(223, 73, 73);
 	border-top: 2px solid white;
 	border-bottom: 2px solid white;
@@ -1250,6 +1295,92 @@ form > :last-child {
 	margin-bottom: 0;
 }
 
+.modal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.8);
+	opacity: 0;
+	transition: opacity 0.15s linear;
+}
+
+.show {
+	opacity: 1;
+}
+
+.hide {
+	opacity: 0;
+}
+
+#modalForm {
+	margin: auto;
+	padding: 5rem 2rem 2rem;
+	background-color: white;
+	border-radius: 4px;
+	color: black;
+	box-shadow: 0 0 3px 1px rgba(18, 18, 18, 0.5);
+	position: relative;
+	width: 28rem;
+}
+
+#modalForm p.modal-heading {
+	position: absolute;
+	top: -2px;
+	right: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: rgb(39, 39, 39);
+	font-size: 1.5rem;
+	text-align: left;
+	color: white;
+	border-radius: 4px 4px 0 0;
+}
+
+.modal-close {
+	position: absolute;
+	bottom: 0.5rem;
+	color: white;
+	background-color: red;
+	padding: 0.25rem 0.5rem;
+	border-radius: 4px;
+	right: 0.5rem;
+	/* color: rgb(127, 127, 127); */
+	font-size: 0.75rem;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#modalForm .heading-small {
+	color: #000000 !important;
+}
+
+@media screen and (max-width: 480px) {
+	#modalForm {
+		padding-bottom: 4rem;
+		width: 80%;
+	}
+
+	#modalForm .heading-small {
+		margin-bottom: 1.5rem;
+	}
+
+	.modal-close {
+		font-size: 1rem;
+	}
+}
+
+.modal-date {
+	margin-bottom: 1rem;
+}
+
 form > .fields {
 	display: -moz-flex;
 	display: -webkit-flex;
@@ -1324,7 +1455,7 @@ label {
 }
 
 input {
-	color-scheme: dark;
+	color-scheme: light;
 }
 
 input[type="text"],
@@ -1339,13 +1470,21 @@ textarea {
 	-webkit-appearance: none;
 	-ms-appearance: none;
 	appearance: none;
-	-moz-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+	-moz-transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
 		background-color 0.2s ease-in-out;
-	-webkit-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+	-webkit-transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
 		background-color 0.2s ease-in-out;
-	-ms-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+	-ms-transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
 		background-color 0.2s ease-in-out;
-	transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+	transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
 		background-color 0.2s ease-in-out;
 	background-color: white;
 	border-radius: 4px;
@@ -1389,7 +1528,7 @@ input[type="time"]:focus,
 select:focus,
 textarea:focus {
 	border-color: rgb(255, 255, 255);
-	box-shadow: 0 0 0 2px rgb(223, 73, 73);
+	box-shadow: 0 0 0 2px rgb(150, 150, 150);
 }
 
 input[type="text"].light:focus,
@@ -1400,8 +1539,8 @@ input[type="date"].light:focus,
 input[type="time"].light:focus,
 select.light:focus,
 textarea.light:focus {
-	border-color: rgb(0, 0, 0);
-	box-shadow: 0 0 0 1px rgb(0, 0, 0);
+	border-color: rgb(127, 127, 127);
+	box-shadow: 0 0 0 1px rgb(127, 127, 127);
 }
 
 textarea {
@@ -1421,6 +1560,10 @@ select {
 	height: 2.75rem;
 	padding-right: 2.75rem;
 	text-overflow: ellipsis;
+}
+
+select.light {
+	background-image: url("https://res.cloudinary.com/drgczkoux/image/upload/v1746750321/angle-down-dark_rnwpvd.svg");
 }
 
 select option {
@@ -1493,13 +1636,21 @@ input[type="radio"] + label:before {
 
 input[type="checkbox"] + label:before,
 input[type="radio"] + label:before {
-	-moz-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+	-moz-transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
 		background-color 0.2s ease-in-out;
-	-webkit-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+	-webkit-transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
 		background-color 0.2s ease-in-out;
-	-ms-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+	-ms-transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
 		background-color 0.2s ease-in-out;
-	transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+	transition:
+		border-color 0.2s ease-in-out,
+		box-shadow 0.2s ease-in-out,
 		background-color 0.2s ease-in-out;
 	border-radius: 4px;
 	border: solid 1px #ffffff;
@@ -2079,13 +2230,21 @@ button,
 	-webkit-appearance: none;
 	-ms-appearance: none;
 	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
+	-moz-transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out,
 		box-shadow 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
+	-webkit-transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out,
 		box-shadow 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
+	-ms-transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out,
 		box-shadow 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
+	transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out,
 		box-shadow 0.2s ease-in-out;
 	background-color: transparent;
 	border-radius: 4px;
@@ -2158,7 +2317,9 @@ button.primary,
 	width: 6rem;
 	font-weight: 600;
 	box-shadow: 0 0 0 1px rgb(223, 73, 73);
-	transition: background-color 0.1s ease-in, box-shadow 0.1s ease-in-out,
+	transition:
+		background-color 0.1s ease-in,
+		box-shadow 0.1s ease-in-out,
 		transform 0.2s ease-in;
 }
 
@@ -2168,13 +2329,30 @@ input[type="submit"].primary:hover {
 }
 
 input[type="submit"].primary:active,
-input[type="reset"]:active {
+input[type="reset"].primary:active {
 	transform: scale(0.985);
+}
+
+input[type="submit"].primary:active {
+	background-color: rgba(125, 125, 125, 0.1);
+	box-shadow: 0 0 0 3px green;
+	color: white;
 }
 
 input[type="submit"].primary:focus {
 	background-color: rgba(125, 125, 125, 0.1);
+	color: rgb(127, 127, 127);
 	box-shadow: 0 0 0 3px rgb(192, 55, 55);
+}
+
+input[type="reset"].light,
+input[type="reset"].modal-reset {
+	box-shadow: 0 0 0 1px rgb(39, 39, 39);
+}
+
+input[type="reset"].light:hover,
+input[type="reset"].modal-reset:hover {
+	box-shadow: 0 0 0 2px #000000;
 }
 
 input[type="reset"] {
@@ -2185,16 +2363,9 @@ input[type="reset"]:hover {
 	box-shadow: 0 0 0 2px rgb(240, 240, 240);
 }
 
-input[type="reset"].light {
-	box-shadow: 0 0 0 1px rgb(39, 39, 39);
-}
-
-input[type="reset"].light:hover {
-	box-shadow: 0 0 0 2px #000000;
-}
-
 input[type="reset"]:focus {
 	box-shadow: 0 0 0 3px #ffffff;
+	color: rgb(127, 127, 127);
 	background-color: rgba(125, 125, 125, 0.1);
 }
 
@@ -2260,13 +2431,12 @@ button {
 	-webkit-transition-delay: 0.75s;
 	-ms-transition-delay: 0.75s;
 	transition-delay: 0.75s;
-	background-image: linear-gradient(
-			to top,
-			rgba(19, 21, 25, 0.5),
-			rgba(19, 21, 25, 0.5)
-		),
+	background-image:
+		linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)),
 		url("../../images/overlay.png");
-	background-size: auto, 256px 256px;
+	background-size:
+		auto,
+		256px 256px;
 	background-position: center, center;
 	background-repeat: no-repeat, repeat;
 	z-index: 2;
@@ -2277,13 +2447,18 @@ button {
 	-webkit-transform: scale(1.125);
 	-ms-transform: scale(1.125);
 	transform: scale(1.125);
-	-moz-transition: -moz-transform 0.325s ease-in-out,
+	-moz-transition:
+		-moz-transform 0.325s ease-in-out,
 		-moz-filter 0.325s ease-in-out;
-	-webkit-transition: -webkit-transform 0.325s ease-in-out,
+	-webkit-transition:
+		-webkit-transform 0.325s ease-in-out,
 		-webkit-filter 0.325s ease-in-out;
-	-ms-transition: -ms-transform 0.325s ease-in-out,
+	-ms-transition:
+		-ms-transform 0.325s ease-in-out,
 		-ms-filter 0.325s ease-in-out;
-	transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out;
+	transition:
+		transform 0.325s ease-in-out,
+		filter 0.325s ease-in-out;
 	background-image: url("../../images/bg.jpg");
 	background-position: center;
 	background-size: cover;
@@ -2364,13 +2539,21 @@ body.is-preload #bg:before {
 	-webkit-align-items: center;
 	-ms-align-items: center;
 	align-items: center;
-	-moz-transition: -moz-transform 0.325s ease-in-out,
-		-moz-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
-	-webkit-transition: -webkit-transform 0.325s ease-in-out,
-		-webkit-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
-	-ms-transition: -ms-transform 0.325s ease-in-out,
-		-ms-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
-	transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out,
+	-moz-transition:
+		-moz-transform 0.325s ease-in-out,
+		-moz-filter 0.325s ease-in-out,
+		opacity 0.325s ease-in-out;
+	-webkit-transition:
+		-webkit-transform 0.325s ease-in-out,
+		-webkit-filter 0.325s ease-in-out,
+		opacity 0.325s ease-in-out;
+	-ms-transition:
+		-ms-transform 0.325s ease-in-out,
+		-ms-filter 0.325s ease-in-out,
+		opacity 0.325s ease-in-out;
+	transition:
+		transform 0.325s ease-in-out,
+		filter 0.325s ease-in-out,
 		opacity 0.325s ease-in-out;
 
 	max-width: 100%;
@@ -2413,8 +2596,6 @@ body.is-preload #bg:before {
 	width: 7.5rem;
 	height: 7.5rem;
 	line-height: 5.5rem;
-	/* border: solid 2px white; */
-	/* background-color */
 }
 
 #header .logo .icon:before {
@@ -2437,13 +2618,21 @@ body.is-preload #bg:before {
 }
 
 #header .content .inner {
-	-moz-transition: max-height 0.75s ease, padding 0.75s ease,
+	-moz-transition:
+		max-height 0.75s ease,
+		padding 0.75s ease,
 		opacity 0.325s ease-in-out;
-	-webkit-transition: max-height 0.75s ease, padding 0.75s ease,
+	-webkit-transition:
+		max-height 0.75s ease,
+		padding 0.75s ease,
 		opacity 0.325s ease-in-out;
-	-ms-transition: max-height 0.75s ease, padding 0.75s ease,
+	-ms-transition:
+		max-height 0.75s ease,
+		padding 0.75s ease,
 		opacity 0.325s ease-in-out;
-	transition: max-height 0.75s ease, padding 0.75s ease,
+	transition:
+		max-height 0.75s ease,
+		padding 0.75s ease,
 		opacity 0.325s ease-in-out;
 	-moz-transition-delay: 0.25s;
 	-webkit-transition-delay: 0.25s;
@@ -2603,6 +2792,24 @@ body.is-preload #header .content .inner {
 	}
 }
 
+.nav-link:hover {
+	border-bottom-color: transparent;
+	color: rgb(223, 73, 73);
+}
+
+.header-link.light:hover,
+.bold-link.light:hover {
+	color: rgb(223, 73, 73);
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+.header-link.dark:hover {
+	color: rgb(223, 73, 73);
+	border-top: 2px solid white;
+	border-bottom: 2px solid white;
+}
+
 @media screen and (max-width: 480px) {
 	#header {
 		padding: 4.5rem 0 1.5rem 0;
@@ -2619,6 +2826,45 @@ body.is-preload #header .content .inner {
 	#header nav,
 	#header > *:last-child:before {
 		display: none !important;
+	}
+
+	#header .content {
+		margin-bottom: 3rem;
+	}
+
+	.header-link {
+		border: none;
+		background-color: rgb(223, 73, 73);
+		color: white;
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		transition: background-color 0.15s;
+	}
+
+	.header-link:hover {
+		background-color: rgb(192, 55, 55);
+	}
+
+	.header-link:active,
+	.header-link:active {
+		transform: scale(0.985);
+	}
+
+	.header-link:focus {
+		background-color: rgb(192, 55, 55);
+		color: white;
+		box-shadow: 0 0 0 3px rgb(192, 55, 55);
+	}
+
+	.bold-link:hover,
+	.nav-link:hover {
+		color: inherit !important;
+		border: none !important;
+	}
+
+	.mobile-btn,
+	.header-link {
+		margin: 0;
 	}
 }
 
@@ -2693,7 +2939,7 @@ body.is-preload #header .content .inner {
 	opacity: 1;
 }
 
-#main article .bold-link.close {
+#main article .close {
 	position: absolute;
 	top: 1rem;
 	left: 2.5rem;
@@ -2702,15 +2948,19 @@ body.is-preload #header .content .inner {
 }
 
 .fa-circle-question,
-.fa-circle-info {
+.fa-circle-info,
+.fa-house-chimney {
 	border: 2px solid transparent;
 	border-radius: 50%;
 	font-size: 1.25rem;
-	transition: transform 0.2s linear, color 0.2s linear;
+	transition:
+		transform 0.2s linear,
+		color 0.2s linear;
 }
 
 .fa-circle-question:hover,
-.fa-circle-info:hover {
+.fa-circle-info:hover,
+.fa-house-chimney:hover {
 	transform: scale(1.1);
 	color: rgb(223, 73, 73);
 }
@@ -2725,7 +2975,7 @@ body.is-preload #header .content .inner {
 		border: none;
 	}
 
-	#main article .bold-link.close {
+	#main article .close {
 		display: none;
 	}
 
@@ -2737,13 +2987,21 @@ body.is-preload #header .content .inner {
 /* Footer */
 
 #footer {
-	-moz-transition: -moz-transform 0.325s ease-in-out,
-		-moz-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
-	-webkit-transition: -webkit-transform 0.325s ease-in-out,
-		-webkit-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
-	-ms-transition: -ms-transform 0.325s ease-in-out,
-		-ms-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
-	transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out,
+	-moz-transition:
+		-moz-transform 0.325s ease-in-out,
+		-moz-filter 0.325s ease-in-out,
+		opacity 0.325s ease-in-out;
+	-webkit-transition:
+		-webkit-transform 0.325s ease-in-out,
+		-webkit-filter 0.325s ease-in-out,
+		opacity 0.325s ease-in-out;
+	-ms-transition:
+		-ms-transform 0.325s ease-in-out,
+		-ms-filter 0.325s ease-in-out,
+		opacity 0.325s ease-in-out;
+	transition:
+		transform 0.325s ease-in-out,
+		filter 0.325s ease-in-out,
 		opacity 0.325s ease-in-out;
 	width: 100%;
 	max-width: 100%;

@@ -1,15 +1,18 @@
 const consultationForm = document.querySelector("#consultationForm");
 const companyName = document.querySelector("#company");
 const industryList = document.querySelectorAll("#industry");
-const timeList = document.querySelector("#time");
 const answer1 = document.querySelector("#answer1");
 const answer2 = document.querySelector("#answer2");
 const answer3 = document.querySelector("#answer3");
+const timeField = document.querySelector("#time");
+const modalTimeField = document.querySelector("#modal-time");
+const dateField = document.querySelector("#date");
+const modalDateField = document.querySelector("#modal-date");
 
 const appointmentForm = document.querySelector("#appointmentForm");
 const nameField = document.querySelectorAll("#name");
+const emailField = document.querySelectorAll("#email");
 const subjectField = document.querySelectorAll("#subject");
-const dateField = document.querySelector("#date");
 const inputFields = document.querySelectorAll("input");
 const selectFields = document.querySelectorAll("select");
 const textareaFields = document.querySelectorAll("textarea");
@@ -19,7 +22,15 @@ const saveBtn = document.querySelector(".save");
 const nextStep = document.querySelector("#next-step");
 const restartBtn = document.querySelector(".restart");
 
+const modal = document.querySelector(".modal");
+const modalForm = document.querySelector("#modalForm");
+const modalSaveBtn = document.querySelector(".modal-save");
+const modalResetBtn = document.querySelector(".modal-reset");
+const modalCloseBtn = document.querySelector(".modal-close");
+
 const contactForm = document.querySelector("#contactForm");
+const minDate = generateDate(3);
+const maxDate = generateDate(14);
 
 // ON PAGE LOAD
 let savedUserData = JSON.parse(localStorage.getItem("data"));
@@ -32,24 +43,12 @@ window.addEventListener("hashchange", () => {
 	setFormStyle();
 });
 
-restartBtn.addEventListener("click", (e) => {
-	e.preventDefault();
-	localStorage.removeItem("data");
-	location.hash = "consultation";
-	setTimeout(() => {
-		consultationForm.reset();
-		appointmentForm.reset();
-	}, 50);
-});
+modalCloseBtn.addEventListener("click", () => toggleModal("hide"));
 
 //--------------------------------------------------------------------------//
-
-function buildConnectedForms() {
-	//Render dropdown
-	createDropdownOptions();
-
-	// Connect forms
-	const connectedFields = {
+// Connect forms
+function getConnectedFields() {
+	return {
 		consultationFields: [
 			"company",
 			"industry",
@@ -57,8 +56,15 @@ function buildConnectedForms() {
 			"answer2",
 			"answer3",
 		],
-		appointmentFields: ["company", "industry", "message"],
+		appointmentFields: ["company", "date", "time", "industry", "message"],
+		modalFields: ["modal-date", "modal-time"],
 	};
+}
+
+function buildConnectedForms() {
+	//Render dropdown
+	createDropdownOptions();
+	const connectedFields = getConnectedFields();
 
 	// Summary template for message field (appointment form)
 	const setSummaryText = (data) => {
@@ -87,6 +93,15 @@ function buildConnectedForms() {
 		}
 	});
 
+	// Preload modal form
+	connectedFields.modalFields.forEach((field) => {
+		if (savedUserData) {
+			field === "modal-date"
+				? (modalForm.elements[field].value = savedUserData["date"])
+				: (modalForm.elements[field].value = savedUserData["time"]);
+		}
+	});
+
 	// Updates preloaded user data without forcing a refresh
 	window.addEventListener("hashchange", () => {
 		const freshData = JSON.parse(localStorage.getItem("data"));
@@ -101,6 +116,16 @@ function buildConnectedForms() {
 			}
 		});
 
+		connectedFields.modalFields.forEach((field) => {
+			if (freshData) {
+				field === "modal-date"
+					? (modalForm.elements[field].value = freshData["date"])
+					: (modalForm.elements[field].value = freshData["time"]);
+			}
+		});
+
+		modal.classList.add("hidden");
+
 		setFormStyle();
 	});
 
@@ -110,13 +135,13 @@ function buildConnectedForms() {
 			{
 				sector: "Business & General Services",
 				industries: [
+					"Beauty",
+					"E-commerce",
 					"Food & Beverage",
-					"Healthcare",
 					"Landscaping",
-					"Legal",
+					"Private Practice - Healthcare",
+					"Private Practice - Legal",
 					"Real Estate",
-					"Retail Shop",
-					"Salon - Hair & Nails",
 				],
 			},
 			{
@@ -161,6 +186,7 @@ function buildConnectedForms() {
 			hours: { open: 8, close: 20 },
 			timeSlot: 30,
 		};
+
 		createTimeDropdown(scheduleConfig);
 	}
 }
@@ -171,9 +197,25 @@ function validateAndSaveOnSubmit() {
 	// Displays a custom message for invalid inputs and updates/removes message as the input value changes
 
 	// Name
-	nameField.forEach((field) => {
+	nameField.forEach((field, i) => {
 		field.addEventListener("input", (e) => {
+			e.preventDefault();
 			field.setCustomValidity("");
+			if (i === 1) {
+				savedUserData.name = field.value;
+				localStorage.setItem("data", JSON.stringify(savedUserData));
+			}
+		});
+	});
+
+	emailField.forEach((field, i) => {
+		field.addEventListener("input", (e) => {
+			e.preventDefault();
+			field.setCustomValidity("");
+			if (i === 1) {
+				savedUserData.email = field.value;
+				localStorage.setItem("data", JSON.stringify(savedUserData));
+			}
 		});
 	});
 
@@ -212,22 +254,65 @@ function validateAndSaveOnSubmit() {
 	consultationForm.addEventListener("submit", (e) => {
 		e.preventDefault();
 		const data = {
+			...savedUserData,
 			company: companyName.value,
 			industry: industryList[0].value,
 			answer1: answer1.value,
 			answer2: answer2.value,
 			answer3: answer3.value,
 		};
+
+		localStorage.setItem("data", JSON.stringify(data));
+
 		saveBtn.value = "Saved!";
 		saveBtn.style.backgroundColor = "green";
+		saveBtn.style.color = "white";
 		saveBtn.style.boxShadow = "0 0 0 2px green";
 		setTimeout(() => {
 			saveBtn.value = "Save";
+			toggleModal("show");
 			saveBtn.removeAttribute("style");
-			nextStep.scrollIntoView({ behavior: "smooth" });
-		}, 1000);
+		}, 500);
+	});
+
+	modalForm.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const data = JSON.parse(localStorage.getItem("data"));
+		data.date = modalDateField.value;
+		data.time = modalTimeField.value;
+
+		modalSaveBtn.value = "Saved!";
+		modalSaveBtn.style.backgroundColor = "green";
+		modalSaveBtn.style.color = "white";
+		modalSaveBtn.style.boxShadow = "0 0 0 2px green";
+		setTimeout(() => {
+			modalSaveBtn.value = "Save";
+			modalSaveBtn.removeAttribute("style");
+			location.hash = "contact";
+			toggleModal("hide");
+		}, 500);
 		localStorage.setItem("data", JSON.stringify(data));
 	});
+}
+
+function toggleModal(toState) {
+	if (toState === "show") {
+		modal.classList.remove("hidden");
+
+		setTimeout(() => {
+			modal.classList.remove("hide");
+			modal.classList.add(toState);
+		}, 100);
+	}
+
+	if (toState === "hide") {
+		modal.classList.remove("show");
+		modal.classList.add(toState);
+
+		setTimeout(() => {
+			modal.classList.add("hidden");
+		}, 100);
+	}
 }
 
 function clearAndFocusOnReset() {
@@ -236,24 +321,46 @@ function clearAndFocusOnReset() {
 	resetBtn.forEach((btn, i) => {
 		btn.addEventListener("click", (e) => {
 			e.preventDefault();
-			localStorage.removeItem("data");
-			savedUserData = null;
-			consultationForm.reset();
-			appointmentForm.reset();
-			contactForm.reset();
-
-			if (i === 1) {
-				answer1.focus();
-			} else if (i === 0) {
-				nameField[i].focus();
-			} else if (i === 2) {
-				nameField[1].focus();
-			} else {
+			if (i !== 0) {
+				localStorage.removeItem("data");
+				savedUserData = null;
+				consultationForm.reset();
+				appointmentForm.reset();
+				contactForm.reset();
 				console.log(i);
+
+				if (i === 2) {
+					answer1.focus();
+				} else if (i === 1) {
+					nameField[0].focus();
+				} else if (i === 3) {
+					dateField.value = minDate;
+					nameField[1].focus();
+				}
 			}
 		});
 	});
+
+	modalResetBtn.addEventListener("click", (e) => {
+		e.preventDefault();
+		modalForm.reset();
+		modalDateField.value = minDate;
+	});
 }
+
+restartBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	localStorage.removeItem("data");
+	location.hash = "consultation";
+	setTimeout(() => {
+		consultationForm.reset();
+		appointmentForm.reset();
+		modalForm.reset();
+		modalDateField.value = minDate;
+		dateField.value = minDate;
+		toggleModal("hide");
+	}, 50);
+});
 
 /*-------------------------------------------------------*/
 /*                        CONFIG						 */
@@ -281,7 +388,9 @@ function setFormStyle() {
 			});
 
 			submitBtn.forEach((btn) => {
-				btn.removeAttribute("style");
+				if (!btn.classList.contains("modal-save")) {
+					btn.removeAttribute("style");
+				}
 			});
 
 			resetBtn.forEach((btn) => {
@@ -295,8 +404,14 @@ function setFormStyle() {
 // TODO: Refactor for more flexibility
 function createTimeDropdown(config) {
 	// Configures validator for first available day in form
-	const minDate = generateMinDate(7);
 	dateField.setAttribute("min", minDate);
+	modalDateField.setAttribute("min", minDate);
+	dateField.setAttribute("max", maxDate);
+	modalDateField.setAttribute("max", maxDate);
+	dateField.value = minDate;
+	modalDateField.value = minDate;
+
+	let timeOptionElements = [];
 
 	for (let hour = config.hours.open; hour < config.hours.close; hour++) {
 		// Set time options for each window
@@ -311,9 +426,9 @@ function createTimeDropdown(config) {
 
 			// Create option element for each time slot
 			const optionEl = document.createElement("option");
-			optionEl.value = time;
+			optionEl.setAttribute("value", time);
 			optionEl.textContent = time;
-			timeList.appendChild(optionEl);
+			// optionEl.classList = "time";
 
 			// Disable unavailable time slots
 			if (converted < config.firstWindow.open % 12 && period === "AM") {
@@ -329,8 +444,14 @@ function createTimeDropdown(config) {
 					optionEl.removeAttribute("disabled");
 				}
 			}
+
+			timeOptionElements.push(optionEl);
 		}
 	}
+	timeOptionElements.forEach((el) => {
+		modalTimeField.appendChild(el.cloneNode(true));
+		timeField.appendChild(el);
+	});
 }
 
 // Create option element
@@ -341,7 +462,7 @@ function createOptionGroup(title, options) {
 		const optionEl = document.createElement("option");
 		optionEl.setAttribute("value", option);
 		optionEl.textContent = option;
-		optionEl.classList.add("value");
+		optionEl.classList = "value";
 		optGroupEl.appendChild(optionEl);
 	});
 
@@ -349,7 +470,7 @@ function createOptionGroup(title, options) {
 }
 
 // Generates formatted minimum date to be used in HTML
-function generateMinDate(daysToAdd) {
+function generateDate(daysToAdd) {
 	const date = new Date();
 	date.setDate(date.getDate() + daysToAdd);
 
