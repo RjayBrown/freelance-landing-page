@@ -480,6 +480,14 @@ function switchCardForeground(theme) {
 		}
 	});
 
+	bold.forEach((el) => {
+		if (theme === "light" || theme === "dark") {
+			el.removeAttribute("style");
+		} else {
+			el.style.color = color.light[theme];
+		}
+	});
+
 	listTitle.forEach((el) => {
 		if (!theme === "light" && !theme === "dark") {
 			el.style.color = color.light[theme];

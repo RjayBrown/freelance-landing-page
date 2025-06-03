@@ -630,6 +630,10 @@ h6 {
 		padding-inline: 0;
 	}
 
+	#service-agreement section .agreement-list {
+		margin-left: 1rem;
+	}
+
 	.thank-you {
 		margin-top: -10rem;
 		height: 70vh;
@@ -2685,7 +2689,7 @@ body.is-preload #header .content .inner {
 
 	#header {
 		padding: 0 0 1.5rem 0;
-		margin-top: 7rem;
+		margin-top: 7.5rem;
 	}
 
 	#header .content .inner {
@@ -3321,6 +3325,7 @@ p.subheading span {
 	.accordian.lt:hover,
 	.accordian.dk:hover {
 		padding-left: 0.5rem;
+		border: none;
 	}
 
 	.accordian-title .heading {
