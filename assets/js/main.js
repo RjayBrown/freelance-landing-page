@@ -249,11 +249,12 @@
 		var $this = $(this);
 
 		// Close.
-		$('<i class="fa-solid fa-house-chimney close"></i>')
-			.appendTo($this)
-			.on("click", function () {
-				location.hash = "";
-			});
+		// $()
+		// '<div class="banner fade-in"><p>No-cost web solutions for community organizations!</p><a class="banner-btn" href="#consultation"> Learn More </a></div>'
+		// 	.appendTo($this)
+		// 	.on("click", function () {
+		// 		location.hash = "";
+		// 	});
 
 		// Prevent clicks from inside article from bubbling.
 		$this.on("click", function (event) {

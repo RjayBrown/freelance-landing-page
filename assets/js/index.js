@@ -2,9 +2,10 @@
 const page = document.querySelector("#page");
 
 // Header
+const header = document.querySelector(".wide-header");
 const headerLogo = document.querySelector(".header-logo");
 const logo = document.querySelector(".logo");
-const header = document.querySelector("#header");
+const headerWidget = document.querySelector("#header");
 const headerLink = document.querySelector(".header-link");
 const headerIcon = document.querySelector(".img");
 const content = document.querySelector(".content");
@@ -12,14 +13,18 @@ const nav = document.querySelector(".nav");
 const headerText = document.querySelector(".header-text");
 const navMenu = document.querySelector(".nav-menu");
 const navLink = document.querySelectorAll(".nav-link");
+const bannerLinks = document.querySelectorAll(".banner-link");
+const globe = document.querySelector(".fa-globe");
+const bulb = document.querySelector(".fa-lightbulb");
+const headset = document.querySelector(".fa-headset");
 
 // Mobile
 const mobileHeader = document.querySelector(".mobile-header");
 const mobileHeaderText = document.querySelector(".mobile-header-text");
 const mobileNavMenu = document.querySelector(".mobile-menu");
 const mobileLogo = document.querySelector(".mobile-logo");
-const mobileMenuOpen = document.querySelector(".mobile-toggle-open");
-const mobileMenuClose = document.querySelector(".mobile-toggle-close");
+const burgerBtn = document.querySelector(".mobile-toggle-open");
+const mobileMenuCloseBtn = document.querySelector(".mobile-toggle-close");
 const mobileNav = document.querySelector(".mobile-nav");
 const mobileNavBottom = document.querySelector(".bottom");
 const mobileNavLink = document.querySelectorAll(".mobile-nav-link");
@@ -31,14 +36,11 @@ const dropdownBtn = document.querySelector(".menu-btn");
 const footerText = document.querySelectorAll(".copyright");
 
 // Text
-const major = document.querySelectorAll(".major");
-const pageSection = document.querySelectorAll(".heading-small");
 const anchorLink = document.querySelectorAll(".anchor-link");
 const cardBottomLink = document.querySelectorAll(".bold-link");
 const bold = document.querySelectorAll(".bold");
 
 // Theme
-const themeTitle = document.querySelector(".theme-title");
 const toggleBtns = document.querySelectorAll(".theme");
 const darkThemeBtn = document.querySelectorAll(".dark");
 const redThemeBtn = document.querySelectorAll(".red");
@@ -48,21 +50,28 @@ const purpleThemeBtn = document.querySelectorAll(".purple");
 
 // Cards
 const cards = document.querySelectorAll("article");
-const cardIcons = document.querySelectorAll(".card-icon");
 const cardLogos = document.querySelectorAll(".card-logo");
+const heroSections = document.querySelectorAll(".hero");
+const heroBtn = document.querySelectorAll(".hero-btn");
+const cardHeadings = document.querySelectorAll(".major");
+const cardSubHeadings = document.querySelectorAll(".heading-small");
 const hrUpperElements = document.querySelectorAll(".upper");
-const q = document.querySelectorAll(".card-icon");
-// const cardCloseLink = document.querySelector(".close");
 const cardListTitle = document.querySelector(".list-title");
+const resetBtns = document.querySelectorAll(".reset");
+const restartBtnBorder = document.querySelector(".restart");
 
 // Accordian
 const accordian = document.querySelectorAll(".accordian");
 const toggle = document.querySelectorAll(".toggle");
 const accordianBody = document.querySelectorAll(".accordian-body");
 const accordianTitle = document.querySelectorAll(".heading");
-const badge = document.querySelectorAll(".badge");
+const badges = document.querySelectorAll(".badge");
 const imgContainer = document.querySelectorAll(".img-container");
 const list = document.querySelectorAll(".accordian-list");
+const listTitle = document.querySelectorAll(".list-title");
+const liElements = document.querySelectorAll(".list-item");
+const accordianLink = document.querySelectorAll(".link");
+const ctaBtn = document.querySelectorAll(".anchor");
 
 // Modal
 const modalHeaderBg = document.querySelector(".modal-heading");
@@ -73,26 +82,30 @@ const color = {
 		purple: "rgb(160, 135, 199)",
 		blue: "rgb(118, 155, 210)",
 		red: "rgb(255, 145, 145)",
-		white: "rgb(255, 255, 255)",
+		light: "rgb(223, 73, 73)",
+		dark: "rgb(223, 73, 73)",
 	},
 
 	dark: {
 		purple: "rgb(76, 50, 116)",
 		blue: "rgb(35, 64, 107)",
 		red: "rgb(116, 13, 13)",
-		grey: "rgba(125, 125, 125, 0.35)",
+		light: "rgb(223, 73, 73)",
+		dark: "rgb(192, 55, 55)",
 	},
 
 	darker: {
-		purple: "rgb(37, 19, 37)",
-		blue: "rgb(18, 28, 41)",
-		red: "rgb(42, 11, 11)",
+		purple: "rgb(68, 44, 106)",
+		blue: "rgb(27, 52, 88)",
+		red: "rgb(96, 11, 11)",
+		light: "rgb(192, 55, 55)",
+		dark: "rgb(160, 48, 48)",
 	},
 };
 
 // ON PAGE LOAD
 // Get theme from local storage
-let theme = localStorage.getItem("theme");
+const theme = localStorage.getItem("theme");
 
 // Get theme from local storage, dark by default
 getSavedTheme(theme);
@@ -101,41 +114,33 @@ toggleMobileView();
 function toggleMobileView() {
 	if (window.innerWidth > 480) {
 		mobileHeader.classList.add("hidden");
-		hrUpperElements.forEach((hr) => {
-			hr.classList.remove("hidden");
-		});
-		q.forEach((icon) => {
-			icon.classList.remove("hidden");
-		});
-
-		cardLogos.forEach((logo) => {
-			if (!logo.classList.contains("lower")) {
-				logo.classList.remove("hidden");
-			}
-		});
 	} else {
 		mobileHeader.classList.remove("hidden");
-
-		hrUpperElements.forEach((hr) => {
-			hr.classList.add("hidden");
-		});
-		q.forEach((icon) => {
-			icon.classList.add("hidden");
-		});
-
-		cardLogos.forEach((logo) => {
-			if (!logo.classList.contains("lower")) {
-				logo.classList.add("hidden");
-			}
-		});
 	}
 }
 
-let e = [mobileMenuOpen, mobileMenuClose];
-let f = [...mobileNavLink, mobileBtn, mobileLogo, mobileNavBottomLink];
+const bannerIcons = [globe, bulb, headset];
 
-e.forEach((el) => {
-	el.addEventListener("click", () => {
+bannerLinks.forEach((link, i) => {
+	link.addEventListener("mouseover", () => {
+		bannerIcons[i].classList.add("hover");
+	});
+
+	link.addEventListener("mouseout", () => {
+		bannerIcons[i].classList.remove("hover");
+	});
+});
+
+const mobileToggleBtns = [burgerBtn, mobileMenuCloseBtn];
+const mobileMenuLinks = [
+	...mobileNavLink,
+	mobileBtn,
+	mobileLogo,
+	mobileNavBottomLink,
+];
+
+mobileToggleBtns.forEach((btn) => {
+	btn.addEventListener("click", () => {
 		if (mobileHeader.classList.contains("open")) {
 			closeMobileNav();
 		} else {
@@ -144,16 +149,16 @@ e.forEach((el) => {
 	});
 });
 
-f.forEach((el) => {
-	el.addEventListener("click", () => {
+mobileMenuLinks.forEach((link) => {
+	link.addEventListener("click", () => {
 		if (mobileHeader.classList.contains("open")) {
 			closeMobileNav();
 		}
 	});
 
-	f.forEach((el) => {
-		if (el !== mobileLogo) {
-			el.classList.add("hidden");
+	mobileMenuLinks.forEach((link) => {
+		if (link !== mobileLogo) {
+			link.classList.add("hidden");
 		}
 	});
 
@@ -163,32 +168,32 @@ f.forEach((el) => {
 });
 
 function openMobileNav() {
-	let theme = localStorage.getItem("theme");
+	const theme = localStorage.getItem("theme");
 
 	mobileNav.classList.remove("hidden");
 	mobileNavBottom.classList.remove("hidden");
 	mobileHeader.classList = `mobile-header ${theme} open`;
 	mobileNavMenu.classList = `mobile-menu ${theme} slide`;
-	mobileMenuOpen.classList.add("hidden");
-	mobileMenuClose.classList.remove("hidden");
+	burgerBtn.classList.add("hidden");
+	mobileMenuCloseBtn.classList.remove("hidden");
 	mobileNavMenu.classList.remove("hidden");
-	f.forEach((el) => {
+	mobileMenuLinks.forEach((el) => {
 		el.classList.remove("hidden");
 	});
 }
 
 function closeMobileNav() {
-	let theme = localStorage.getItem("theme");
+	const theme = localStorage.getItem("theme");
 
 	mobileHeader.classList.remove("open");
 	mobileNavMenu.classList = `mobile-menu ${theme} unslide`;
-	mobileMenuOpen.classList.remove("hidden");
-	mobileMenuClose.classList.add("hidden");
+	burgerBtn.classList.remove("hidden");
+	mobileMenuCloseBtn.classList.add("hidden");
 	setTimeout(() => {
 		mobileNavMenu.classList.add("hidden");
 		mobileNav.classList.add("hidden");
 		mobileNavBottom.classList.add("hidden");
-		f.forEach((el) => {
+		mobileMenuLinks.forEach((el) => {
 			if (el !== mobileLogo) {
 				el.classList.add("hidden");
 			}
@@ -207,7 +212,11 @@ function getSavedTheme(theme) {
 
 // Change theme on user action
 toggleBtns.forEach((btn) => {
-	btn.addEventListener("click", () => toggleTheme(btn.classList[1]));
+	btn.addEventListener("click", () => {
+		toggleTheme(btn.classList[1]);
+
+		console.log("switch!");
+	});
 });
 
 // Change header text based on device
@@ -251,10 +260,19 @@ function toggleTheme(theme) {
 
 	if (theme === "light") {
 		switchForeground("black");
+		resetBtns.forEach((btn) => {
+			btn.classList.add("light");
+		});
+		restartBtnBorder.classList.add("light");
 	} else {
 		switchForeground("white");
+		resetBtns.forEach((btn) => {
+			btn.classList.remove("light");
+		});
+		restartBtnBorder.classList.remove("light");
 	}
 
+	header.classList = `wide-header ${theme}`;
 	mobileHeader.classList = `mobile-header ${theme}`;
 	mobileNavMenu.classList = `mobile-menu ${theme} hidden`;
 }
@@ -296,8 +314,8 @@ function setActiveThemeBtn(theme) {
 	];
 
 	// change color for borders
-	themeSwitchers.forEach((btns) => {
-		btns.forEach((btn) => {
+	themeSwitchers.forEach((btnGroup) => {
+		btnGroup.forEach((btn) => {
 			if (btn.classList.contains(theme)) {
 				btn.classList.add("active");
 			} else {
@@ -315,14 +333,20 @@ function switchForeground(color) {
 	if (color === "white") {
 		headerLink.classList.add("dark");
 		headerLink.classList.remove("light");
+		heroSections.forEach((section) => {
+			section.classList.remove("light");
+		});
 	} else {
 		headerLink.classList.add("light");
 		headerLink.classList.remove("dark");
+		heroSections.forEach((section) => {
+			section.classList.add("light");
+		});
 	}
 
 	// change text color (header, card, footer)
 	header.style.color = color;
-	mobileMenuOpen.style.color = color;
+	burgerBtn.style.color = color;
 	mobileHeader.classList = `mobile-header ${theme}`;
 	mobileNavMenu.classList = `mobile-menu ${theme}`;
 
@@ -330,9 +354,15 @@ function switchForeground(color) {
 		card.style.color = color;
 	});
 
-	// cardCloseLink.removeAttribute("style");
-
-	themeTitle.style.color = color;
+	if (theme === "light") {
+		resetBtns.forEach((btn) => {
+			btn.style.borderColor = "rgb(39, 39, 39)";
+		});
+	} else {
+		resetBtns.forEach((btn) => {
+			btn.classList.remove("light");
+		});
+	}
 
 	footerText.forEach((word) => {
 		word.style.color = color;
@@ -358,7 +388,6 @@ function setAccordianStyle(theme) {
 		}
 
 		toggle[index].removeAttribute("style");
-		badge[index].classList.add("hidden");
 		list.forEach((list) => {
 			list.classList.add("hidden");
 		});
@@ -368,7 +397,7 @@ function setAccordianStyle(theme) {
 // Foreground (Cards)
 function switchCardForeground(theme) {
 	// card headings
-	major.forEach((el) => {
+	cardHeadings.forEach((el) => {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
@@ -376,47 +405,71 @@ function switchCardForeground(theme) {
 		}
 	});
 
-	pageSection.forEach((el) => {
-		if (theme === "light" || theme === "dark") {
-			el.removeAttribute("style");
-		} else {
-			el.style.color = color.light[theme];
+	cardSubHeadings.forEach((el) => {
+		if (!el.classList.contains("top")) {
+			if (theme === "light" || theme === "dark") {
+				el.removeAttribute("style");
+			} else {
+				el.style.color = color.light[theme];
+			}
 		}
 	});
 
-	badge.forEach((el, i) => {
-		if (theme === "light" || theme === "dark") {
-			accordian[i].addEventListener("mouseover", () => {
-				el.style.backgroundColor = "rgb(223, 73, 73)";
-			});
-		} else {
-			accordian[i].addEventListener("mouseover", () => {
-				el.style.backgroundColor = color.dark[theme];
-			});
-		}
+	badges.forEach((el, i) => {
+		el.style.backgroundColor = "transparent";
+	});
 
-		accordian[i].addEventListener("mouseout", () => {
-			el.style.backgroundColor = color.dark["grey"];
+	const btnsToChange = [modalSaveBtnBg, mobileBtn, ...heroBtn, headerLink];
+
+	if (theme === "light") {
+		modalHeaderBg.removeAttribute("style");
+		btnsToChange.forEach((btn) => {
+			btn.style.backgroundColor = "rgb(223, 73, 73)";
+			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
+		});
+	} else if (theme === "dark") {
+		modalHeaderBg.removeAttribute("style");
+		btnsToChange.forEach((btn) => {
+			btn.style.backgroundColor = "rgb(192, 55, 55)";
+			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
+		});
+	} else {
+		btnsToChange.forEach((btn) => {
+			btn.style.backgroundColor = color.dark[theme];
+			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
+		});
+	}
+
+	btnsToChange.forEach((btn) => {
+		btn.addEventListener("mouseover", () => {
+			btn.style.backgroundColor = color.darker[theme];
+			btn.style.boxShadow = `0 0 0 1px ${color.darker[theme]}`;
 		});
 	});
 
-	if (theme === "light" || theme === "dark") {
-		modalHeaderBg.removeAttribute("style");
-		modalSaveBtnBg.removeAttribute("style");
-	} else {
-		// modalHeaderBg.style.backgroundColor = color.dark[theme];
-		modalSaveBtnBg.style.backgroundColor = color.dark[theme];
-		modalSaveBtnBg.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
-	}
-
-	modalSaveBtnBg.addEventListener("focus", () => {
-		modalSaveBtnBg.style.backgroundColor = "rgba(125, 125, 125, 0.1)";
-		modalSaveBtnBg.style.boxShadow = `0 0 0 3px ${color.dark[theme]}`;
+	btnsToChange.forEach((btn) => {
+		btn.addEventListener("mouseout", () => {
+			btn.style.backgroundColor = color.dark[theme];
+			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
+		});
 	});
 
-	modalSaveBtnBg.addEventListener("blur", () => {
-		modalSaveBtnBg.style.backgroundColor = color.dark[theme];
-		modalSaveBtnBg.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
+	btnsToChange.forEach((btn) => {
+		btn.addEventListener("focus", () => {
+			if (btn === modalSaveBtnBg) {
+				btn.style.backgroundColor = "rgba(125, 125, 125, 0.1)";
+				btn.style.boxShadow = `0 0 0 3px ${color.dark[theme]}`;
+			}
+		});
+	});
+
+	btnsToChange.forEach((btn) => {
+		btn.addEventListener("blur", () => {
+			if (btn === modalSaveBtnBg) {
+				btn.style.backgroundColor = color.dark[theme];
+				btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
+			}
+		});
 	});
 
 	anchorLink.forEach((el) => {
@@ -424,6 +477,24 @@ function switchCardForeground(theme) {
 			el.removeAttribute("style");
 		} else {
 			el.style.color = color.light[theme];
+		}
+	});
+
+	listTitle.forEach((el) => {
+		if (!theme === "light" && !theme === "dark") {
+			el.style.color = color.light[theme];
+		} else {
+			el.style.textDecorationColor = color.light[theme];
+		}
+	});
+
+	accordianLink.forEach((el) => {
+		el.style.textDecorationColor = color.light[theme];
+	});
+
+	liElements.forEach((el) => {
+		if (theme === "light" || theme === "dark") {
+			el.style.color = color.dark[theme];
 		}
 	});
 
@@ -449,15 +520,6 @@ function switchCardForeground(theme) {
 			el.addEventListener("click", () => {
 				el.removeAttribute("style");
 			});
-		}
-	});
-
-	// bold text in consultation card
-	bold.forEach((el) => {
-		if (theme === "light" || theme === "dark") {
-			el.removeAttribute("style");
-		} else {
-			el.style.color = color.light[theme];
 		}
 	});
 }
@@ -495,23 +557,37 @@ function openAccordian(index) {
 	toggle[index].setAttribute("style", "transform: rotate(45deg)");
 	accordian[index].classList.add("open");
 	accordian[index].classList.add(currentTheme);
+	if (index === 7) {
+		list.forEach((list) => {
+			list.classList.remove("hidden");
+		});
+	}
+
+	if (currentTheme === "light") {
+		badges[index].style.backgroundColor = "rgb(223, 73, 73)";
+	} else if (theme === "dark") {
+		badges[index].style.backgroundColor = "rgb(192, 55, 55)";
+	} else {
+		badges[index].style.backgroundColor = color.dark[currentTheme];
+	}
+
+	badges[index].classList.add("show");
+
 	setTimeout(() => {
+		badges[index].classList.remove("hidden");
 		toggle[index].classList.remove("hidden");
-		badge[index].classList.remove("hidden");
-		if (index === 7) {
-			list.forEach((list) => {
-				list.classList.remove("hidden");
-			});
-		}
-	}, 300);
+	}, 290);
 }
 
 function closeAccordian(index) {
+	badges[index].classList.add("hidden");
 	accordianTitle[index].removeAttribute("style");
 	toggle[index].removeAttribute("style");
 	toggle[index].classList.remove("hidden");
 	accordian[index].classList.remove("open");
-	badge[index].classList.add("hidden");
+	badges[index].classList.remove("show");
+	badges[index].style.backgroundColor = "transparent";
+
 	accordian[index].classList.remove(theme);
 	list.forEach((list) => {
 		list.classList.add("hidden");

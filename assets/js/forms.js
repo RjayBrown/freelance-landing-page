@@ -133,7 +133,7 @@ function buildConnectedForms() {
 		// Create optgroup element for industry groups and add to each dropdown list
 		const industryGroups = [
 			{
-				sector: "Business & General Services",
+				sector: "General",
 				industries: [
 					"Beauty",
 					"E-commerce",
@@ -162,7 +162,7 @@ function buildConnectedForms() {
 				industries: ["Education", "Social Services"],
 			},
 			{
-				sector: "Media & Creative",
+				sector: "Creative & Media",
 				industries: [
 					"Entertainment",
 					"Fashion",
@@ -382,16 +382,15 @@ function setFormStyle() {
 			resetBtn.forEach((btn) => {
 				btn.style.borderColor = "rgb(39, 39, 39)";
 			});
+			restartBtn.style.borderColor = "rgb(39, 39, 39)";
 		} else {
-			fieldGroup.forEach((field) => {
-				field.classList.remove("light");
-			});
-
 			submitBtn.forEach((btn) => {
 				if (!btn.classList.contains("modal-save")) {
 					btn.removeAttribute("style");
 				}
 			});
+
+			restartBtn.classList.remove("light");
 
 			resetBtn.forEach((btn) => {
 				btn.classList.remove("light");
@@ -428,7 +427,7 @@ function createTimeDropdown(config) {
 			const optionEl = document.createElement("option");
 			optionEl.setAttribute("value", time);
 			optionEl.textContent = time;
-			// optionEl.classList = "time";
+			optionEl.classList = "time";
 
 			// Disable unavailable time slots
 			if (converted < config.firstWindow.open % 12 && period === "AM") {
