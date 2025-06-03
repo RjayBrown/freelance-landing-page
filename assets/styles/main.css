@@ -594,12 +594,6 @@ h6 {
 	width: 100%;
 }
 
-/* .card-bottom-logo {
-	position: absolute;
-	bottom: 0.5rem;
-	right: 1rem;
-} */
-
 .thank-you {
 	display: flex;
 	flex-direction: column;
@@ -629,7 +623,11 @@ h6 {
 	}
 
 	#service-agreement section {
-		padding-inline: 1rem;
+		padding-inline: 1.5rem;
+	}
+
+	#service-agreement section * {
+		padding-inline: 0;
 	}
 
 	.thank-you {
@@ -2687,7 +2685,7 @@ body.is-preload #header .content .inner {
 
 	#header {
 		padding: 0 0 1.5rem 0;
-		margin-top: 12rem;
+		margin-top: 7rem;
 	}
 
 	#header .content .inner {
@@ -2993,7 +2991,7 @@ p.modal-heading,
 	color: rgb(223, 73, 73);
 }
 
-.hero + p.heading-small.top {
+p.heading-small.top {
 	color: rgb(127, 127, 127);
 	margin: 0;
 	font-weight: normal;
