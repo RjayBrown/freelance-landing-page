@@ -2360,7 +2360,7 @@ body.is-preload #header .content .inner {
 }
 
 .page-container.no-hero {
-	padding-top: 7rem;
+	padding-top: 2.5rem;
 }
 
 .page-container > * {
@@ -2874,7 +2874,7 @@ hr {
 
 hr.upper {
 	margin-top: 0.5rem;
-	margin-bottom: 1rem;
+	margin-bottom: 2.5rem;
 }
 
 hr.lower {
@@ -3143,7 +3143,7 @@ p.last.small.card {
 	}
 
 	.hero.home {
-		padding-block: 7.5rem;
+		padding-block: 1.75rem;
 	}
 
 	.hero-text {
