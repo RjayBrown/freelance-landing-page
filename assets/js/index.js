@@ -53,6 +53,7 @@ const cards = document.querySelectorAll("article");
 const cardLogos = document.querySelectorAll(".card-logo");
 const heroSections = document.querySelectorAll(".hero");
 const heroBtn = document.querySelectorAll(".hero-btn");
+const secondaryHeroBtn = document.querySelectorAll(".hero-btn-secondary");
 const cardHeadings = document.querySelectorAll(".major");
 const cardSubHeadings = document.querySelectorAll(".heading-small");
 const hrUpperElements = document.querySelectorAll(".upper");
@@ -214,8 +215,6 @@ function getSavedTheme(theme) {
 toggleBtns.forEach((btn) => {
 	btn.addEventListener("click", () => {
 		toggleTheme(btn.classList[1]);
-
-		console.log("switch!");
 	});
 });
 
@@ -282,13 +281,9 @@ function switchLogoImg(theme) {
 	if (theme === "light") {
 		headerLogo.src =
 			"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome-dark_b2eget.svg";
-		headerIcon.src =
-			"https://res.cloudinary.com/drgczkoux/image/upload/v1746752445/7ONE-icon-b-b_c5ly6l.svg";
 	} else {
 		headerLogo.src =
 			"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome_ihvfx0.svg";
-		headerIcon.src =
-			"https://res.cloudinary.com/drgczkoux/image/upload/v1746752445/7ONE-icon-w-w_yvkocg.svg";
 	}
 }
 
@@ -327,18 +322,14 @@ function setActiveThemeBtn(theme) {
 
 // Foreground (Header)
 function switchForeground(color) {
-	switchBorderColor(color);
+	// switchBorderColor(color);
 
 	// change header color
 	if (color === "white") {
-		headerLink.classList.add("dark");
-		headerLink.classList.remove("light");
 		heroSections.forEach((section) => {
 			section.classList.remove("light");
 		});
 	} else {
-		headerLink.classList.add("light");
-		headerLink.classList.remove("dark");
 		heroSections.forEach((section) => {
 			section.classList.add("light");
 		});
@@ -419,7 +410,7 @@ function switchCardForeground(theme) {
 		el.style.backgroundColor = "transparent";
 	});
 
-	const btnsToChange = [modalSaveBtnBg, mobileBtn, ...heroBtn, headerLink];
+	const btnsToChange = [modalSaveBtnBg, mobileBtn, ...heroBtn];
 
 	if (theme === "light") {
 		modalHeaderBg.removeAttribute("style");
@@ -427,16 +418,25 @@ function switchCardForeground(theme) {
 			btn.style.backgroundColor = "rgb(223, 73, 73)";
 			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
 		});
+		secondaryHeroBtn.forEach((btn) => {
+			btn.classList.add("light");
+		});
 	} else if (theme === "dark") {
 		modalHeaderBg.removeAttribute("style");
 		btnsToChange.forEach((btn) => {
 			btn.style.backgroundColor = "rgb(192, 55, 55)";
 			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
 		});
+		secondaryHeroBtn.forEach((btn) => {
+			btn.classList.remove("light");
+		});
 	} else {
 		btnsToChange.forEach((btn) => {
 			btn.style.backgroundColor = color.dark[theme];
 			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
+		});
+		secondaryHeroBtn.forEach((btn) => {
+			btn.classList.remove("light");
 		});
 	}
 
@@ -496,16 +496,6 @@ function switchCardForeground(theme) {
 		}
 	});
 
-	accordianLink.forEach((el) => {
-		el.style.textDecorationColor = color.light[theme];
-	});
-
-	liElements.forEach((el) => {
-		if (theme === "light" || theme === "dark") {
-			el.style.color = color.dark[theme];
-		}
-	});
-
 	cardBottomLink.forEach((el) => {
 		if (el !== dropdownBtn) {
 			el.addEventListener("mouseover", () => {
@@ -532,30 +522,30 @@ function switchCardForeground(theme) {
 	});
 }
 
-// Borders (Header)
-function switchBorderColor(foregroundColor) {
-	const headerElements = [logo, content, nav, navMenu];
+// // Borders (Header)
+// function switchBorderColor(foregroundColor) {
+// 	const headerElements = [logo, content, nav, navMenu];
 
-	// push all link elements to array
-	navLink.forEach((link) => {
-		headerElements.push(link);
-	});
+// 	// push all link elements to array
+// 	navLink.forEach((link) => {
+// 		headerElements.push(link);
+// 	});
 
-	headerElements.forEach((el) => {
-		el.style.borderColor = foregroundColor;
-	});
+// 	// headerElements.forEach((el) => {
+// 	// 	el.style.borderColor = foregroundColor;
+// 	// });
 
-	// change color for connected lines (:before)
-	if (foregroundColor === "black") {
-		nav.classList.add("before");
-		content.classList.add("before");
-	}
+// 	// change color for connected lines (:before)
+// 	// if (foregroundColor === "black") {
+// 	// 	nav.classList.add("before");
+// 	// 	content.classList.add("before");
+// 	// }
 
-	if (foregroundColor === "white") {
-		nav.classList.remove("before");
-		content.classList.remove("before");
-	}
-}
+// 	// if (foregroundColor === "white") {
+// 	// 	nav.classList.remove("before");
+// 	// 	content.classList.remove("before");
+// 	// }
+// }
 
 // ACCORDIAN
 function openAccordian(index) {
@@ -566,8 +556,28 @@ function openAccordian(index) {
 	accordian[index].classList.add("open");
 	accordian[index].classList.add(currentTheme);
 	if (index === 7) {
-		list.forEach((list) => {
+		list.forEach((list, i) => {
 			list.classList.remove("hidden");
+		});
+
+		accordianLink.forEach((link, i) => {
+			if (i === 1) {
+				link.classList.remove("hidden");
+			}
+		});
+	}
+
+	if (index === 8) {
+		list.forEach((list, i) => {
+			if (i === 2) {
+				list.classList.remove("hidden");
+			}
+
+			accordianLink.forEach((link, i) => {
+				if (i === 2) {
+					link.classList.remove("hidden");
+				}
+			});
 		});
 	}
 

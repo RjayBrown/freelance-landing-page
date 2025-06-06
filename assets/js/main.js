@@ -58,7 +58,7 @@
 	}
 
 	// Main.
-	var delay = 325,
+	var delay = 350,
 		locked = false;
 
 	// Methods.
@@ -135,7 +135,7 @@
 					setTimeout(function () {
 						locked = false;
 					}, delay);
-				}, 25);
+				}, 5);
 			}, delay);
 		}
 
@@ -165,7 +165,7 @@
 					setTimeout(function () {
 						locked = false;
 					}, delay);
-				}, 25);
+				}, 5);
 			}, delay);
 		}
 	};
