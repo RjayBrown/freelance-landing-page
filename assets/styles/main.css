@@ -1963,6 +1963,11 @@ body.is-preload #bg:before {
 	transition: background-color 0.25s ease-in;
 }
 
+.wide-header a {
+	width: 14rem;
+	height: 1.5rem;
+}
+
 .banner,
 .mobile-banner {
 	background-color: rgb(72, 106, 106);
@@ -2195,26 +2200,27 @@ body.is-preload #bg:before {
 }
 
 #header .content .inner {
+	-moz-transition-delay: 0.3s;
+	-webkit-transition-delay: 0.3s;
+	-ms-transition-delay: 0.3s;
+	transition-delay: 0.3s;
 	-moz-transition:
-		max-height 0.75s ease,
-		padding 0.75s ease,
-		opacity 0.325s ease-in-out;
+		max-height 3s ease,
+		padding 1.5s ease,
+		opacity 1.75s ease 0.5s;
 	-webkit-transition:
-		max-height 0.75s ease,
-		padding 0.75s ease,
-		opacity 0.325s ease-in-out;
+		max-height 3s ease,
+		padding 1.5s ease,
+		opacity 1.75s ease 0.5s;
 	-ms-transition:
-		max-height 0.75s ease,
-		padding 0.75s ease,
-		opacity 0.325s ease-in-out;
+		max-height 3s ease,
+		padding 1.5s ease,
+		opacity 1.75s ease 0.5s;
 	transition:
-		max-height 0.75s ease,
-		padding 0.75s ease,
-		opacity 0.325s ease-in-out;
-	-moz-transition-delay: 0.25s;
-	-webkit-transition-delay: 0.25s;
-	-ms-transition-delay: 0.25s;
-	transition-delay: 0.25s;
+		max-height 3s ease,
+		padding 1.5s ease,
+		opacity 1.75s ease 0.5s;
+
 	max-height: 40rem;
 	overflow: hidden;
 	margin-block: 2.5rem;
@@ -2234,7 +2240,7 @@ body.is-preload #bg:before {
 
 #header .mobile-header-text h3 {
 	margin: 0 auto;
-	line-height: normal;
+	line-height: 1.375rem;
 }
 
 #header .content p {
@@ -2555,10 +2561,6 @@ body.is-preload #header .content .inner {
 	#header .content {
 		top: 12rem;
 		opacity: 0.025;
-	}
-
-	#header .content.home {
-		margin-bottom: 4.25rem;
 	}
 
 	.mobile-header a,
@@ -3143,7 +3145,8 @@ p.last.small.card {
 	}
 
 	.hero.home {
-		padding-block: 1.75rem;
+		padding-top: 1.75rem;
+		padding-bottom: 3rem;
 	}
 
 	.hero-text {
@@ -3177,10 +3180,6 @@ p.last.small.card {
 		width: 95%;
 	}
 
-	p.small.card {
-		width: 95%;
-	}
-
 	.hero-text .tagline {
 		text-align: start;
 	}
@@ -3193,6 +3192,10 @@ p.last.small.card {
 	.hero-text .tagline-small {
 		text-align: left;
 		margin-bottom: 1rem;
+	}
+
+	.hero-text .tagline-small.break {
+		display: none;
 	}
 
 	.btn-row {
@@ -3248,13 +3251,11 @@ p.last.small.card {
 }
 
 .accordian.dk:hover {
-	border-left: 0.35rem solid white;
-	background-color: rgba(50, 50, 50, 0.2);
+	background-color: rgba(50, 50, 50, 0.25);
 }
 
 .accordian.lt:hover {
-	border-left: 0.35rem solid black;
-	background-color: rgba(225, 225, 225, 0.7);
+	background-color: rgba(220, 220, 220, 0.75);
 }
 
 .accordian.open {

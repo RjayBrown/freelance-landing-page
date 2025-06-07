@@ -327,7 +327,6 @@ function clearAndFocusOnReset() {
 				consultationForm.reset();
 				appointmentForm.reset();
 				contactForm.reset();
-				console.log(i);
 
 				if (i === 2) {
 					answer1.focus();
