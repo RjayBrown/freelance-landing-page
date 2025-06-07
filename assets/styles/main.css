@@ -1963,7 +1963,7 @@ body.is-preload #bg:before {
 	transition: background-color 0.25s ease-in;
 }
 
-.wide-header a {
+.wide-header .logo {
 	width: 14rem;
 	height: 1.5rem;
 }
@@ -2540,10 +2540,6 @@ body.is-preload #header .content .inner {
 }
 
 @media screen and (max-width: 480px) {
-	.wide-header {
-		display: none;
-	}
-
 	.mobile-header {
 		position: fixed;
 		top: 0;
@@ -2565,6 +2561,12 @@ body.is-preload #header .content .inner {
 	#header .content {
 		top: 12rem;
 		opacity: 0.025;
+	}
+
+	#header .logo-container,
+	#header .content.home,
+	.wide-header {
+		display: none;
 	}
 
 	.mobile-header a,
@@ -3149,8 +3151,7 @@ p.last.small.card {
 	}
 
 	.hero.home {
-		padding-top: 1.75rem;
-		padding-bottom: 3rem;
+		padding-block: 3rem;
 	}
 
 	.hero-text {
