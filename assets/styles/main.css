@@ -2196,6 +2196,10 @@ body.is-preload #bg:before {
 	position: initial;
 	opacity: 1;
 	margin: auto;
+}
+
+#header .logo-container {
+	height: 12rem;
 	margin-bottom: 2.5rem;
 }
 
