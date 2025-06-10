@@ -3157,6 +3157,20 @@ p.last.small.card {
 	.hero-text {
 		margin-top: 3rem;
 	}
+
+	.hero.home {
+		padding-block: 12rem 7rem;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+		gap: 2.5rem;
+	}
+
+	.hero.home .left-container,
+	.hero.home .right-container {
+		width: 70%;
+	}
 }
 
 @media screen and (max-width: 480px) {
@@ -3177,9 +3191,8 @@ p.last.small.card {
 
 	.hero.home {
 		padding-block: 3rem;
-		display: flex;
-		flex-flow: column;
-		align-items: flex-start;
+		justify-content: center;
+		align-items: start;
 		gap: 2.5rem;
 	}
 
