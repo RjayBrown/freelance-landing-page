@@ -170,6 +170,10 @@ function buildConnectedForms() {
 					"Publishing",
 				],
 			},
+			{
+				sector: "Other",
+				industries: ["N/A"],
+			},
 		];
 
 		industryGroups.forEach((group) => {
@@ -383,12 +387,6 @@ function setFormStyle() {
 			});
 			restartBtn.style.borderColor = "rgb(39, 39, 39)";
 		} else {
-			submitBtn.forEach((btn) => {
-				if (!btn.classList.contains("modal-save")) {
-					btn.removeAttribute("style");
-				}
-			});
-
 			restartBtn.classList.remove("light");
 
 			resetBtn.forEach((btn) => {

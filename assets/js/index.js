@@ -59,6 +59,7 @@ const cardSubHeadings = document.querySelectorAll(".heading-small");
 const hrUpperElements = document.querySelectorAll(".upper");
 const cardListTitle = document.querySelector(".list-title");
 const resetBtns = document.querySelectorAll(".reset");
+const submitBtns = document.querySelectorAll(".primary");
 const restartBtnBorder = document.querySelector(".restart");
 
 // Accordian
@@ -76,7 +77,7 @@ const ctaBtn = document.querySelectorAll(".anchor");
 
 // Modal
 const modalHeaderBg = document.querySelector(".modal-heading");
-const modalSaveBtnBg = document.querySelector(".modal-save");
+// const modalSaveBtnBg = document.querySelector(".modal-save");
 
 const color = {
 	light: {
@@ -410,7 +411,7 @@ function switchCardForeground(theme) {
 		el.style.backgroundColor = "transparent";
 	});
 
-	const btnsToChange = [modalSaveBtnBg, mobileBtn, ...heroBtn];
+	const btnsToChange = [...submitBtns, mobileBtn, ...heroBtn];
 
 	if (theme === "light") {
 		modalHeaderBg.removeAttribute("style");
@@ -521,31 +522,6 @@ function switchCardForeground(theme) {
 		}
 	});
 }
-
-// // Borders (Header)
-// function switchBorderColor(foregroundColor) {
-// 	const headerElements = [logo, content, nav, navMenu];
-
-// 	// push all link elements to array
-// 	navLink.forEach((link) => {
-// 		headerElements.push(link);
-// 	});
-
-// 	// headerElements.forEach((el) => {
-// 	// 	el.style.borderColor = foregroundColor;
-// 	// });
-
-// 	// change color for connected lines (:before)
-// 	// if (foregroundColor === "black") {
-// 	// 	nav.classList.add("before");
-// 	// 	content.classList.add("before");
-// 	// }
-
-// 	// if (foregroundColor === "white") {
-// 	// 	nav.classList.remove("before");
-// 	// 	content.classList.remove("before");
-// 	// }
-// }
 
 // ACCORDIAN
 function openAccordian(index) {

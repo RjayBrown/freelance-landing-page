@@ -17,8 +17,9 @@
 		/>
 		<meta
 			name="description"
-			content="7ONE Consulting Group is a private agency based in NYC that provides web development and software integration services for small businesses and community organizations."
+			content="7ONE Consulting is a NYC-based web development agency that provides tailored web solutions and software integration services for small businesses and community organizations."
 		/>
+		<meta property="og:image" content="thumbnail.png" />
 		<link rel="stylesheet" href="assets/styles/main.css" />
 		<noscript>
 			<link rel="stylesheet" href="assets/styles/noscript.css" />
@@ -160,45 +161,138 @@
 			</div>
 			<!-- Header -->
 			<header id="header">
-				<article id="home">
+				<div id="home">
 					<div class="card-body">
 						<div class="hero home">
-							<div class="logo-container">
-								<div class="content home">
-									<div class="inner">
-										<img class="header-logo" alt="7ONE Consulting Logo" />
-										<h3 class="header-text">
-											Web Development + Software Integration
-										</h3>
-										<div class="mobile-header-text hidden">
-											<h3 class="header-text">Web Development</h3>
-											<h3 class="header-text">+</h3>
-											<h3 class="header-text">Software Integration</h3>
+							<div class="left-container">
+								<div class="logo-container">
+									<div class="content home">
+										<div class="inner">
+											<img class="header-logo" alt="7ONE Consulting Logo" />
+											<h3 class="header-text">
+												Web Development + Software Integration
+											</h3>
+											<div class="mobile-header-text hidden">
+												<h3 class="header-text">Web Development</h3>
+												<h3 class="header-text">+</h3>
+												<h3 class="header-text">Software Integration</h3>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="hero-text">
-								<p class="card top tagline main">
-									We Build & Integrate Web Solutions
-								</p>
-								<p class="card top tagline-small">
-									Using our 7-step process to develop modern web solutions and
-									custom applications,<br class="break" />with your vision in
-									mind.
-								</p>
-
-								<div class="btn-row">
-									<a class="hero-btn-secondary" href="#services"
-										><h4 class="hero-link">Services</h4></a
-									>
-									<a class="hero-btn" href="#consultation"
-										><h4 class="hero-link">
-											Get Started
-											<i class="fa-solid fa-arrow-right"></i>
-										</h4>
-									</a>
+								<div class="hero-text">
+									<p class="card top tagline main">
+										We Build & Integrate Web Solutions
+									</p>
+									<p class="card top tagline-small">
+										Manage your day-to-day challenges with custom tools & modern
+										web applications, <br class="break" />
+										improving workflows for your team.
+									</p>
+									<div class="btn-row">
+										<a class="hero-btn-secondary" href="#services"
+											><h4 class="hero-link">Services</h4></a
+										>
+										<a class="hero-btn" href="#consultation"
+											><h4 class="hero-link">
+												Get Started
+												<i class="fa-solid fa-arrow-right"></i>
+											</h4>
+										</a>
+									</div>
 								</div>
+							</div>
+
+							<div class="right-container">
+								<p class="major card">Sending a Referral?</p>
+
+								<form
+									method="POST"
+									action="#thank-you"
+									id="referralForm"
+									name="referralForm"
+									netlify
+								>
+									<div class="fields">
+										<div class="field half">
+											<label for="name"
+												>Name<span class="asterisk">*</span></label
+											>
+											<input
+												class="placeholder"
+												type="text"
+												name="name"
+												id="name"
+												pattern="[\w\s]{3,}"
+												placeholder="Name"
+												required
+											/>
+										</div>
+										<div class="field half">
+											<label for="email"
+												>Email<span class="asterisk">*</span></label
+											>
+											<input
+												type="email"
+												name="email"
+												id="email"
+												placeholder="Email"
+												required
+											/>
+										</div>
+										<div class="field">
+											<label for="subject"
+												>Subject<span class="asterisk">*</span></label
+											>
+											<select type="text" name="subject" id="subject" required>
+												<option value="" selected disabled>
+													-- Choose a Subject --
+												</option>
+												<option value="Referral - Business">
+													Referral (Business)
+												</option>
+												<option value="Referral - Community Organization">
+													Referral (Community Organization)
+												</option>
+											</select>
+										</div>
+										<div class="field">
+											<label for="company"
+												>Company / Organization<span class="asterisk"
+													>*</span
+												></label
+											>
+											<input
+												type="text"
+												name="company"
+												id="company"
+												pattern="^.{3,}$"
+												placeholder="Name of Company / Organization"
+												required
+											/>
+										</div>
+									</div>
+									<ul class="actions">
+										<li>
+											<input type="submit" value="Send" class="primary" />
+										</li>
+										<li><input type="reset" value="Reset" class="reset" /></li>
+									</ul>
+								</form>
+							</div>
+							<div class="social-links">
+								<a
+									href="https://www.instagram.com/7oneconsulting/?utm_source=qr"
+									target="_blank"
+								>
+									<i class="fa-brands fa-instagram"></i>
+								</a>
+								<a
+									href="https://www.linkedin.com/company/7oneconsulting/"
+									target="_blank"
+								>
+									<i class="fa-brands fa-linkedin"></i>
+								</a>
 							</div>
 
 							<img class="hero-logo card-logo" alt="7ONE Consulting Logo" />
@@ -208,15 +302,15 @@
 							<div class="page-section top">
 								<p class="minor heading-small top">About Us</p>
 								<hr class="upper" />
-								<p class="major card">Delivering Results</p>
-								<p class="minor heading-small">7ONE Focus</p>
+								<p class="major card">For SMBs & Nonprofits</p>
+								<p class="minor heading-small">Delivering Results</p>
 
 								<p class="small card">
 									Whether building something from the ground up or breathing new
-									life into what you already have, identifying your needs and
-									the key challenges affecting your day-to-day work is where we
-									start. We address your frustratrions first, and create
-									practical tools for you.
+									life into what you already have, we identify your daily
+									frustratrions and long-term business goals first, define
+									feature requirements, and deliver practical solutions that add
+									meaningful value.
 								</p>
 							</div>
 
@@ -264,7 +358,7 @@
 												tech talk, just clear planning and a focus on
 												prioritizing features that bring you closer to your
 												business goals. We'll create a plan that aligns with
-												your budget, timeline, and goals to clarify the
+												your budget, timeline, and requirements to define the
 												project's scope and ensure the development process is
 												efficient.
 											</p>
@@ -285,9 +379,9 @@
 											<p class="small txt">
 												We map out a modern concept for you that aligns with
 												industry standards, is simple to navigate, and provides
-												a user-friendly web experience. Every design choice is
-												made to help your users and visitors quickly find what
-												they need.
+												a user-friendly experience. Every design choice is made
+												to help your users and visitors quickly find what they
+												need.
 											</p>
 
 											<p class="subheading">Architecture</p>
@@ -350,8 +444,8 @@
 												We connect your website or application with the tools
 												that you rely on. Whether it's integrating donation
 												forms, CRM software, payment processing, or any other
-												core systems, we make sure services are connected and
-												your project works seamlessly.
+												core services, we make sure they are securely connected
+												and your project works seamlessly.
 											</p>
 
 											<p class="subheading">Pre-Launch Testing</p>
@@ -412,16 +506,15 @@
 								</div>
 
 								<div class="page-section last">
-									<p class="major card">Our Philosophy</p>
-									<p class="minor heading-small">7ONE Approach</p>
+									<p class="major card">7ONE Approach</p>
+									<p class="minor heading-small">Our Philosophy</p>
 									<p class="small card last">
 										We believe that every step is important, ensuring each
-										solution is carefully planned and executed to meet your
-										requirements. We also include you in the development
-										process. Our goal is to provide quality service—sending
-										updates regularly, sharing snapshots when milestones are
-										achieved, and using your feedback to build the features you
-										want.
+										project is carefully planned and executed to meet your
+										requirements. We aim to provide quality service—including
+										you in the development process by sending updates regularly,
+										sharing snapshots when milestones are achieved, and
+										listening to your feedback.
 									</p>
 								</div>
 							</div>
@@ -435,7 +528,7 @@
 							<hr class="lower" />
 						</div>
 					</div>
-				</article>
+				</div>
 			</header>
 
 			<!-- Main -->
@@ -449,9 +542,9 @@
 									Smart Websites. Modern Apps. <br />
 									Meaningful Impact.
 								</p>
-								<p class="card top tagline main"></p>
 								<p class="card top tagline-small">
-									Value-driven solutions to help you focus on what matters.
+									We build value-driven solutions to help you focus on what
+									matters.
 								</p>
 								<div class="btn-row">
 									<a class="hero-btn-secondary" href="#explore"
@@ -495,7 +588,7 @@
 												on your needs:
 
 												<ul class="accordian-list hidden">
-													<h2 class="list-title">Modern Web Solutions</h2>
+													<h2 class="list-title">Modern Website Solutions</h2>
 													<li class="list-item">Landing Page</li>
 													<li class="list-item">Event Registration Page</li>
 													<li class="list-item">Multi-Page Website</li>
@@ -530,9 +623,9 @@
 													<li class="list-item">Data Storage & Management</li>
 												</ul>
 
-												If your existing services are missing features that you
-												know you'll need, or you have a specific problem,
-												request a free consultation and
+												If your existing services are missing the features you
+												need, or you have a specific problem, request a free
+												consultation and
 												<a class="anchor-link" href="#consultation"
 													>get started today</a
 												>. We'll build a comprehensive solution for you!
@@ -590,24 +683,14 @@
 								<h5>Sample Concept - Admin Dashboard</h5>
 								<hr />
 
-								<p class="major card">Dynamic Functionality</p>
-								<p class="minor heading-small">Intuitive Features</p>
-								<p class="small card">
-									The ideal web solution for you will depend on your goals. It
-									can help you reach more people, manage tasks effectively, and
-									make informed decisions using real-time insights. From
-									personalized content to easier appointment scheduling and
-									automated follow-ups, we create a seamless experience that
-									helps your business or community grow from day one.
-								</p>
-
 								<p class="major card">Make Connecting Simple</p>
-								<p class="minor heading-small">Practical Forms</p>
+								<p class="minor heading-small">Streamlining Forms</p>
 								<p class="small card">
 									Connecting with your business or organization should be
 									convenient. By keeping the process simple, clear, and easily
 									accessible on any device, your visitors can reach out to book
-									services, and share feedback without confusion or delays.
+									services, share information, and provide feedback without
+									confusion or delays.
 								</p>
 
 								<div class="img-container">
@@ -663,8 +746,8 @@
 									Build Your Brand.
 								</p>
 								<p class="card top tagline-small">
-									Find new concepts for inspiration and learn how we connect
-									your vision to business goals.
+									Explore concepts for inspiration & learn how we connect your
+									vision to business goals.
 								</p>
 								<div class="btn-row">
 									<a class="hero-btn-secondary" href="#faq"
@@ -798,7 +881,7 @@
 						<div class="hero-text">
 							<p class="card top tagline">Got Questions?</p>
 							<p class="card top tagline-small">
-								Find answers to help you understand how we work, and what to
+								Find answers to help you understand how we work, & what to
 								expect.
 							</p>
 							<div class="btn-row">
@@ -807,7 +890,7 @@
 								</a>
 								<a class="hero-btn" href="#consultation"
 									><h4 class="hero-link">
-										Getting Started
+										Start Now
 										<i class="fa-solid fa-arrow-right"></i>
 									</h4>
 								</a>
@@ -916,9 +999,9 @@
 											server to be accessible for your customers or team. We can
 											set up a new domain name or connect to yours if you
 											already have one. If your project requires backend
-											services like payment processing, data storage,
-											event-driven actions, or analytics, using a cloud provider
-											is ideal in most cases.
+											services like data storage, payment processing,
+											event-driven actions, or analytics, deploying your project
+											will require additional configuration.
 										</div>
 									</div>
 								</div>
@@ -968,12 +1051,12 @@
 										<div class="small txt">
 											The first step is to
 											<a href="#consultation" class="anchor-link"
-												>answer 3 basic questions</a
+												>answer 3 general questions</a
 											>. Next, you schedule a chat with a developer to go over
-											your project's requirements. As long as the project scope
-											is clearly defined, we'll build it for you at no cost.
-											When the proposal is aproved by you, the project is added
-											to the waitlist queue.
+											your project's requirements. As long as the scope is
+											clearly defined, we'll build it for you at no cost. When
+											the proposal is aproved by you, the project is added to
+											the waitlist queue.
 										</div>
 									</div>
 								</div>
@@ -1034,13 +1117,12 @@
 										<div class="small txt">
 											We are not currently accepting monetary donations, but if
 											you know a community org that needs help, feel free to
-											<a class="anchor-link" href="contact">reach out here!</a>
+											<a class="anchor-link" href="#">reach out here!</a>
 											Our goal is to add meaningful value to organizations
 											focused on social impact, while also providing a way for
 											new developers to get hands-on experience building
-											websites and web applications. We aim to finish at least
-											four projects in 2026, and we are currently building
-											internal tools to help us do even more.
+											websites and web applications. We aim to complete at least
+											four projects in 2026.
 										</div>
 									</div>
 								</div>
@@ -1103,6 +1185,9 @@
 											<option value="Question - Refer a Community Organization">
 												Refer a Community Organization
 											</option>
+											<option value="Question - I want to Volunteer">
+												I want to Volunteer
+											</option>
 											<option value="Question - Other">Other</option>
 										</select>
 									</div>
@@ -1153,8 +1238,8 @@
 									(3 Questions)
 								</p>
 								<p class="card top tagline-small">
-									Share your operational goals and key challenges, we'll find
-									the ideal solution for you.
+									Share your operational goals & key challenges, we'll find the
+									ideal solution for you.
 								</p>
 								<div class="btn-row">
 									<a class="hero-btn-secondary warning" href="#contact"
@@ -1174,22 +1259,22 @@
 								<hr class="upper" />
 
 								<p class="major card">Getting Started</p>
-								<p class="minor heading-small">Questionaire</p>
+								<p class="minor heading-small">3 Questions</p>
 								<p class="small card">
 									This basic Q & A will show us the issues you care about, and
 									how we can improve the user experience or streamline your
 									operations—helping you save time and reduce unnecessary
 									expenses.
 								</p>
-								<p class="minor heading-small">Be Specific</p>
+								<p class="minor heading-small">Share Specific Examples</p>
 								<p class="small card last">
-									With so many great tools and resources available, sharing
-									detailed examples will help us recommend the solution that
-									best aligns with your needs.
+									With so many great tools and resources available, sharing more
+									details will help us recommend the solution that best aligns
+									with your needs.
 								</p>
 							</div>
 							<div class="page-section last">
-								<p class="major card">Q & A (3 Questions)</p>
+								<p class="major card">Questionaire</p>
 								<form method="POST" id="consultationForm">
 									<div class="fields">
 										<div class="field">
@@ -1303,13 +1388,14 @@
 							<p class="minor heading-small top">Contact Us</p>
 							<hr class="upper" />
 
-							<p class="major card">We're Here To Help</p>
-							<p class="minor heading-small">Live Chat</p>
+							<p class="major card">Get In Touch</p>
+							<p class="minor heading-small">We're Here To Help</p>
 							<p class="small card">
-								You'll have dedicated time to talk with a developer, where you
-								can ask questions, share more about your problem, and review a
-								detailed proposal designed to move your project forward with
-								confidence.
+								You can reach out to
+								<a href="#" class="anchor-link">send a referral</a>, or schedule
+								dedicated time to talk with a developer, where you can ask
+								questions, share more about your problem, and review a detailed
+								proposal designed to move your project forward with confidence.
 							</p>
 
 							<p class="minor heading-small">Request Form</p>
@@ -1390,6 +1476,7 @@
 												Analytics
 											</option>
 											<option value="Waitlist">Join Waitlist</option>
+											<option value="Referral">Refer a Nonprofit</option>
 										</select>
 									</div>
 									<div class="field half">
@@ -1780,6 +1867,20 @@
 						<span class="theme blue"></span>
 					</div>
 
+					<div class="social-links">
+						<a
+							href="https://www.instagram.com/7oneconsulting/?utm_source=qr"
+							target="_blank"
+						>
+							<i class="fa-brands fa-instagram"></i>
+						</a>
+						<a
+							href="https://www.linkedin.com/company/7oneconsulting/"
+							target="_blank"
+						>
+							<i class="fa-brands fa-linkedin"></i>
+						</a>
+					</div>
 					<p class="copyright">
 						<a href="#service-agreement"
 							>Service Agreement - Terms & Conditions</a
@@ -1799,6 +1900,20 @@
 					<span class="theme blue"></span>
 				</div>
 
+				<div class="social-links">
+					<a
+						href="https://www.instagram.com/7oneconsulting/?utm_source=qr"
+						target="_blank"
+					>
+						<i class="fa-brands fa-instagram"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/company/7oneconsulting/"
+						target="_blank"
+					>
+						<i class="fa-brands fa-linkedin"></i>
+					</a>
+				</div>
 				<p class="copyright">
 					<a href="#service-agreement"
 						>Service Agreement - Terms & Conditions</a
