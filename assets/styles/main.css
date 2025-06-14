@@ -2394,7 +2394,7 @@ body.is-preload #header .content .inner {
 	}
 
 	.banner-btns {
-		padding-right: 1rem;
+		padding-right: 0.75rem;
 		gap: 0.5rem;
 	}
 
@@ -3196,6 +3196,10 @@ p.last.small.card {
 
 	.hero-text {
 		margin-top: 0;
+	}
+
+	.hero .social-links {
+		right: 0.75rem;
 	}
 
 	.major,
