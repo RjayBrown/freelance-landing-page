@@ -2845,7 +2845,7 @@ hr.lower {
 
 .hero {
 	position: relative;
-	padding: 3rem 2rem;
+	padding: 3rem 1.25rem;
 	background-color: rgba(0, 0, 0, 0.8);
 	background-image: url("https://res.cloudinary.com/drgczkoux/image/upload/v1748837974/hero-bg_wb62om.webp");
 	background-size: cover;
@@ -3172,7 +3172,6 @@ p.last.small.card {
 	.hero,
 	.hero.light {
 		flex-direction: column;
-		padding-left: 2rem;
 		box-shadow: none;
 		border-radius: 0;
 	}
