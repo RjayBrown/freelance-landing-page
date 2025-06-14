@@ -3177,7 +3177,7 @@ p.last.small.card {
 	}
 
 	.hero.home {
-		padding-block: 1.75rem;
+		padding-block: 1.75rem 3rem;
 		justify-content: center;
 		align-items: start;
 		gap: 2.5rem;
