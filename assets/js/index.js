@@ -272,7 +272,6 @@ function toggleTheme(theme) {
 		restartBtnBorder.classList.remove("light");
 	}
 
-	header.classList = `wide-header ${theme}`;
 	mobileHeader.classList = `mobile-header ${theme}`;
 	mobileNavMenu.classList = `mobile-menu ${theme} hidden`;
 }
