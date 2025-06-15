@@ -41,6 +41,7 @@ const cardBottomLink = document.querySelectorAll(".bold-link");
 const bold = document.querySelectorAll(".bold");
 
 // Theme
+const themeContainer = document.querySelectorAll(".theme-container");
 const toggleBtns = document.querySelectorAll(".theme");
 const darkThemeBtn = document.querySelectorAll(".dark");
 const redThemeBtn = document.querySelectorAll(".red");
@@ -77,7 +78,7 @@ const ctaBtn = document.querySelectorAll(".anchor");
 
 // Modal
 const modalHeaderBg = document.querySelector(".modal-heading");
-// const modalSaveBtnBg = document.querySelector(".modal-save");
+const modalSaveBtnBg = document.querySelector(".modal-save");
 
 const color = {
 	light: {
@@ -225,13 +226,25 @@ window.addEventListener("resize", () => {
 	toggleMobileView();
 });
 
-// Close accordian on hash change
+// Modify element state on hash change
 window.addEventListener("hashchange", () => {
+	// Close accordians
 	accordian.forEach((bar, i) => {
 		if (bar.classList.contains("open")) {
 			closeAccordian(i);
 		}
 	});
+
+	// Hide theme containers
+	if (location.hash === "#service-agreement") {
+		themeContainer.forEach((container) => {
+			container.classList.add("hidden");
+		});
+	} else {
+		themeContainer.forEach((container) => {
+			container.classList.remove("hidden");
+		});
+	}
 });
 
 // Accordian toggle
