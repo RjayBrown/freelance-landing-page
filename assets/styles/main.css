@@ -1489,7 +1489,7 @@ ul.icons.center.stack li img {
 
 	position: absolute;
 	right: 0;
-	top: 6rem;
+	top: 6.5rem;
 	z-index: 100;
 }
 
@@ -1520,7 +1520,7 @@ ul.icons.center.stack li img {
 
 @media screen and (max-width: 480px) {
 	.theme-container {
-		top: 7rem;
+		top: 7.5rem;
 	}
 
 	.icon-container {
@@ -2864,7 +2864,7 @@ hr.lower {
 	padding-block: 7rem;
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -3242,7 +3242,7 @@ p.last.small.card {
 		display: block;
 		text-align: left;
 		margin-bottom: 1rem;
-		width: 85%;
+		width: 75%;
 		margin-left: 0;
 		text-wrap: balance;
 	}
