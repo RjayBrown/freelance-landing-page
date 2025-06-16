@@ -2368,7 +2368,7 @@ body.is-preload #header .content .inner {
 .wide-header {
 	top: 0;
 	height: 4rem;
-	background-color: rgb(15, 15, 15);
+	background-color: rgb(12, 12, 12);
 	box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.75);
 	justify-content: space-between;
 }
@@ -2849,6 +2849,7 @@ hr.lower {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	gap: 2%;
 }
 
 .hero.home {
@@ -2858,6 +2859,11 @@ hr.lower {
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
+}
+
+.hero.home .left-container,
+.hero.home .right-container {
+	height: 30rem;
 }
 
 .hero.home .left-container {
@@ -3607,7 +3613,7 @@ p.subheading span {
 	width: 100vw;
 	margin-top: 1.25rem;
 	text-align: center;
-	background-color: black;
+	background-color: rgb(12, 12, 12);
 	padding-block: 3.75rem 1.75rem;
 }
 
@@ -3616,7 +3622,7 @@ p.subheading span {
 	width: 100vw;
 	padding-block: 3.5rem 1.75rem;
 	margin-top: 1.25rem;
-	background-color: black;
+	background-color: rgb(12, 12, 12);
 }
 
 @media screen and (max-width: 480px) {
@@ -3624,7 +3630,7 @@ p.subheading span {
 		width: 100vw;
 		padding-block: 3.5rem 1.75rem;
 		margin-top: 1.25rem;
-		background-color: black;
+		background-color: rgb(12, 12, 12);
 	}
 }
 
