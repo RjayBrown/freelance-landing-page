@@ -383,9 +383,9 @@ function setFormStyle() {
 
 		if (theme === "light") {
 			resetBtn.forEach((btn) => {
-				btn.style.borderColor = "rgb(39, 39, 39)";
+				btn.style.borderColor = "rgb(20, 20, 20)";
 			});
-			restartBtn.style.borderColor = "rgb(39, 39, 39)";
+			restartBtn.style.borderColor = "rgb(20, 20, 20)";
 		} else {
 			restartBtn.classList.remove("light");
 

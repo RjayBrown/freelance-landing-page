@@ -358,16 +358,6 @@ function switchForeground(color) {
 		card.style.color = color;
 	});
 
-	if (theme === "light") {
-		resetBtns.forEach((btn) => {
-			btn.style.borderColor = "rgb(39, 39, 39)";
-		});
-	} else {
-		resetBtns.forEach((btn) => {
-			btn.classList.remove("light");
-		});
-	}
-
 	footerText.forEach((word) => {
 		word.style.color = color;
 	});
