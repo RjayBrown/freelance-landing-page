@@ -381,12 +381,7 @@ function setFormStyle() {
 			}
 		});
 
-		if (theme === "light") {
-			resetBtn.forEach((btn) => {
-				btn.style.borderColor = "rgb(20, 20, 20)";
-			});
-			restartBtn.style.borderColor = "rgb(20, 20, 20)";
-		} else {
+		if (theme !== "light") {
 			restartBtn.classList.remove("light");
 
 			resetBtn.forEach((btn) => {

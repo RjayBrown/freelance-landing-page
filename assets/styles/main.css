@@ -917,8 +917,8 @@ input[type="date"]:focus,
 input[type="time"]:focus,
 select:focus,
 textarea:focus {
-	border-color: rgb(215, 215, 215);
-	box-shadow: 0 0 0 3px rgb(215, 215, 215);
+	border-color: rgb(210, 210, 210);
+	box-shadow: 0 0 0 3px rgb(210, 210, 210);
 	background-color: rgba(255, 255, 255);
 }
 
@@ -930,7 +930,7 @@ input[type="date"].light:focus,
 input[type="time"].light:focus,
 select.light:focus,
 textarea.light:focus {
-	/* box-shadow: 0 0 0 2px rgb(223, 73, 73); */
+	/* box-shadow: 0 0 0 3px rgb(210, 210, 210); */
 }
 
 textarea {
@@ -1717,9 +1717,23 @@ input[type="reset"].modal-reset {
 	box-shadow: 0 0 0 2px rgb(20, 20, 20);
 }
 
-input[type="reset"].light:hover {
+input[type="reset"].light:hover,
+input[type="reset"].modal-reset:hover {
 	box-shadow: 0 0 0 2px rgb(20, 20, 20);
 	background-color: rgba(125, 125, 125, 0.3);
+}
+
+input[type="reset"].modal-reset:active,
+input[type="reset"].modal-reset:focus {
+	box-shadow: 0 0 0 3px #000000;
+}
+
+input[type="reset"].light:focus {
+	box-shadow: 0 0 0 3px #000000;
+}
+
+input[type="reset"] {
+	box-shadow: 0 0 0 2px rgb(240, 240, 240);
 }
 
 input[type="reset"]:focus {
@@ -1728,23 +1742,9 @@ input[type="reset"]:focus {
 	background-color: rgba(125, 125, 125, 0.1);
 }
 
-input[type="reset"] {
-	box-shadow: 0 0 0 2px rgb(240, 240, 240);
-}
-
-input[type="reset"].light:hover,
-input[type="reset"].modal-reset:hover {
+input[type="reset"]:hover {
 	/* box-shadow: 0 0 0 2px #000000; */
 	background-color: rgba(125, 125, 125, 0.1);
-}
-
-input[type="reset"].light:focus {
-	box-shadow: 0 0 0 3px #000000;
-}
-
-input[type="reset"].modal-reset:active,
-input[type="reset"].modal-reset:focus {
-	box-shadow: 0 0 0 3px #000000;
 }
 
 input[type="submit"].disabled,
@@ -2843,7 +2843,7 @@ hr.lower {
 }
 
 .hero.home.light .right-container {
-	background-color: rgba(124, 124, 124, 0.25);
+	background-color: rgba(200, 200, 200, 0.3);
 	box-shadow: 0 0 2px rgba(125, 125, 125, 0.5);
 }
 
@@ -2987,6 +2987,17 @@ hr.lower {
 .hero-btn:active,
 .hero-btn-secondary:active {
 	transform: scale(0.985);
+	background-color: rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0 2px white;
+	color: white;
+}
+
+#page.light .hero-btn:active,
+#page.light .hero-btn-secondary:active {
+	transform: scale(0.985);
+	background-color: rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0 2px black;
+	color: black;
 }
 
 .card-logo.top {
