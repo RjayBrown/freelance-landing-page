@@ -2967,10 +2967,6 @@ hr.lower {
 	background-color: rgb(20, 20, 20);
 }
 
-.hero-btn-secondary .hero-link {
-	font-weight: normal;
-}
-
 .hero-btn .hero-link,
 .hero-btn-secondary .hero-link {
 	margin: 0;
