@@ -429,7 +429,7 @@ function switchCardForeground(theme) {
 		modalHeaderBg.removeAttribute("style");
 		btnsToChange.forEach((btn) => {
 			btn.style.backgroundColor = "rgb(223, 73, 73)";
-			btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
+			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
 		});
 		secondaryHeroBtn.forEach((btn) => {
 			btn.classList.add("light");
@@ -438,7 +438,7 @@ function switchCardForeground(theme) {
 		modalHeaderBg.removeAttribute("style");
 		btnsToChange.forEach((btn) => {
 			btn.style.backgroundColor = "rgb(192, 55, 55)";
-			btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
+			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
 		});
 		secondaryHeroBtn.forEach((btn) => {
 			btn.classList.remove("light");
@@ -446,7 +446,7 @@ function switchCardForeground(theme) {
 	} else {
 		btnsToChange.forEach((btn) => {
 			btn.style.backgroundColor = color.dark[theme];
-			btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
+			btn.style.boxShadow = `0 0 0 1px ${color.dark[theme]}`;
 		});
 		secondaryHeroBtn.forEach((btn) => {
 			btn.classList.remove("light");
@@ -470,7 +470,6 @@ function switchCardForeground(theme) {
 	btnsToChange.forEach((btn) => {
 		btn.addEventListener("focus", () => {
 			if (btn === modalSaveBtnBg) {
-				btn.style.backgroundColor = "rgba(125, 125, 125, 0.1)";
 				btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
 			}
 		});
