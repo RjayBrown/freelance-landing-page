@@ -236,7 +236,10 @@ window.addEventListener("hashchange", () => {
 	});
 
 	// Hide theme containers
-	if (location.hash === "#service-agreement") {
+	if (
+		location.hash === "#service-agreement" ||
+		location.hash === "#thank-you"
+	) {
 		themeContainer.forEach((container) => {
 			container.classList.add("hidden");
 		});
