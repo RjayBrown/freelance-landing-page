@@ -258,7 +258,7 @@ accordian.forEach((bar, i) => {
 
 // THEME
 function toggleTheme(theme) {
-	page.classList = theme;
+	page.classList = `${theme} is-article-visible`;
 	wrapper.classList = theme;
 	switchLogoImg(theme);
 	switchCardForeground(theme);

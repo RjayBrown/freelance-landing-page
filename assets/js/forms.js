@@ -1,11 +1,13 @@
 const consultationForm = document.querySelector("#consultationForm");
 const companyName = document.querySelector("#company");
+const referralCompany = document.querySelector("#referral-company");
 const industryList = document.querySelectorAll("#industry");
 const answer1 = document.querySelector("#answer1");
 const answer2 = document.querySelector("#answer2");
 const answer3 = document.querySelector("#answer3");
 
 const contactForm = document.querySelector("#contactForm");
+const referralForm = document.querySelector("#referralForm");
 const nameField = document.querySelectorAll("#name");
 const emailField = document.querySelectorAll("#email");
 const subjectField = document.querySelectorAll("#subject");
@@ -14,6 +16,9 @@ const selectFields = document.querySelectorAll("select");
 const textareaFields = document.querySelectorAll("textarea");
 const resetBtns = document.querySelectorAll(".reset");
 const saveBtn = document.querySelector(".save");
+
+// Calendly container
+const container = document.querySelector(".calendly-container");
 
 // ON PAGE LOAD
 let savedUserData = JSON.parse(localStorage.getItem("data"));
@@ -42,7 +47,7 @@ function getConnectedFields() {
 }
 
 function buildConnectedForms() {
-	//Render dropdown
+	// Render dropdown
 	createDropdownOptions();
 	const connectedFields = getConnectedFields();
 
@@ -125,7 +130,6 @@ function buildConnectedForms() {
 
 function validateAndSaveOnSubmit() {
 	// ON SUBMIT
-
 	// Subject
 	subjectField.forEach((field) => {
 		field.addEventListener("input", (e) => {
@@ -143,8 +147,9 @@ function validateAndSaveOnSubmit() {
 
 	consultationForm.addEventListener("submit", (e) => {
 		e.preventDefault();
+
+		// save data to local storage
 		const data = {
-			...savedUserData,
 			company: companyName.value,
 			industry: industryList[0].value,
 			answer1: answer1.value,
@@ -154,6 +159,7 @@ function validateAndSaveOnSubmit() {
 
 		localStorage.setItem("data", JSON.stringify(data));
 
+		// flash saved status in button
 		saveBtn.value = "Saved!";
 		saveBtn.style.backgroundColor = "green";
 		saveBtn.style.color = "white";
@@ -161,8 +167,38 @@ function validateAndSaveOnSubmit() {
 		setTimeout(() => {
 			saveBtn.value = "Save";
 			saveBtn.removeAttribute("style");
+
+			// preload calendly and send to contact page
+			preloadCalendlyForm();
 			location.hash = "contact";
 		}, 500);
+	});
+}
+
+// refresh calendly to prefill form fields
+function preloadCalendlyForm() {
+	const data = JSON.parse(localStorage.getItem("data"));
+
+	// remove stale calendar
+	container.innerHTML = "";
+
+	// create new calendar container
+	const newCalendlyCalendar = document.createElement("div");
+	newCalendlyCalendar.id = "calendly-embed-element";
+	calendlyContainer.appendChild(newCalendlyCalendar);
+
+	// initialize fresh calendar widget with prefilled fields
+	Calendly.initInlineWidget({
+		url: `https://calendly.com/7oneconsulting/30min?hide_landing_page_details=1&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=${calendlyColor[localStorage.getItem("theme")]}`,
+		parentElement: newCalendlyCalendar,
+		resize: true,
+		prefill: {
+			customAnswers: {
+				a1: data ? data.company : "",
+				a2: data ? data.industry : "",
+				a3: setSummaryText(data),
+			},
+		},
 	});
 }
 
@@ -172,21 +208,25 @@ function clearAndFocusOnReset() {
 	resetBtns.forEach((btn, i) => {
 		btn.addEventListener("click", (e) => {
 			e.preventDefault();
-			if (i !== 0) {
+
+			if (i === 0) {
+				referralForm.reset();
+				referralCompany.focus();
+			}
+
+			if (i === 1) {
+				contactForm.reset();
+				nameField[1].focus();
+			}
+
+			if (i === 2) {
 				localStorage.removeItem("data");
 				savedUserData = null;
 				consultationForm.reset();
-				contactForm.reset();
-
-				if (i === 2) {
-					answer1.focus();
-				} else if (i === 1) {
-					nameField[0].focus();
-				} else if (i === 3) {
-					dateField.value = minDate;
-					nameField[1].focus();
-				}
+				answer1.focus();
 			}
+
+			console.log(i);
 		});
 	});
 }
@@ -215,7 +255,7 @@ function setFormStyle() {
 	});
 }
 
-// // Create option element
+// Create option element
 function createOptionGroup(title, options) {
 	const optGroupEl = document.createElement("optgroup");
 	optGroupEl.setAttribute("label", title);
