@@ -24,6 +24,15 @@
 		<noscript>
 			<link rel="stylesheet" href="assets/styles/noscript.css" />
 		</noscript>
+		<link
+			href="https://assets.calendly.com/assets/external/widget.css"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://assets.calendly.com/assets/external/widget.js"
+			type="text/javascript"
+			async
+		></script>
 		<script
 			src="https://kit.fontawesome.com/8489be3c22.js"
 			crossorigin="anonymous"
@@ -33,52 +42,6 @@
 	<body id="page" class="is-preload">
 		<!-- Wrapper -->
 		<div id="wrapper">
-			<!-- Modal Forms -->
-			<div class="modal hidden">
-				<form id="modalForm">
-					<p class="minor modal-heading">Get Free Proposal</p>
-					<p class="modal-close"><i class="fa-solid fa-xmark"></i></p>
-
-					<div class="fields">
-						<div class="field">
-							<label class="modal-label" for="modal-date"
-								>Next Available Date<span class="asterisk">*</span></label
-							>
-							<input
-								type="date"
-								name="modal-date"
-								id="modal-date"
-								class="modal-date"
-								required
-							/>
-						</div>
-						<div class="field">
-							<label class="modal-label" for="modal-time"
-								>Time<span class="asterisk">*</span></label
-							>
-							<select type="text" name="modal-time" id="modal-time" required>
-								<option value="" selected disabled>-- Choose a Time --</option>
-							</select>
-						</div>
-					</div>
-					<ul class="actions">
-						<li>
-							<input
-								type="submit"
-								value="Save"
-								class="primary save-date modal-save"
-							/>
-						</li>
-						<li>
-							<input
-								type="reset"
-								value="Reset"
-								class="reset light modal-reset"
-							/>
-						</li>
-					</ul>
-				</form>
-			</div>
 			<!-- Header -->
 			<div class="wide-header">
 				<a href="" class="logo"
@@ -213,48 +176,6 @@
 								>
 									<p class="major card">Sending a Referral?</p>
 									<div class="fields">
-										<div class="field half">
-											<label for="name"
-												>Name<span class="asterisk">*</span></label
-											>
-											<input
-												class="placeholder"
-												type="text"
-												name="name"
-												id="name"
-												pattern="[\w\s]{3,}"
-												placeholder="Name"
-												required
-											/>
-										</div>
-										<div class="field half">
-											<label for="email"
-												>Email<span class="asterisk">*</span></label
-											>
-											<input
-												type="email"
-												name="email"
-												id="email"
-												placeholder="Email"
-												required
-											/>
-										</div>
-										<div class="field">
-											<label for="subject"
-												>Subject<span class="asterisk">*</span></label
-											>
-											<select type="text" name="subject" id="subject" required>
-												<option value="" selected disabled>
-													-- Choose a Subject --
-												</option>
-												<option value="Referral - Business">
-													Referral (Business)
-												</option>
-												<option value="Referral - Community Organization">
-													Referral (Community Organization)
-												</option>
-											</select>
-										</div>
 										<div class="field">
 											<label for="referral-company"
 												>Company / Organization<span class="asterisk"
@@ -269,6 +190,49 @@
 												placeholder="Name of Company / Organization"
 												required
 											/>
+										</div>
+										<div class="field half">
+											<label for="name"
+												>Contact<span class="asterisk">*</span></label
+											>
+											<input
+												class="placeholder"
+												type="text"
+												name="name"
+												id="name"
+												pattern="[\w\s]{3,}"
+												placeholder="Contact Name"
+												required
+											/>
+										</div>
+
+										<div class="field half">
+											<label for="email"
+												>Email<span class="asterisk">*</span></label
+											>
+											<input
+												class="placeholder"
+												type="email"
+												name="email"
+												id="email"
+												placeholder="Contact Email"
+												required
+											/>
+										</div>
+										<div class="field">
+											<label for="subject"
+												>Referral Type<span class="asterisk">*</span></label
+											>
+											<select type="text" name="subject" id="subject" required>
+												<option value="" disabled>-- Referral Type --</option>
+												<option value="Referral - Business">Business</option>
+												<option
+													value="Referral - Community Organization"
+													selected
+												>
+													Community Organization
+												</option>
+											</select>
 										</div>
 									</div>
 									<ul class="actions">
@@ -510,9 +474,10 @@
 									<p class="small card last">
 										We believe that every step is important, ensuring each
 										project is carefully planned and executed to meet your
-										requirements. We aim to provide quality service—including
-										you in the development process by sending updates regularly
-										and sharing snapshots when milestones are reached.
+										requirements. Our goal is to provide quality
+										service—including you in the development process by sending
+										updates regularly, and sharing snapshots when milestones are
+										reached.
 									</p>
 								</div>
 							</div>
@@ -620,11 +585,12 @@
 												</ul>
 
 												If your existing services are missing the features you
-												need, or you have a specific problem, request a free
-												consultation and
+												need, or you have a specific problem,
 												<a class="anchor-link" href="#consultation"
-													>get started today</a
-												>. We'll build a comprehensive solution for you!
+													>request a free consultation</a
+												>
+												and get started today. We can solve that problem for
+												you!
 											</div>
 										</div>
 									</div>
@@ -741,8 +707,8 @@
 									Build Your Brand.
 								</p>
 								<p class="card top tagline-small">
-									Explore concepts for inspiration & learn how we connect your
-									vision to business goals.
+									Find inspiration & learn how we connect your vision to
+									business goals.
 								</p>
 								<div class="btn-row">
 									<a class="hero-btn-secondary" href="#faq"
@@ -875,8 +841,7 @@
 						<div class="hero-text">
 							<p class="card top tagline">Got Questions?</p>
 							<p class="card top tagline-small">
-								Find answers to help you understand how we work, & what to
-								expect.
+								Get clarity on how we work & what to expect.
 							</p>
 							<div class="btn-row">
 								<a class="hero-btn-secondary" href="#services"
@@ -1231,7 +1196,7 @@
 									(3 Questions)
 								</p>
 								<p class="card top tagline-small">
-									Share your goals & key challenges, we'll plan the ideal
+									Share your goals & key challenges, we'll plan your ideal
 									solution.
 								</p>
 								<div class="btn-row">
@@ -1254,10 +1219,10 @@
 								<p class="major card">Getting Started</p>
 								<p class="minor heading-small">Questions</p>
 								<p class="small card">
-									This basic Q & A will reveal the issues you care about, and
-									how we can improve the user experience or streamline your
-									operations—helping you save time and reduce unnecessary
-									expenses.
+									This basic Q & A will reveal the issues you care about. We'll
+									outline how we can improve the customer experience or
+									streamline your operations—helping you save time and reduce
+									unnecessary expenses.
 								</p>
 								<p class="minor heading-small">Share Specific Examples</p>
 								<p class="small card last">
@@ -1370,7 +1335,7 @@
 							<div class="hero-text">
 								<p class="card top tagline">Contact Us</p>
 								<p class="card top tagline-small">
-									Reach out and book a quick, friendly chat with a developer.
+									Reach out to book a quick & friendly chat with a developer.
 								</p>
 							</div>
 							<div class="btn-row">
@@ -1385,127 +1350,23 @@
 							<p class="minor heading-small top">Contact Us</p>
 							<hr class="upper" />
 
-							<p class="major card">Get In Touch</p>
-							<p class="minor heading-small">We're Here To Help</p>
+							<p class="major card">We're Here To Help</p>
+							<p class="minor heading-small">Live Chat</p>
 							<p class="small card">
-								You can schedule dedicated time to talk with a developer and ask
-								questions, share more about your problem, and review a detailed
-								proposal designed to move your project forward with confidence.
+								Choose a convenient time for you and connect with a developer
+								live. You'll be able to ask more questions, share any new
+								challenges, and review recommendations designed to help you move
+								forward with confidence.
 							</p>
 
-							<p class="minor heading-small">Request Form</p>
-							<p class="small card last">
-								Please complete and review the information below.
-							</p>
-							<form
-								method="POST"
-								action="#thank-you"
-								id="appointmentForm"
-								name="appointmentForm"
-								netlify
-							>
-								<div class="fields">
-									<div class="field half">
-										<label for="name"
-											>Name<span class="asterisk">*</span></label
-										>
-										<input
-											class="placeholder"
-											type="text"
-											name="name"
-											id="name"
-											pattern="[\w\s]{3,}"
-											placeholder="Name"
-											required
-										/>
-									</div>
-									<div class="field half">
-										<label for="email"
-											>Email<span class="asterisk">*</span></label
-										>
-										<input
-											type="email"
-											name="email"
-											id="email"
-											placeholder="Email"
-											required
-										/>
-									</div>
-									<div class="field">
-										<label for="company">Company / Organization</label>
-										<input
-											type="text"
-											pattern="^.{3,}$"
-											name="company"
-											id="company"
-											placeholder="Name of Company / Organization"
-										/>
-									</div>
-									<div class="field">
-										<label for="industry">Industry</label>
-										<select type="text" name="industry" id="industry">
-											<option value="" selected disabled>
-												-- Choose an Industry --
-											</option>
-										</select>
-									</div>
-									<div class="field">
-										<label for="subject"
-											>Subject<span class="asterisk">*</span></label
-										>
-										<select type="text" name="subject" id="subject" required>
-											<option value="" disabled>-- Choose a Subject --</option>
-											<option selected value="Consultation - (Landing Page)">
-												Website (Landing Page)
-											</option>
-											<option value="Consultation - (Multi-Page)">
-												Website (Multi-Page)
-											</option>
-											<option value="Consultation - Custom Web-Application">
-												Web-Application
-											</option>
-											<option value="Consultation - Integrate Web Services">
-												Integrate Web Services
-											</option>
-											<option value="Consultation - Analytics">
-												Analytics
-											</option>
-											<option value="Waitlist">Join Waitlist</option>
-											<option value="Referral">Refer a Nonprofit</option>
-										</select>
-									</div>
-									<div class="field half">
-										<label for="date">Date</label>
-										<input type="date" name="date" id="date" class="date" />
-									</div>
-									<div class="field half">
-										<label for="time">Time</label>
-										<select type="text" name="time" id="time">
-											<option value="" selected disabled>
-												-- Choose a Time --
-											</option>
-										</select>
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea
-											name="message"
-											id="message"
-											rows="4"
-											placeholder="Include additional details here (optional)"
-										></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li>
-										<input type="submit" value="Send" class="primary" />
-									</li>
-									<li><input type="reset" value="Reset" class="reset" /></li>
-									<li>
-										<input type="reset" value="Restart" class="restart" />
-									</li>
-								</ul>
-							</form>
+							<!-- Calendly Embed -->
+							<!-- <p class="major card center">Calendar</p>
+							<p class="minor heading-small center">Availability</p> -->
+
+							<div class="calendly-container">
+								<div id="calendly-embed-element"></div>
+							</div>
+							<script src="https://assets.calendly.com/assets/external/widget.js"></script>
 						</div>
 					</div>
 				</article>
@@ -1918,6 +1779,7 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="assets/js/calendly.js"></script>
 		<script src="assets/js/index.js"></script>
 		<script src="assets/js/forms.js"></script>
 	</body>

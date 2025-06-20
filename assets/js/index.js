@@ -1,18 +1,13 @@
 // Page
 const page = document.querySelector("#page");
+const wrapper = document.querySelector("#wrapper");
 
 // Header
 const header = document.querySelector(".wide-header");
-const headerLogo = document.querySelector(".header-logo");
-const logo = document.querySelector(".logo");
-const headerWidget = document.querySelector("#header");
-const headerLink = document.querySelector(".header-link");
-const headerIcon = document.querySelector(".img");
-const content = document.querySelector(".content");
-const nav = document.querySelector(".nav");
 const headerText = document.querySelector(".header-text");
 const navMenu = document.querySelector(".nav-menu");
-const navLink = document.querySelectorAll(".nav-link");
+const headerLogo = document.querySelector(".header-logo");
+
 const bannerLinks = document.querySelectorAll(".banner-link");
 const globe = document.querySelector(".fa-globe");
 const bulb = document.querySelector(".fa-lightbulb");
@@ -51,15 +46,18 @@ const purpleThemeBtn = document.querySelectorAll(".purple");
 
 // Cards
 const cards = document.querySelectorAll("article");
-const cardLogos = document.querySelectorAll(".card-logo");
 const heroSections = document.querySelectorAll(".hero");
 const heroBtn = document.querySelectorAll(".hero-btn");
 const secondaryHeroBtn = document.querySelectorAll(".hero-btn-secondary");
+
+const hrUpperElements = document.querySelectorAll(".upper");
 const cardHeadings = document.querySelectorAll(".major");
 const cardSubHeadings = document.querySelectorAll(".heading-small");
-const hrUpperElements = document.querySelectorAll(".upper");
 const cardListTitle = document.querySelector(".list-title");
-const resetBtns = document.querySelectorAll(".reset");
+const cardLogos = document.querySelectorAll(".card-logo");
+
+// Forms
+const formResetBtns = document.querySelectorAll(".reset");
 const submitBtns = document.querySelectorAll(".primary");
 const restartBtnBorder = document.querySelector(".restart");
 
@@ -69,16 +67,9 @@ const toggle = document.querySelectorAll(".toggle");
 const accordianBody = document.querySelectorAll(".accordian-body");
 const accordianTitle = document.querySelectorAll(".heading");
 const badges = document.querySelectorAll(".badge");
-const imgContainer = document.querySelectorAll(".img-container");
 const list = document.querySelectorAll(".accordian-list");
 const listTitle = document.querySelectorAll(".list-title");
-const liElements = document.querySelectorAll(".list-item");
 const accordianLink = document.querySelectorAll(".link");
-const ctaBtn = document.querySelectorAll(".anchor");
-
-// Modal
-const modalHeaderBg = document.querySelector(".modal-heading");
-const modalSaveBtnBg = document.querySelector(".modal-save");
 
 const color = {
 	light: {
@@ -86,7 +77,7 @@ const color = {
 		blue: "rgb(118, 155, 210)",
 		red: "rgb(255, 145, 145)",
 		light: "rgb(223, 73, 73)",
-		dark: "rgb(223, 73, 73)",
+		dark: "rgb(192, 55, 55)",
 	},
 
 	dark: {
@@ -235,11 +226,11 @@ window.addEventListener("hashchange", () => {
 		}
 	});
 
-	// Hide theme containers
 	if (
 		location.hash === "#service-agreement" ||
 		location.hash === "#thank-you"
 	) {
+		// Hide theme containers
 		themeContainer.forEach((container) => {
 			container.classList.add("hidden");
 		});
@@ -268,6 +259,7 @@ accordian.forEach((bar, i) => {
 // THEME
 function toggleTheme(theme) {
 	page.classList = theme;
+	wrapper.classList = theme;
 	switchLogoImg(theme);
 	switchCardForeground(theme);
 	setActiveThemeBtn(theme);
@@ -276,16 +268,14 @@ function toggleTheme(theme) {
 
 	if (theme === "light") {
 		switchForeground("black");
-		resetBtns.forEach((btn) => {
+		formResetBtns.forEach((btn) => {
 			btn.classList.add("light");
 		});
-		restartBtnBorder.classList.add("light");
 	} else {
 		switchForeground("white");
-		resetBtns.forEach((btn) => {
+		formResetBtns.forEach((btn) => {
 			btn.classList.remove("light");
 		});
-		restartBtnBorder.classList.remove("light");
 	}
 
 	mobileHeader.classList = `mobile-header ${theme}`;
@@ -419,7 +409,6 @@ function switchCardForeground(theme) {
 	const btnsToChange = [...submitBtns, mobileBtn, ...heroBtn];
 
 	if (theme === "light") {
-		modalHeaderBg.removeAttribute("style");
 		btnsToChange.forEach((btn) => {
 			btn.style.backgroundColor = "rgb(223, 73, 73)";
 			btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
@@ -428,7 +417,6 @@ function switchCardForeground(theme) {
 			btn.classList.add("light");
 		});
 	} else if (theme === "dark") {
-		modalHeaderBg.removeAttribute("style");
 		btnsToChange.forEach((btn) => {
 			btn.style.backgroundColor = "rgb(192, 55, 55)";
 			btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
@@ -457,23 +445,6 @@ function switchCardForeground(theme) {
 		btn.addEventListener("mouseout", () => {
 			btn.style.backgroundColor = color.dark[theme];
 			btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
-		});
-	});
-
-	btnsToChange.forEach((btn) => {
-		btn.addEventListener("focus", () => {
-			if (btn === modalSaveBtnBg) {
-				btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
-			}
-		});
-	});
-
-	btnsToChange.forEach((btn) => {
-		btn.addEventListener("blur", () => {
-			if (btn === modalSaveBtnBg) {
-				btn.style.backgroundColor = color.dark[theme];
-				btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
-			}
 		});
 	});
 

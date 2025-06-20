@@ -172,10 +172,6 @@ section {
 	}
 }
 
-.theme.red {
-	background-color: rgb(30, 7, 7);
-}
-
 .theme.dark {
 	background-color: rgb(17, 17, 17);
 }
@@ -190,6 +186,10 @@ section {
 
 .theme.purple {
 	background-color: rgb(25, 11, 25);
+}
+
+.theme.red {
+	background-color: rgb(30, 7, 7);
 }
 
 .theme:hover {
@@ -923,17 +923,6 @@ textarea:focus {
 	background-color: rgba(255, 255, 255);
 }
 
-input[type="text"].light:focus,
-input[type="password"].light:focus,
-input[type="email"].light:focus,
-input[type="tel"].light:focus,
-input[type="date"].light:focus,
-input[type="time"].light:focus,
-select.light:focus,
-textarea.light:focus {
-	/* box-shadow: 0 0 0 3px rgb(210, 210, 210); */
-}
-
 textarea {
 	padding: 0.5rem 1rem 1rem 0.75rem;
 	resize: vertical;
@@ -1068,12 +1057,6 @@ input[type="radio"]:focus + label:before {
 	background: rgba(255, 255, 255, 0.075);
 	border-color: white;
 	box-shadow: 0 0 0 1px white;
-}
-
-input[type="checkbox"] + label:before {
-}
-
-input[type="radio"] + label:before {
 }
 
 ::-webkit-input-placeholder {
@@ -1719,9 +1702,10 @@ input[type="reset"].modal-reset {
 }
 
 input[type="reset"].light:hover,
-input[type="reset"].modal-reset:hover {
+input[type="reset"].modal-reset:hover,
+input[type="reset"].light:focus {
 	box-shadow: 0 0 0 2px rgb(20, 20, 20);
-	background-color: rgba(125, 125, 125, 0.3);
+	background-color: rgba(75, 75, 75, 0.15);
 }
 
 input[type="reset"].modal-reset:active,
@@ -1737,15 +1721,14 @@ input[type="reset"] {
 	box-shadow: 0 0 0 2px rgb(240, 240, 240);
 }
 
+input[type="reset"]:hover,
 input[type="reset"]:focus {
-	box-shadow: 0 0 0 3px #ffffff;
 	color: inherit;
-	background-color: rgba(125, 125, 125, 0.1);
+	background-color: rgba(210, 210, 210, 0.15);
 }
 
-input[type="reset"]:hover {
-	/* box-shadow: 0 0 0 2px #000000; */
-	background-color: rgba(125, 125, 125, 0.1);
+input[type="reset"]:focus {
+	box-shadow: 0 0 0 3px #ffffff;
 }
 
 input[type="submit"].disabled,
@@ -1761,6 +1744,20 @@ button:disabled,
 	pointer-events: none;
 	cursor: default;
 	opacity: 0.25;
+}
+
+/* Calendly */
+#calendly-embed-element {
+	width: 90% !important;
+	padding-bottom: 0 !important;
+	margin: 1.75rem auto;
+}
+
+@media screen and (max-width: 480px) {
+	#calendly-embed-element {
+		width: calc(100% - 3rem) !important;
+		margin: 1.75rem auto;
+	}
 }
 
 /* BG */
@@ -2570,14 +2567,11 @@ body.is-preload #header .content .inner {
 	.mobile-toggle-close {
 		font-size: 1.5rem;
 		margin-block: 0;
+		background-color: none !important;
 	}
 
 	.fa-xmark {
 		margin-left: 0.25rem;
-	}
-
-	.fa-bars,
-	.mobile-toggle-close .fa-xmark {
 	}
 
 	.mobile-header.light,
