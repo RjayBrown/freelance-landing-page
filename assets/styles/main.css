@@ -1457,7 +1457,7 @@ ul.icons.center.stack li img {
 
 	position: absolute;
 	right: 0;
-	top: 8rem;
+	top: 7.5rem;
 	z-index: 100;
 }
 
@@ -1486,7 +1486,7 @@ ul.icons.center.stack li img {
 
 @media screen and (max-width: 480px) {
 	.theme-container {
-		top: 9.5rem;
+		top: 8.25rem;
 	}
 
 	.icon-container {
@@ -1914,8 +1914,13 @@ body.is-preload #bg:before {
 
 .banner,
 .mobile-banner {
+	background-color: rgb(34, 54, 54);
+	transition: padding 0.25s ease-in;
+}
+
+#page.light .banner,
+#page.light .mobile-banner {
 	background-color: rgb(72, 106, 106);
-	transition: padding 0.3s ease-in;
 }
 
 .banner {
@@ -1961,6 +1966,10 @@ body.is-preload #bg:before {
 	align-items: center;
 	gap: 0.25rem;
 	color: white;
+}
+.fa-instagram span,
+.fa-linkedin span {
+	font-size: 0;
 }
 
 .fa-globe,
@@ -2154,19 +2163,19 @@ body.is-preload #bg:before {
 	-ms-transition-delay: 0.3s;
 	transition-delay: 0.3s;
 	-moz-transition:
-		max-height 3s ease,
+		max-height 25s ease,
 		padding 1.5s ease,
 		opacity 1.75s ease 0.5s;
 	-webkit-transition:
-		max-height 3s ease,
+		max-height 25s ease,
 		padding 1.5s ease,
 		opacity 1.75s ease 0.5s;
 	-ms-transition:
-		max-height 3s ease,
+		max-height 25s ease,
 		padding 1.5s ease,
 		opacity 1.75s ease 0.5s;
 	transition:
-		max-height 3s ease,
+		max-height 25s ease,
 		padding 1.5s ease,
 		opacity 1.75s ease 0.5s;
 
@@ -2805,7 +2814,7 @@ hr.lower {
 	background-position: center;
 	background-blend-mode: overlay;
 	margin-bottom: 3rem;
-	transition: background-color 0.3s ease-in;
+	transition: background-color 0.25s ease-in;
 
 	display: flex;
 	justify-content: center;
@@ -2831,7 +2840,7 @@ hr.lower {
 }
 
 .hero.home .right-container {
-	width: 33%;
+	width: 32%;
 	padding: 1.5rem 1.25rem;
 	background-color: rgb(30, 30, 30);
 	border: none;
@@ -3119,6 +3128,7 @@ p.last.small.card {
 	.hero.light {
 		flex-direction: column;
 		box-shadow: none;
+		padding: 1.75rem 1.25rem 3rem 1.25rem;
 	}
 
 	.hero.home {

@@ -65,9 +65,6 @@ function buildConnectedForms() {
 		}
 	});
 
-	// Preload appointment form
-	const summary = savedUserData ? setSummaryText(savedUserData) : null;
-
 	window.addEventListener("hashchange", () => {
 		setFormStyle();
 	});
