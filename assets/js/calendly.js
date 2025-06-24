@@ -43,7 +43,7 @@ function refreshCalendly() {
 	// remove stale calendar
 	calendlyContainer.innerHTML = "";
 
-	// create new calendar container
+	// create new calendar element
 	const newCalendlyCalendar = document.createElement("div");
 	newCalendlyCalendar.id = "calendly-embed-element";
 	calendlyContainer.appendChild(newCalendlyCalendar);
