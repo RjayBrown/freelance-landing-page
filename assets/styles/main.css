@@ -1617,7 +1617,7 @@ button,
 	font-weight: bold;
 	border-radius: 1px;
 	outline: 0;
-	padding: 0.125rem 1.25rem 0.125rem 1.25rem;
+	padding: 0 1.25rem;
 	text-align: center;
 	text-decoration: none;
 	white-space: nowrap;
@@ -2847,13 +2847,13 @@ hr.lower {
 }
 
 .hero.home.light .right-container {
-	background-color: rgba(200, 200, 200, 0.3);
-	box-shadow: 0 0 2px rgba(125, 125, 125, 0.5);
+	background-color: rgba(255, 255, 255);
+	/* box-shadow: 0 0 2px rgba(125, 125, 125, 0.5); */
 }
 
 .hero.home .right-container {
-	background-color: rgba(0, 0, 0, 0.25);
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+	background-color: rgba(30, 30, 30);
+	/* box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
 }
 
 .right-container .major.card {
@@ -3219,7 +3219,7 @@ p.last.small.card {
 
 	.social-links {
 		display: flex;
-		gap: 1rem !important;
+		gap: 0.75rem !important;
 		margin-bottom: 0.75rem !important;
 	}
 

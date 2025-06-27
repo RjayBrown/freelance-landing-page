@@ -137,8 +137,10 @@ mobileToggleBtns.forEach((btn) => {
 	btn.addEventListener("click", () => {
 		if (mobileHeader.classList.contains("open")) {
 			closeMobileNav();
+			page.style = null;
 		} else {
 			openMobileNav();
+			page.style = "height: 100%; overflow: hidden";
 		}
 	});
 });
