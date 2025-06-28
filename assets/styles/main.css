@@ -2452,14 +2452,8 @@ body.is-preload #header .content .inner {
 		gap: 1.5rem;
 	}
 
-	.banner-link,
-	.fa-globe,
-	.fa-lightbulb,
-	.fa-headset {
-		font-size: 1.5rem;
-		height: 1.5rem;
-		width: 1.5rem;
-		text-align: center;
+	.banner-cta.right {
+		display: none;
 	}
 }
 
@@ -2848,12 +2842,10 @@ hr.lower {
 
 .hero.home.light .right-container {
 	background-color: rgba(255, 255, 255);
-	/* box-shadow: 0 0 2px rgba(125, 125, 125, 0.5); */
 }
 
 .hero.home .right-container {
 	background-color: rgba(30, 30, 30);
-	/* box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
 }
 
 .right-container .major.card {
@@ -3128,11 +3120,11 @@ p.last.small.card {
 	.hero.light {
 		flex-direction: column;
 		box-shadow: none;
-		padding: 1.75rem 1.25rem 3rem 1.25rem;
+		padding: 3.75rem 1.25rem 3rem 1.25rem;
 	}
 
 	.hero.home {
-		padding-block: 1.75rem 3rem;
+		padding-block: 3.75rem 3rem;
 		justify-content: center;
 		align-items: start;
 		gap: 2.5rem;
