@@ -3148,7 +3148,7 @@ p.last.small.card {
 	.hero .hero-logo.card-logo {
 		position: absolute;
 		top: 1rem;
-		left: 1rem;
+		left: 0.75rem;
 	}
 
 	.hero-text {
