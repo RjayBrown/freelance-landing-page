@@ -137,10 +137,8 @@ mobileToggleBtns.forEach((btn) => {
 	btn.addEventListener("click", () => {
 		if (mobileHeader.classList.contains("open")) {
 			closeMobileNav();
-			page.style = null;
 		} else {
 			openMobileNav();
-			page.style = "height: 100%; overflow: hidden";
 		}
 	});
 });
@@ -165,6 +163,7 @@ mobileMenuLinks.forEach((link) => {
 
 function openMobileNav() {
 	const theme = localStorage.getItem("theme");
+	page.style = "height: 100%; overflow: hidden";
 
 	mobileNav.classList.remove("hidden");
 	mobileNavBottom.classList.remove("hidden");
@@ -180,6 +179,7 @@ function openMobileNav() {
 
 function closeMobileNav() {
 	const theme = localStorage.getItem("theme");
+	page.style = null;
 
 	mobileHeader.classList.remove("open");
 	mobileNavMenu.classList = `mobile-menu ${theme} unslide`;
@@ -227,6 +227,9 @@ window.addEventListener("hashchange", () => {
 			closeAccordian(i);
 		}
 	});
+
+	// Scrolling
+	page.style = null;
 
 	if (
 		location.hash === "#service-agreement" ||
