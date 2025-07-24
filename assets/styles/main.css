@@ -2855,6 +2855,10 @@ hr.lower {
 	align-items: center;
 }
 
+.dark .hero {
+	background-color: rgb(17, 17, 17);
+}
+
 .hero.home .left-container,
 .hero.home .right-container {
 	height: 30rem;
@@ -2867,12 +2871,12 @@ hr.lower {
 .hero.home .right-container {
 	width: 32%;
 	padding: 1.5rem 1.25rem;
-	background-color: rgb(17, 17, 17);
+	background-color: rgba(255, 255, 255);
 	border: none;
 }
 
-.hero.home.light .right-container {
-	background-color: rgba(255, 255, 255);
+#page.dark .hero.home .right-container {
+	background-color: rgb(17, 17, 17);
 }
 
 .right-container .major.card {
@@ -2881,10 +2885,6 @@ hr.lower {
 
 #referralForm {
 	margin-block: 0.25rem;
-}
-
-.hero.light {
-	background-color: rgb(245, 245, 245, 0.98);
 }
 
 .hero .hero-logo.card-logo {
@@ -3175,21 +3175,16 @@ p.last.small.card {
 		margin-inline: 1.5rem !important;
 	}
 
-	/* .hero.home,
-	.hero.home.light {
-	} */
-
-	.hero,
-	.hero.light {
+	.hero {
 		flex-direction: column;
 		background-image: none;
-		background-color: rgb(17, 17, 17);
 		box-shadow: none;
 		padding: 0 1.25rem 1rem 1.25rem;
+		background-color: rgb(255, 255, 255);
 	}
 
-	.hero.light {
-		background-color: rgb(255, 255, 255);
+	.hero.dark {
+		background-color: rgb(17, 17, 17);
 	}
 
 	#consultation .hero {
@@ -3210,14 +3205,13 @@ p.last.small.card {
 
 	.hero.home .right-container {
 		margin-bottom: 1.75rem;
-		padding-block: 2.5rem;
+		padding: 2.5rem 0;
 	}
 
 	.hero .hero-logo.card-logo {
 		position: absolute;
 		bottom: 0.75rem;
 		right: 0.25rem;
-		/* display: none; */
 	}
 
 	.hero-text {
@@ -3302,11 +3296,11 @@ p.last.small.card {
 		gap: 1rem;
 	}
 
-	.hero-btn-secondary.warning {
-		background-color: transparent !important;
+	.hero-btn-secondary.quick-start {
+		background-color: rgb(25, 25, 25) !important;
 		box-shadow: none !important;
-		padding: 0;
-		color: rgb(175, 0, 0) !important;
+		padding: 0.25rem 0.75rem !important;
+		color: white !important;
 	}
 
 	.social-links {
