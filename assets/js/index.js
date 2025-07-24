@@ -49,12 +49,16 @@ const cards = document.querySelectorAll("article");
 const heroSections = document.querySelectorAll(".hero");
 const heroBtn = document.querySelectorAll(".hero-btn");
 const secondaryHeroBtn = document.querySelectorAll(".hero-btn-secondary");
+const quickStartBtn = document.querySelector(".quick-start");
+const customMessageBtn = document.querySelector(".send-message");
 
 const hrUpperElements = document.querySelectorAll(".upper");
 const cardHeadings = document.querySelectorAll(".major");
 const cardSubHeadings = document.querySelectorAll(".heading-small");
 const cardListTitle = document.querySelector(".list-title");
 const cardLogos = document.querySelectorAll(".card-logo");
+const questionaire = document.querySelector("#questions");
+const msgSection = document.querySelector("#msg");
 
 // Forms
 const formResetBtns = document.querySelectorAll(".reset");
@@ -75,15 +79,15 @@ const color = {
 	light: {
 		purple: "rgb(160, 135, 199)",
 		blue: "rgb(118, 155, 210)",
-		red: "rgb(255, 145, 145)",
+		red: "rgb(140, 0, 0)",
 		light: "rgb(223, 73, 73)",
-		dark: "rgb(192, 55, 55)",
+		dark: "rgb(223, 73, 73)",
 	},
 
 	dark: {
 		purple: "rgb(76, 50, 116)",
 		blue: "rgb(35, 64, 107)",
-		red: "rgb(116, 13, 13)",
+		red: "rgb(140, 0, 0)",
 		light: "rgb(223, 73, 73)",
 		dark: "rgb(192, 55, 55)",
 	},
@@ -257,6 +261,15 @@ accordian.forEach((bar, i) => {
 	});
 });
 
+// Same page scrolling
+quickStartBtn.addEventListener("click", () => {
+	scrollToSection(questionaire);
+});
+
+customMessageBtn.addEventListener("click", () => {
+	scrollToSection(msgSection);
+});
+
 /*-------------------------------------------------------*/
 /*                        CONFIG						 */
 /*-------------------------------------------------------*/
@@ -271,15 +284,15 @@ function toggleTheme(theme) {
 	setAccordianStyle(theme);
 	localStorage.setItem("theme", theme);
 
-	if (theme === "light") {
-		switchForeground("black");
-		formResetBtns.forEach((btn) => {
-			btn.classList.add("light");
-		});
-	} else {
+	if (theme === "dark") {
 		switchForeground("white");
 		formResetBtns.forEach((btn) => {
 			btn.classList.remove("light");
+		});
+	} else {
+		switchForeground("black");
+		formResetBtns.forEach((btn) => {
+			btn.classList.add("light");
 		});
 	}
 
@@ -289,12 +302,12 @@ function toggleTheme(theme) {
 
 // Logo images
 function switchLogoImg(theme) {
-	if (theme === "light") {
-		headerLogo.src =
-			"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome-dark_b2eget.svg";
-	} else {
+	if (theme === "dark") {
 		headerLogo.src =
 			"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome_ihvfx0.svg";
+	} else {
+		headerLogo.src =
+			"https://res.cloudinary.com/drgczkoux/image/upload/v1746750322/default-monochrome-dark_b2eget.svg";
 	}
 }
 
@@ -373,10 +386,10 @@ function switchForeground(color) {
 
 function setAccordianStyle(theme) {
 	accordian.forEach((bar, index) => {
-		if (theme === "light") {
-			bar.classList = "accordian lt";
-		} else {
+		if (theme === "dark") {
 			bar.classList = "accordian dk";
+		} else {
+			bar.classList = "accordian lt";
 		}
 
 		toggle[index].removeAttribute("style");
@@ -402,7 +415,7 @@ function switchCardForeground(theme) {
 			if (theme === "light" || theme === "dark") {
 				el.removeAttribute("style");
 			} else {
-				el.style.color = color.light[theme];
+				el.style.color = color.dark[theme];
 			}
 		}
 	});
@@ -413,9 +426,10 @@ function switchCardForeground(theme) {
 
 	const btnsToChange = [...submitBtns, mobileBtn, ...heroBtn];
 
-	if (theme === "light") {
+	if (theme === "light" || theme === "red") {
 		btnsToChange.forEach((btn) => {
-			btn.style.backgroundColor = "rgb(223, 73, 73)";
+			btn.style.backgroundColor =
+				theme === "light" ? "rgb(223, 73, 73)" : `${color.light[theme]}`;
 			btn.style.boxShadow = `0 0 0 2px ${color.dark[theme]}`;
 		});
 		secondaryHeroBtn.forEach((btn) => {
@@ -457,7 +471,7 @@ function switchCardForeground(theme) {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
-			el.style.color = color.light[theme];
+			el.style.color = color.dark[theme];
 		}
 	});
 
@@ -465,7 +479,7 @@ function switchCardForeground(theme) {
 		if (theme === "light" || theme === "dark") {
 			el.removeAttribute("style");
 		} else {
-			el.style.color = color.light[theme];
+			el.style.color = color.dark[theme];
 		}
 	});
 
@@ -481,9 +495,9 @@ function switchCardForeground(theme) {
 		if (el !== dropdownBtn) {
 			el.addEventListener("mouseover", () => {
 				el.removeAttribute("style");
-				el.style.color = color.light[theme];
+				el.style.color = color.dark[theme];
 
-				if (theme === "light") {
+				if (theme !== "dark") {
 					el.classList.remove("dark");
 					el.classList.add("light");
 				} else {
@@ -539,7 +553,7 @@ function openAccordian(index) {
 
 	if (currentTheme === "light") {
 		badges[index].style.backgroundColor = "rgb(223, 73, 73)";
-	} else if (theme === "dark") {
+	} else if (currentTheme === "dark") {
 		badges[index].style.backgroundColor = "rgb(192, 55, 55)";
 	} else {
 		badges[index].style.backgroundColor = color.dark[currentTheme];
@@ -566,4 +580,9 @@ function closeAccordian(index) {
 	list.forEach((list) => {
 		list.classList.add("hidden");
 	});
+}
+
+// SCROLLING
+function scrollToSection(section) {
+	section.scrollIntoView(true);
 }
