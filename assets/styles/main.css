@@ -683,90 +683,6 @@ form > :last-child {
 	margin-bottom: 0;
 }
 
-.modal {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	width: 100%;
-
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: auto;
-	z-index: 1001;
-	background-color: rgba(0, 0, 0, 0.8);
-	opacity: 0;
-	transition: opacity 0.15s linear;
-}
-
-.show {
-	opacity: 1;
-}
-
-.hide {
-	opacity: 0;
-}
-
-#modalForm {
-	margin: auto;
-	padding: 5rem 2rem 2rem;
-	background-color: white;
-	color: black;
-	box-shadow: 0 0 3px 1px rgba(18, 18, 18, 0.5);
-	position: relative;
-	width: 28rem;
-}
-
-#modalForm p.modal-heading {
-	position: absolute;
-	top: -2px;
-	right: 0;
-	left: 0;
-	padding: 1rem;
-	background-color: rgb(39, 39, 39);
-	font-size: 1.5rem;
-	text-align: left;
-	color: white;
-}
-
-.modal-close {
-	position: absolute;
-	bottom: 0.5rem;
-	color: red;
-	padding: 0.25rem 0.5rem;
-	right: 0.5rem;
-	font-weight: bold;
-	cursor: pointer;
-	transition:
-		color 0.1s ease-in,
-		background-color 0.1s ease-in;
-}
-
-.modal-close:hover {
-	color: white;
-	background-color: red;
-}
-
-#modalForm .heading-small {
-	color: black !important;
-}
-
-@media screen and (max-width: 480px) {
-	#modalForm {
-		padding-bottom: 4rem;
-		width: 80%;
-	}
-
-	#modalForm .heading-small {
-		margin-bottom: 1.5rem;
-	}
-
-	.modal-close {
-		font-size: 1rem;
-	}
-}
-
 form > .fields {
 	display: -moz-flex;
 	display: -webkit-flex;
@@ -1694,24 +1610,16 @@ input[type="submit"].primary:focus {
 	color: rgb(230, 230, 230);
 }
 
-input[type="reset"],
-input[type="reset"].modal-reset {
+input[type="reset"] {
 	box-shadow: 0 0 0 2px rgb(20, 20, 20);
 }
 
-input[type="reset"]:hover,
-input[type="reset"].modal-reset:hover {
+input[type="reset"]:hover {
 	box-shadow: 0 0 0 2px rgb(20, 20, 20);
 	background-color: rgba(75, 75, 75, 0.15);
 }
 
-input[type="reset"].modal-reset:active,
-input[type="reset"].modal-reset:focus {
-	box-shadow: 0 0 0 3px #000000;
-}
-
-input[type="reset"].light:focus,
-input[type="reset"].red:focus {
+input[type="reset"]:focus {
 	box-shadow: 0 0 0 3px #000000;
 }
 
@@ -1725,7 +1633,7 @@ input[type="reset"]:focus {
 	background-color: rgba(210, 210, 210, 0.15);
 }
 
-input[type="reset"]:focus {
+input[type="reset"].dark:focus {
 	box-shadow: 0 0 0 3px #ffffff;
 }
 
@@ -2833,7 +2741,7 @@ hr.lower {
 .hero {
 	position: relative;
 	padding: 3rem 1.25rem;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(245, 245, 245, 0.9);
 	background-image: url("https://res.cloudinary.com/drgczkoux/image/upload/v1748837974/hero-bg_wb62om.webp");
 	background-size: cover;
 	background-position: center;
@@ -3007,6 +2915,11 @@ hr.lower {
 	color: white;
 }
 
+.dark .hero-btn-secondary:hover {
+	background-color: rgb(10, 10, 10);
+	box-shadow: 0 0 0 2px rgb(10, 10, 10);
+}
+
 .hero-btn-secondary.warning,
 .hero-btn-secondary.warning.light {
 	box-shadow: none;
@@ -3065,7 +2978,6 @@ p.minor.small {
 }
 
 p.heading-small,
-p.modal-heading,
 .section-title {
 	font-size: 1.25rem;
 	font-weight: bold;
