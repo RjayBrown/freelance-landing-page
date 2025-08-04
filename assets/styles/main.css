@@ -2525,11 +2525,6 @@ body.is-preload #header .content .inner {
 		margin-left: 0.25rem;
 	}
 
-	.mobile-header.dark,
-	.mobile-menu.dark {
-		color: black;
-	}
-
 	.mobile-nav-link {
 		font-size: 1.75rem;
 	}
